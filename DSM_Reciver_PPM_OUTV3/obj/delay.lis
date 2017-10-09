@@ -1,0 +1,997 @@
+ 0000           ;;*****************************************************************************
+ 0000           ;;*****************************************************************************
+ 0000           ;;  FILENAME: delay.asm
+ 0000           ;;
+ 0000           ;;  DESCRIPTION: Delay functions implementation file
+ 0000           ;;
+ 0000           ;;-----------------------------------------------------------------------------
+ 0000           ;;  Copyright (c) Cypress MicroSystems 2002-2006. All Rights Reserved.
+ 0000           ;;*****************************************************************************
+ 0000           ;;*****************************************************************************
+ 0000           
+ 0000           ;-----------------------------------------------------------------------------
+ 0000           ;  Include Files
+ 0000           ;-----------------------------------------------------------------------------
+ 00C0           FLAG_PGMODE_MASK:  equ 0C0h     ; Paging control for > 256 bytes of RAM
+ 0000           FLAG_PGMODE_0:     equ 00h       ; Direct to Page 0,      indexed to Page 0
+ 0040           FLAG_PGMODE_1:     equ 40h       ; Direct to Page 0,      indexed to STK_PP page
+ 0080           FLAG_PGMODE_2:     equ 80h       ; Direct to CUR_PP page, indexed to IDX_PP page
+ 00C0           FLAG_PGMODE_3:     equ 0C0h       ; Direct to CUR_PP page, indexed to STK_PP page
+ 0000           FLAG_PGMODE_00b:   equ 00h       ; Same as PGMODE_0
+ 0040           FLAG_PGMODE_01b:   equ 40h       ; Same as PGMODE_1
+ 0080           FLAG_PGMODE_10b:   equ 80h       ; Same as PGMODE_2
+ 00C0           FLAG_PGMODE_11b:   equ 0C0h       ; Same as PGMODE_3
+ 0010           FLAG_XIO_MASK:     equ 10h     ; I/O Bank select for register space
+ 0008           FLAG_SUPER:        equ 08h     ; Supervisor Mode
+ 0004           FLAG_CARRY:        equ 04h     ; Carry Condition Flag
+ 0002           FLAG_ZERO:         equ 02h     ; Zero  Condition Flag
+ 0001           FLAG_GLOBAL_IE:    equ 01h     ; Glogal Interrupt Enable
+ 0000           
+ 0000           
+ 0000           ;;=============================================================================
+ 0000           ;;      Register Space, Bank 0
+ 0000           ;;=============================================================================
+ 0000           
+ 0000           ;------------------------------------------------
+ 0000           ;  Port Registers
+ 0000           ;  Note: Also see this address range in Bank 1.
+ 0000           ;------------------------------------------------
+ 0000           ; Port 0
+ 0000           PRT0DR:       equ 00h          ; Port 0 Data Register                     (RW)
+ 0001           PRT0IE:       equ 01h          ; Port 0 Interrupt Enable Register         (RW)
+ 0002           PRT0GS:       equ 02h          ; Port 0 Global Select Register            (RW)
+ 0003           PRT0DM2:      equ 03h          ; Port 0 Drive Mode 2                      (RW)
+ 0000           ; Port 1
+ 0004           PRT1DR:       equ 04h          ; Port 1 Data Register                     (RW)
+ 0005           PRT1IE:       equ 05h          ; Port 1 Interrupt Enable Register         (RW)
+ 0006           PRT1GS:       equ 06h          ; Port 1 Global Select Register            (RW)
+ 0007           PRT1DM2:      equ 07h          ; Port 1 Drive Mode 2                      (RW)
+ 0000           ; Port 2
+ 0008           PRT2DR:       equ 08h          ; Port 2 Data Register                     (RW)
+ 0009           PRT2IE:       equ 09h          ; Port 2 Interrupt Enable Register         (RW)
+ 000A           PRT2GS:       equ 0Ah          ; Port 2 Global Select Register            (RW)
+ 000B           PRT2DM2:      equ 0Bh          ; Port 2 Drive Mode 2                      (RW)
+ 0000           ; Port 3
+ 000C           PRT3DR:       equ 0Ch          ; Port 3 Data Register                     (RW)
+ 000D           PRT3IE:       equ 0Dh          ; Port 3 Interrupt Enable Register         (RW)
+ 000E           PRT3GS:       equ 0Eh          ; Port 3 Global Select Register            (RW)
+ 000F           PRT3DM2:      equ 0Fh          ; Port 3 Drive Mode 2                      (RW)
+ 0000           
+ 0000           ;------------------------------------------------
+ 0000           ;  Digital PSoC(tm) block Registers
+ 0000           ;  Note: Also see this address range in Bank 1.
+ 0000           ;------------------------------------------------
+ 0000           ; Digital PSoC block 00, Basic Type B
+ 0020           DBB00DR0:     equ 20h          ; data register 0                          (#)
+ 0021           DBB00DR1:     equ 21h          ; data register 1                          (W)
+ 0022           DBB00DR2:     equ 22h          ; data register 2                          (RW)
+ 0023           DBB00CR0:     equ 23h          ; control & status register 0              (#)
+ 0000           
+ 0000           ; Digital PSoC block 01, Basic Type B
+ 0024           DBB01DR0:     equ 24h          ; data register 0                          (#)
+ 0025           DBB01DR1:     equ 25h          ; data register 1                          (W)
+ 0026           DBB01DR2:     equ 26h          ; data register 2                          (RW)
+ 0027           DBB01CR0:     equ 27h          ; control & status register 0              (#)
+ 0000           
+ 0000           ; Digital PSoC block 02, Communications Type B
+ 0028           DCB02DR0:     equ 28h          ; data register 0                          (#)
+ 0029           DCB02DR1:     equ 29h          ; data register 1                          (W)
+ 002A           DCB02DR2:     equ 2Ah          ; data register 2                          (RW)
+ 002B           DCB02CR0:     equ 2Bh          ; control & status register 0              (#)
+ 0000           
+ 0000           ; Digital PSoC block 03, Communications Type B
+ 002C           DCB03DR0:     equ 2Ch          ; data register 0                          (#)
+ 002D           DCB03DR1:     equ 2Dh          ; data register 1                          (W)
+ 002E           DCB03DR2:     equ 2Eh          ; data register 2                          (RW)
+ 002F           DCB03CR0:     equ 2Fh          ; control & status register 0              (#)
+ 0000           
+ 0000           ;-------------------------------------
+ 0000           ;  Analog Control Registers
+ 0000           ;-------------------------------------
+ 0060           AMX_IN:       equ 60h          ; Analog Input Multiplexor Control         (RW)
+ 000C           AMX_IN_ACI1:          equ 0Ch    ; MASK: column 1 input mux
+ 0003           AMX_IN_ACI0:          equ 03h    ; MASK: column 0 input mux
+ 0000           
+ 0061           AMUX_CFG:      equ 61h          ; Analog MUX Configuration
+ 0030           AMUX_CFG_INTCAP:       equ 30h    ;
+ 000E           AMUX_CFG_MUXCLK:  	  equ 0Eh	 ;
+ 0001           AMUX_CFG_EN:		  	  equ 01h	 ;
+ 0000           
+ 0000           ; old declarations DO NOT USE
+ 0061           AMUXCFG:      equ 61h          ; Analog MUX Configuration
+ 0030           AMUXCFG_INTCAP:       equ 30h    ;
+ 000E           AMUXCFG_MUXCLK:  	  equ 0Eh	 ;
+ 0001           AMUXCFG_EN:		  	  equ 01h	 ;
+ 0000           
+ 0062           PWM_CR:       equ 62h          ; Pulse-Width Modulator Control
+ 0038           PWM_CR_HIGH:          equ 38h    ; MASK: PWM high time
+ 0006           PWM_CR_LOW:           equ 06h	 ; MASK: PWM low time
+ 0001           PWM_CR_EN:            equ 01h	 ; MASK: Enable/Disable PWM function
+ 0000           
+ 0064           CMP_CR0:      equ 64h          ; Analog Comparator Bus Register           (#)
+ 0020           CMP_CR0_COMP1:        equ 20h    ; MASK: Column 1 comparator state        (R)
+ 0010           CMP_CR0_COMP0:        equ 10h    ; MASK: Column 0 comparator state        (R)
+ 0002           CMP_CR0_AINT1:        equ 02h    ; MASK: Column 1 interrupt source        (RW)
+ 0001           CMP_CR0_AINT0:        equ 01h    ; MASK: Column 0 interrupt source        (RW)
+ 0000           
+ 0066           CMP_CR1:      equ 66h          ; Analog Comparator Bus 1 Register         (RW)
+ 0020           CMP_CR1_CLDIS1:       equ 20h    ; MASK: Column 1 comparator output latch
+ 0010           CMP_CR1_CLDIS0:	      equ 10h    ; MASK: Column 0 comparator output latch
+ 0000           
+ 0068           ADC0_CR:      equ 68h          ; Analog Column 0 Configuration
+ 0080           ADC0_CR_CMPST:        equ 80h    ;
+ 0040           ADC0_CR_LOREN:        equ 40h    ;
+ 0020           ADC0_CR_SHEN:         equ 20h    ;
+ 0008           ADC0_CR_CBSRC:        equ 08h    ;
+ 0004           ADC0_CR_ADCM:         equ 04h    ;
+ 0001           ADC0_CR_EN:	          equ 01h    ;
+ 0000           
+ 0069           ADC1_CR:      equ 69h          ; Analog Column 1 Configuration
+ 0080           ADC1_CR_CMPST:        equ 80h    ;
+ 0040           ADC1_CR_LOREN:        equ 40h    ;
+ 0020           ADC1_CR_SHEN:         equ 20h    ;
+ 0008           ADC1_CR_CBSRC:        equ 08h    ;
+ 0004           ADC1_CR_ADCM:         equ 04h    ;
+ 0001           ADC1_CR_EN:	          equ 01h    ;
+ 0000           
+ 0000           ; Continuous Time PSoC block Type E Row 0 Col 0
+ 0072           ACE00CR1:     equ 72h          ; Control register 1                       (RW)
+ 0073           ACE00CR2:     equ 73h          ; Control register 2                       (RW)
+ 0000           
+ 0000           ; Continuous Time PSoC block Type E Row 0 Col 1
+ 0076           ACE01CR1:     equ 76h          ; Control register 1                       (RW)
+ 0077           ACE01CR2:     equ 77h          ; Control register 2                       (RW)
+ 0000           
+ 0000           ; Switched Cap PSoC blockType E Row 1 Col 0
+ 0080           ASE10CR0:     equ 80h          ; Control register 0                       (RW)
+ 0000           
+ 0000           ; Switched Cap PSoC blockType E Row 1 Col 1
+ 0084           ASE11CR0:     equ 84h          ; Control register 0                       (RW)
+ 0000           
+ 0000           ;-----------------------------------------------
+ 0000           ;  Global General Purpose Data Registers
+ 0000           ;-----------------------------------------------
+ 006C           TMP_DR0:      equ 6Ch          ; Temporary Data Register 0                (RW)
+ 006D           TMP_DR1:      equ 6Dh          ; Temporary Data Register 1                (RW)
+ 006E           TMP_DR2:      equ 6Eh          ; Temporary Data Register 2                (RW)
+ 006F           TMP_DR3:      equ 6Fh          ; Temporary Data Register 3                (RW)
+ 0000           
+ 0000           ;------------------------------------------------
+ 0000           ;  Row Digital Interconnects
+ 0000           ;
+ 0000           ;  Note: the following registers are mapped into
+ 0000           ;  both register bank 0 AND register bank 1.
+ 0000           ;------------------------------------------------
+ 0000           
+ 00B0           RDI0RI:       equ 0B0h          ; Row Digital Interconnect Row 0 Input Reg (RW)
+ 00B1           RDI0SYN:      equ 0B1h          ; Row Digital Interconnect Row 0 Sync Reg  (RW)
+ 00B2           RDI0IS:       equ 0B2h          ; Row 0 Input Select Register              (RW)
+ 00B3           RDI0LT0:      equ 0B3h          ; Row 0 Look Up Table Register 0           (RW)
+ 00B4           RDI0LT1:      equ 0B4h          ; Row 0 Look Up Table Register 1           (RW)
+ 00B5           RDI0RO0:      equ 0B5h          ; Row 0 Output Register 0                  (RW)
+ 00B6           RDI0RO1:      equ 0B6h          ; Row 0 Output Register 1                  (RW)
+ 0000           
+ 0000           ;-----------------------------------------------
+ 0000           ;  Ram Page Pointers
+ 0000           ;-----------------------------------------------
+ 00D0           CUR_PP:      equ 0D0h           ; Current   Page Pointer
+ 00D1           STK_PP:      equ 0D1h           ; Stack     Page Pointer
+ 00D3           IDX_PP:      equ 0D3h           ; Index     Page Pointer
+ 00D4           MVR_PP:      equ 0D4h           ; MVI Read  Page Pointer
+ 00D5           MVW_PP:      equ 0D5h           ; MVI Write Page Pointer
+ 0000           
+ 0000           ;------------------------------------------------
+ 0000           ;  I2C Configuration Registers
+ 0000           ;------------------------------------------------
+ 00D6           I2C_CFG:      equ 0D6h          ; I2C Configuration Register               (RW)
+ 0040           I2C_CFG_PINSEL:         equ 40h  ; MASK: Select P1[0] and P1[1] for I2C
+ 0020           I2C_CFG_BUSERR_IE:      equ 20h  ; MASK: Enable interrupt on Bus Error
+ 0010           I2C_CFG_STOP_IE:        equ 10h  ; MASK: Enable interrupt on Stop
+ 0000           I2C_CFG_CLK_RATE_100K:  equ 00h  ; MASK: I2C clock set at 100K
+ 0004           I2C_CFG_CLK_RATE_400K:  equ 04h  ; MASK: I2C clock set at 400K
+ 0008           I2C_CFG_CLK_RATE_50K:   equ 08h  ; MASK: I2C clock set at 50K
+ 000C           I2C_CFG_CLK_RATE:       equ 0Ch  ; MASK: I2C clock rate setting mask
+ 0002           I2C_CFG_PSELECT_MASTER: equ 02h  ; MASK: Enable I2C Master
+ 0001           I2C_CFG_PSELECT_SLAVE:  equ 01h  ; MASK: Enable I2C Slave
+ 0000           
+ 00D7           I2C_SCR:      equ 0D7h          ; I2C Status and Control Register          (#)
+ 0080           I2C_SCR_BUSERR:        equ 80h   ; MASK: I2C Bus Error detected           (RC)
+ 0040           I2C_SCR_LOSTARB:       equ 40h   ; MASK: I2C Arbitration lost             (RC)
+ 0020           I2C_SCR_STOP:          equ 20h   ; MASK: I2C Stop detected                (RC)
+ 0010           I2C_SCR_ACK:           equ 10h   ; MASK: ACK the last byte                (RW)
+ 0008           I2C_SCR_ADDR:          equ 08h   ; MASK: Address rcv'd is Slave address   (RC)
+ 0004           I2C_SCR_XMIT:          equ 04h   ; MASK: Set transfer to tranmit mode     (RW)
+ 0002           I2C_SCR_LRB:           equ 02h   ; MASK: Last recieved bit                (RC)
+ 0001           I2C_SCR_BYTECOMPLETE:  equ 01h   ; MASK: Transfer of byte complete        (RC)
+ 0000           
+ 00D8           I2C_DR:       equ 0D8h          ; I2C Data Register                        (RW)
+ 0000           
+ 00D9           I2C_MSCR:     equ 0D9h          ; I2C Master Status and Control Register   (#)
+ 0008           I2C_MSCR_BUSY:         equ 08h   ; MASK: I2C Busy (Start detected)        (R)
+ 0004           I2C_MSCR_MODE:         equ 04h   ; MASK: Start has been generated         (R)
+ 0002           I2C_MSCR_RESTART:      equ 02h   ; MASK: Generate a Restart condition     (RW)
+ 0001           I2C_MSCR_START:        equ 01h   ; MASK: Generate a Start condition       (RW)
+ 0000           
+ 0000           ;------------------------------------------------
+ 0000           ;  System and Global Resource Registers
+ 0000           ;------------------------------------------------
+ 00DA           INT_CLR0:     equ 0DAh          ; Interrupt Clear Register 0               (RW)
+ 0000                                          ; Use INT_MSK0 bit field masks
+ 00DB           INT_CLR1:     equ 0DBh          ; Interrupt Clear Register 1               (RW)
+ 0000                                          ; Use INT_MSK1 bit field masks
+ 00DD           INT_CLR3:     equ 0DDh          ; Interrupt Clear Register 3               (RW)
+ 0000                                          ; Use INT_MSK3 bit field masks
+ 0000           
+ 00DE           INT_MSK3:     equ 0DEh          ; I2C and Software Mask Register           (RW)
+ 0080           INT_MSK3_ENSWINT:          equ 80h ; MASK: enable/disable SW interrupt
+ 0001           INT_MSK3_I2C:              equ 01h ; MASK: enable/disable I2C interrupt
+ 0000           
+ 00E0           INT_MSK0:     equ 0E0h          ; General Interrupt Mask Register          (RW)
+ 0080           INT_MSK0_VC3:              equ 80h ; MASK: enable/disable VC3 interrupt
+ 0040           INT_MSK0_SLEEP:            equ 40h ; MASK: enable/disable sleep interrupt
+ 0020           INT_MSK0_GPIO:             equ 20h ; MASK: enable/disable GPIO  interrupt
+ 0004           INT_MSK0_ACOLUMN_1:        equ 04h ; MASK: enable/disable Analog col 1 interrupt
+ 0002           INT_MSK0_ACOLUMN_0:        equ 02h ; MASK: enable/disable Analog col 0 interrupt
+ 0001           INT_MSK0_VOLTAGE_MONITOR:  equ 01h ; MASK: enable/disable Volts interrupt
+ 0000           
+ 00E1           INT_MSK1:     equ 0E1h          ; Digital PSoC block Mask Register         (RW)
+ 0008           INT_MSK1_DCB03:            equ 08h ; MASK: enable/disable DCB03 block interrupt
+ 0004           INT_MSK1_DCB02:            equ 04h ; MASK: enable/disable DCB02 block interrupt
+ 0002           INT_MSK1_DBB01:            equ 02h ; MASK: enable/disable DBB01 block interrupt
+ 0001           INT_MSK1_DBB00:            equ 01h ; MASK: enable/disable DBB00 block interrupt
+ 0000           
+ 00E2           INT_VC:       equ 0E2h          ; Interrupt vector register                (RC)
+ 00E3           RES_WDT:      equ 0E3h          ; Watch Dog Timer Register                 (W)
+ 0000           
+ 0000           ; DECIMATOR Control Registers
+ 00E6           DEC_CR0:      equ 0E6h          ; Data Control Register 0                  (RW)
+ 00E7           DEC_CR1:      equ 0E7h          ; Data Control Register 1                  (RW)
+ 0000           
+ 0000           ;------------------------------------------------------
+ 0000           ;  System Status and Control Registers
+ 0000           ;
+ 0000           ;  Note: The following registers are mapped into both
+ 0000           ;        register bank 0 AND register bank 1.
+ 0000           ;------------------------------------------------------
+ 00F7           CPU_F:        equ 0F7h          ; CPU Flag Register Access                 (RO)
+ 0000                                              ; Use FLAG_ masks defined at top of file
+ 0000           
+ 00FD           DAC_D:        equ 0FDh		   ; DAC Data Register                        (RW)
+ 0000           
+ 00FE           CPU_SCR1:     equ 0FEh          ; CPU Status and Control Register #1       (#)
+ 0080           CPU_SCR1_IRESS:         equ 80h    ; MASK: flag, Internal Reset Status bit
+ 0010           CPU_SCR1_SLIMO:         equ 10h	   ; MASK: Slow IMO (internal main osc) enable
+ 0008           CPU_SCR1_ECO_ALWD_WR:   equ 08h    ; MASK: flag, ECO allowed has been written
+ 0004           CPU_SCR1_ECO_ALLOWED:   equ 04h    ; MASK: ECO allowed to be enabled
+ 0001           CPU_SCR1_IRAMDIS:       equ 01h    ; MASK: Disable RAM initialization on WDR
+ 0000           
+ 00FF           CPU_SCR0:     equ 0FFh          ; CPU Status and Control Register #2       (#)
+ 0080           CPU_SCR0_GIE_MASK:      equ 80h    ; MASK: Global Interrupt Enable shadow
+ 0020           CPU_SCR0_WDRS_MASK:     equ 20h    ; MASK: Watch Dog Timer Reset
+ 0010           CPU_SCR0_PORS_MASK:     equ 10h    ; MASK: power-on reset bit PORS
+ 0008           CPU_SCR0_SLEEP_MASK:    equ 08h    ; MASK: Enable Sleep
+ 0001           CPU_SCR0_STOP_MASK:     equ 01h    ; MASK: Halt CPU bit
+ 0000           
+ 0000           
+ 0000           ;;=============================================================================
+ 0000           ;;      Register Space, Bank 1
+ 0000           ;;=============================================================================
+ 0000           
+ 0000           ;------------------------------------------------
+ 0000           ;  Port Registers
+ 0000           ;  Note: Also see this address range in Bank 0.
+ 0000           ;------------------------------------------------
+ 0000           ; Port 0
+ 0000           PRT0DM0:      equ 00h          ; Port 0 Drive Mode 0                      (RW)
+ 0001           PRT0DM1:      equ 01h          ; Port 0 Drive Mode 1                      (RW)
+ 0002           PRT0IC0:      equ 02h          ; Port 0 Interrupt Control 0               (RW)
+ 0003           PRT0IC1:      equ 03h          ; Port 0 Interrupt Control 1               (RW)
+ 0000           
+ 0000           ; Port 1
+ 0004           PRT1DM0:      equ 04h          ; Port 1 Drive Mode 0                      (RW)
+ 0005           PRT1DM1:      equ 05h          ; Port 1 Drive Mode 1                      (RW)
+ 0006           PRT1IC0:      equ 06h          ; Port 1 Interrupt Control 0               (RW)
+ 0007           PRT1IC1:      equ 07h          ; Port 1 Interrupt Control 1               (RW)
+ 0000           
+ 0000           ; Port 2
+ 0008           PRT2DM0:      equ 08h          ; Port 2 Drive Mode 0                      (RW)
+ 0009           PRT2DM1:      equ 09h          ; Port 2 Drive Mode 1                      (RW)
+ 000A           PRT2IC0:      equ 0Ah          ; Port 2 Interrupt Control 0               (RW)
+ 000B           PRT2IC1:      equ 0Bh          ; Port 2 Interrupt Control 1               (RW)
+ 0000           
+ 0000           ; Port 3
+ 000C           PRT3DM0:      equ 0Ch          ; Port 3 Drive Mode 0                      (RW)
+ 000D           PRT3DM1:      equ 0Dh          ; Port 3 Drive Mode 1                      (RW)
+ 000E           PRT3IC0:      equ 0Eh          ; Port 3 Interrupt Control 0               (RW)
+ 000F           PRT3IC1:      equ 0Fh          ; Port 3 Interrupt Control 1               (RW)
+ 0000           
+ 0000           ;------------------------------------------------
+ 0000           ;  Digital PSoC(tm) block Registers
+ 0000           ;  Note: Also see this address range in Bank 0.
+ 0000           ;------------------------------------------------
+ 0000           
+ 0000           ; Digital PSoC block 00, Basic Type B
+ 0020           DBB00FN:      equ 20h          ; Function Register                        (RW)
+ 0021           DBB00IN:      equ 21h          ;    Input Register                        (RW)
+ 0022           DBB00OU:      equ 22h          ;   Output Register                        (RW)
+ 0000           
+ 0000           ; Digital PSoC block 01, Basic Type B
+ 0024           DBB01FN:      equ 24h          ; Function Register                        (RW)
+ 0025           DBB01IN:      equ 25h          ;    Input Register                        (RW)
+ 0026           DBB01OU:      equ 26h          ;   Output Register                        (RW)
+ 0000           
+ 0000           ; Digital PSoC block 02, Communications Type B
+ 0028           DCB02FN:      equ 28h          ; Function Register                        (RW)
+ 0029           DCB02IN:      equ 29h          ;    Input Register                        (RW)
+ 002A           DCB02OU:      equ 2Ah          ;   Output Register                        (RW)
+ 0000           
+ 0000           ; Digital PSoC block 03, Communications Type B
+ 002C           DCB03FN:      equ 2Ch          ; Function Register                        (RW)
+ 002D           DCB03IN:      equ 2Dh          ;    Input Register                        (RW)
+ 002E           DCB03OU:      equ 2Eh          ;   Output Register                        (RW)
+ 0000           
+ 0000           ;------------------------------------------------
+ 0000           ;  System and Global Resource Registers
+ 0000           ;  Note: Also see this address range in Bank 0.
+ 0000           ;------------------------------------------------
+ 0000           
+ 0060           CLK_CR0:      equ 60h          ; Analog Column Clock Select Register 0    (RW)
+ 000C           CLK_CR0_ACOLUMN_1:    equ 0Ch    ; MASK: Specify clock for analog cloumn
+ 0003           CLK_CR0_ACOLUMN_0:    equ 03h    ; MASK: Specify clock for analog cloumn
+ 0000           
+ 0061           CLK_CR1:      equ 61h          ; Analog Clock Source Select Register 1    (RW)
+ 0018           CLK_CR1_ACLK1:        equ 18h    ; MASK: Digital PSoC block for analog source
+ 0003           CLK_CR1_ACLK0:        equ 03h    ; MASK: Digital PSoC block for analog source
+ 0000           
+ 0003           CLK_CR1_ACLK2:        equ 03h    ; Deprecated do not use
+ 0000           
+ 0062           ABF_CR0:      equ 62h          ; Analog Output Buffer Control Register 0  (RW)
+ 0080           ABF_CR0_ACOL1MUX:     equ 80h    ; MASK: Analog Column 1 Mux control
+ 0000           
+ 0063           AMD_CR0:      equ 63h          ; Analog Modulator Control Register 0      (RW)
+ 000F           AMD_CR0_AMOD0:        equ 0Fh    ; MASK: Modulation source for analog column 0
+ 0000           
+ 0064           CMP_GO_EN:    equ 64h          ; Comparator Bus To Global Out Enable      (RW)
+ 0080           CMP_GO_EN_GOO5:       equ 80h    ; MASK: Selected Col 1 signal to GOO5
+ 0040           CMP_GO_EN_GOO1:       equ 40h    ; MASK: Selected Col 1 signal to GOO1
+ 0030           CMP_GO_EN_SEL1:       equ 30h    ; MASK: Column 1 Signal Select
+ 0008           CMP_GO_EN_GOO4:       equ 08h    ; MASK: Selected Col 0 signal to GOO4
+ 0004           CMP_GO_EN_GOO0:       equ 04h    ; MASK: Selected Col 0 signal to GOO0
+ 0003           CMP_GO_EN_SEL0:       equ 03h    ; MASK: Column 0 Signal Select
+ 0000           
+ 0066           AMD_CR1:      equ 66h          ; Analog Modulator Control Register 1      (RW)
+ 000F           AMD_CR1_AMOD1:        equ 0Fh    ; MASK: Modulation ctrl for analog column 1
+ 0000           
+ 0067           ALT_CR0:      equ 67h          ; Analog Look Up Table (LUT) Register 0    (RW)
+ 00F0           ALT_CR0_LUT1:         equ 0F0h    ; MASK: Look up table 1 selection
+ 000F           ALT_CR0_LUT0:         equ 0Fh    ; MASK: Look up table 0 selection
+ 0000           
+ 006B           CLK_CR3:      equ 6Bh          ; Analog Clock Source Control Register 3   (RW)
+ 0040           CLK_CR3_SYS1:         equ 40h    ; MASK: Analog Clock 1 selection
+ 0030           CLK_CR3_DIVCLK1:      equ 30h    ; MASK: Analog Clock 1 divider
+ 0004           CLK_CR3_SYS0:         equ 04h    ; MASK: Analog Clock 0 selection
+ 0003           CLK_CR3_DIVCLK0:      equ 03h    ; MASK: Analog Clock 0 divider
+ 0000           
+ 0000           ;------------------------------------------------
+ 0000           ;  Global Digital Interconnects
+ 0000           ;------------------------------------------------
+ 0000           
+ 00D0           GDI_O_IN:     equ 0D0h          ; Global Dig Interconnect Odd Inputs Reg   (RW)
+ 00D1           GDI_E_IN:     equ 0D1h          ; Global Dig Interconnect Even Inputs Reg  (RW)
+ 00D2           GDI_O_OU:     equ 0D2h          ; Global Dig Interconnect Odd Outputs Reg  (RW)
+ 00D3           GDI_E_OU:     equ 0D3h          ; Global Dig Interconnect Even Outputs Reg (RW)
+ 0000           
+ 0000           ;------------------------------------------------
+ 0000           ;  Analog Mux Bus Port Enable Bits
+ 0000           ;------------------------------------------------
+ 00D8           MUX_CR0:      equ 0D8h          ; Analog Mux Port 0 Bit Enables Register
+ 00D9           MUX_CR1:      equ 0D9h          ; Analog Mux Port 1 Bit Enables Register
+ 00DA           MUX_CR2:      equ 0DAh          ; Analog Mux Port 2 Bit Enables Register
+ 00DB           MUX_CR3:      equ 0DBh          ; Analog Mux Port 3 Bit Enables Register
+ 0000           
+ 0000           ;------------------------------------------------
+ 0000           ;  Clock and System Control Registers
+ 0000           ;------------------------------------------------
+ 0000           
+ 00DD           OSC_GO_EN:    equ 0DDh          ; Oscillator to Global Outputs Enable Register (RW)
+ 0080           OSC_GO_EN_SLPINT:      equ 80h	 ; Enable Sleep Timer onto GOE[7]
+ 0040           OSC_GO_EN_VC3:         equ 40h    ; Enable VC3 onto GOE[6]
+ 0020           OSC_GO_EN_VC2:         equ 20h    ; Enable VC2 onto GOE[5]
+ 0010           OSC_GO_EN_VC1:         equ 10h    ; Enable VC1 onto GOE[4]
+ 0008           OSC_GO_EN_SYSCLKX2:    equ 08h    ; Enable 2X SysClk onto GOE[3]
+ 0004           OSC_GO_EN_SYSCLK:      equ 04h    ; Enable 1X SysClk onto GOE[2]
+ 0002           OSC_GO_EN_CLK24M:      equ 02h    ; Enable 24 MHz clock onto GOE[1]
+ 0001           OSC_GO_EN_CLK32K:      equ 01h    ; Enable 32 kHz clock onto GOE[0]
+ 0000           
+ 00DE           OSC_CR4:      equ 0DEh          ; Oscillator Control Register 4            (RW)
+ 0003           OSC_CR4_VC3SEL:       equ 03h    ; MASK: System VC3 Clock source
+ 0000           
+ 00DF           OSC_CR3:      equ 0DFh          ; Oscillator Control Register 3            (RW)
+ 0000           
+ 00E0           OSC_CR0:      equ 0E0h          ; System Oscillator Control Register 0     (RW)
+ 0080           OSC_CR0_32K_SELECT:   equ 80h    ; MASK: Enable/Disable External XTAL Osc
+ 0040           OSC_CR0_PLL_MODE:     equ 40h    ; MASK: Enable/Disable PLL
+ 0020           OSC_CR0_NO_BUZZ:      equ 20h    ; MASK: Bandgap always powered/BUZZ bandgap
+ 0018           OSC_CR0_SLEEP:        equ 18h    ; MASK: Set Sleep timer freq/period
+ 0000           OSC_CR0_SLEEP_512Hz:  equ 00h    ;     Set sleep bits for 1.95ms period
+ 0008           OSC_CR0_SLEEP_64Hz:   equ 08h    ;     Set sleep bits for 15.6ms period
+ 0010           OSC_CR0_SLEEP_8Hz:    equ 10h    ;     Set sleep bits for 125ms period
+ 0018           OSC_CR0_SLEEP_1Hz:    equ 18h    ;     Set sleep bits for 1 sec period
+ 0007           OSC_CR0_CPU:          equ 07h    ; MASK: Set CPU Frequency
+ 0000           OSC_CR0_CPU_3MHz:     equ 00h    ;     set CPU Freq bits for 3MHz Operation
+ 0001           OSC_CR0_CPU_6MHz:     equ 01h    ;     set CPU Freq bits for 6MHz Operation
+ 0002           OSC_CR0_CPU_12MHz:    equ 02h    ;     set CPU Freq bits for 12MHz Operation
+ 0003           OSC_CR0_CPU_24MHz:    equ 03h    ;     set CPU Freq bits for 24MHz Operation
+ 0004           OSC_CR0_CPU_1d5MHz:   equ 04h    ;     set CPU Freq bits for 1.5MHz Operation
+ 0005           OSC_CR0_CPU_750kHz:   equ 05h    ;     set CPU Freq bits for 750kHz Operation
+ 0006           OSC_CR0_CPU_187d5kHz: equ 06h    ;     set CPU Freq bits for 187.5kHz Operation
+ 0007           OSC_CR0_CPU_93d7kHz:  equ 07h    ;     set CPU Freq bits for 93.7kHz Operation
+ 0000           
+ 00E1           OSC_CR1:      equ 0E1h          ; System VC1/VC2 Divider Control Register  (RW)
+ 00F0           OSC_CR1_VC1:          equ 0F0h    ; MASK: System VC1 24MHz/External Clk divider
+ 000F           OSC_CR1_VC2:          equ 0Fh    ; MASK: System VC2 24MHz/External Clk divider
+ 0000           
+ 00E2           OSC_CR2:      equ 0E2h          ; Oscillator Control Register 2            (RW)
+ 0080           OSC_CR2_PLLGAIN:      equ 80h    ; MASK: High/Low gain
+ 0004           OSC_CR2_EXTCLKEN:     equ 04h    ; MASK: Enable/Disable External Clock
+ 0001           OSC_CR2_SYSCLKX2DIS:  equ 01h    ; MASK: Enable/Disable 48MHz clock source
+ 0000           
+ 00E3           VLT_CR:       equ 0E3h          ; Voltage Monitor Control Register         (RW)
+ 0080           VLT_CR_SMP:           equ 80h    ; MASK: Enable Switch Mode Pump
+ 0030           VLT_CR_PORLEV:        equ 30h    ; MASK: Mask for Power on Reset level control
+ 0000           VLT_CR_POR_LOW:       equ 00h    ;   Lowest  Precision Power-on Reset trip point
+ 0010           VLT_CR_POR_MID:       equ 10h    ;   Middle  Precision Power-on Reset trip point
+ 0020           VLT_CR_POR_HIGH:      equ 20h    ;   Highest Precision Power-on Reset trip point
+ 0008           VLT_CR_LVDTBEN:       equ 08h    ; MASK: Enable the CPU Throttle Back on LVD
+ 0007           VLT_CR_VM:            equ 07h    ; MASK: Mask for Voltage Monitor level setting
+ 0000           
+ 00E4           VLT_CMP:      equ 0E4h          ; Voltage Monitor Comparators Register     (R)
+ 0008           VLT_CMP_NOWRITE:      equ 08h    ; MASK: Vcc below Flash Write level
+ 0004           VLT_CMP_PUMP:         equ 04h    ; MASK: Vcc below SMP trip level
+ 0002           VLT_CMP_LVD:          equ 02h    ; MASK: Vcc below LVD trip level
+ 0001           VLT_CMP_PPOR:         equ 01h    ; MASK: Vcc below PPOR trip level
+ 0000           
+ 00E5           ADC0_TR:      equ 0E5h          ; ADC Column 0 Trim Register
+ 00E6           ADC1_TR:      equ 0E6h          ; ADC Column 1 Trim Register
+ 0000           
+ 00E8           IMO_TR:       equ 0E8h          ; Internal Main Oscillator Trim Register   (W)
+ 00E9           ILO_TR:       equ 0E9h          ; Internal Low-speed Oscillator Trim       (W)
+ 00EA           BDG_TR:       equ 0EAh          ; Band Gap Trim Register                   (W)
+ 00EB           ECO_TR:       equ 0EBh          ; External Oscillator Trim Register        (W)
+ 0000           
+ 00FA           FLS_PR1:      equ 0FAh          ; Flash Program Register 1                 (RW)
+ 0003           FLS_PR1_BANK:         equ 03h    ; MASK: Select Active Flash Bank
+ 0000           
+ 00FD           DAC_CR:       equ 0FDh          ; Analog Mux DAC Control Register
+ 0008           DAC_CR_IRANGE:        equ 08h    ; MASK: Sets the DAC Range low or high
+ 0006           DAC_CR_OSCMODE:       equ 06h    ; MASK: Defines the reset mode for AMux
+ 0001           DAC_CR_ENABLE:        equ 01h    ; MASK: Enable/Disable DAC function
+ 0000           
+ 0000           ;;=============================================================================
+ 0000           ;;      M8C System Macros
+ 0000           ;;  These macros should be used when their functions are needed.
+ 0000           ;;=============================================================================
+ 0000           
+ 0000           ;----------------------------------------------------
+ 0000           ;  Swapping Register Banks
+ 0000           ;----------------------------------------------------
+ 0000               macro M8C_SetBank0
+ 0000               and   F, ~FLAG_XIO_MASK
+ 0000               macro M8C_SetBank1
+ 0000               or    F, FLAG_XIO_MASK
+ 0000               macro M8C_EnableGInt
+ 0000               or    F, FLAG_GLOBAL_IE
+ 0000               macro M8C_DisableGInt
+ 0000               and   F, ~FLAG_GLOBAL_IE
+ 0000               macro M8C_DisableIntMask
+ 0000               and   reg[@0], ~@1              ; disable specified interrupt enable bit
+ 0000               macro M8C_EnableIntMask
+ 0000               or    reg[@0], @1               ; enable specified interrupt enable bit
+ 0000               macro M8C_ClearIntFlag
+ 0000               mov   reg[@0], ~@1              ; clear specified interrupt enable bit
+ 0000               macro M8C_EnableWatchDog
+ 0000               and   reg[CPU_SCR0], ~CPU_SCR0_PORS_MASK
+ 0000               macro M8C_ClearWDT
+ 0000               mov   reg[RES_WDT], 00h
+ 0000               macro M8C_ClearWDTAndSleep
+ 0000               mov   reg[RES_WDT], 38h
+ 0000               macro M8C_Sleep
+ 0000               or    reg[CPU_SCR0], CPU_SCR0_SLEEP_MASK
+ 0000               ; The next instruction to be executed depends on the state of the
+ 0000               ; various interrupt enable bits. If some interrupts are enabled
+ 0000               ; and the global interrupts are disabled, the next instruction will
+ 0000               ; be the one that follows the invocation of this macro. If global
+ 0000               ; interrupts are also enabled then the next instruction will be
+ 0000               ; from the interrupt vector table. If no interrupts are enabled
+ 0000               ; then the CPU sleeps forever.
+ 0000               macro M8C_Stop
+ 0000               ; In general, you probably don't want to do this, but here's how:
+ 0000               or    reg[CPU_SCR0], CPU_SCR0_STOP_MASK
+ 0000               ; Next instruction to be executed is located in the interrupt
+ 0000               ; vector table entry for Power-On Reset.
+ 0000               macro M8C_Reset
+ 0000               ; Restore CPU to the power-on reset state.
+ 0000               mov A, 0
+ 0000               SSC
+ 0000               ; Next non-supervisor instruction will be at interrupt vector 0.
+ 0000               macro Suspend_CodeCompressor
+ 0000               or   F, 0
+ 0000               macro Resume_CodeCompressor
+ 0000               add  SP, 0
+ 0000           SYSTEM_STACK_PAGE: equ 0   
+ 0000           SYSTEM_STACK_BASE_ADDR: equ 0h   
+ 0000           SYSTEM_LARGE_MEMORY_MODEL: equ 0   
+ 0001           SYSTEM_SMALL_MEMORY_MODEL: equ 1   
+ 0001           IMAGECRAFT: equ 1   
+ 0002           HITECH: equ 2   
+ 0001           TOOLCHAIN: equ IMAGECRAFT   
+ 0001           SYSTEM_TOOLS: equ 1   
+ 0001           SYSTEM_IDXPG_TRACKS_STK_PP: equ 1   
+ 0000           SYSTEM_IDXPG_TRACKS_IDX_PP: equ 0   
+ 0000           SYSTEM_MULTIPAGE_STACK: equ 0 
+ 0000           
+ 0000           
+ 0000           ;  ******* Function Class Definitions *******
+ 0000           ;
+ 0000           ;  These definitions are used to describe RAM access patterns. They provide
+ 0000           ;  documentation and they control prologue and epilogue macros that perform
+ 0000           ;  the necessary housekeeping functions for large memory model devices like
+ 0000           ;  the CY8C21030.
+ 0000           
+ 0001           RAM_USE_CLASS_1:               equ 1   ; PUSH, POP & I/O access
+ 0002           RAM_USE_CLASS_2:               equ 2   ; Indexed address mode on stack page
+ 0004           RAM_USE_CLASS_3:               equ 4   ; Indexed address mode to any page
+ 0008           RAM_USE_CLASS_4:               equ 8   ; Direct/Indirect address mode access
+ 0000           
+ 0000           ; ******* Hi Tech Specific *******
+ 0000           ; Turn on the expansion of all macros by default
+                IF (TOOLCHAIN & HITECH)
+                OPT EXPAND
+                ENDIF
+                ;  ******* Page Pointer Manipulation Macros *******
+                ;
+                ;  Most of the following macros are conditionally compiled so they only
+                ;  produce code if the large memory model is selected.
+                
+                   ;-----------------------------------------------
+                   ;  Set Stack Page Macro
+                   ;-----------------------------------------------
+                   ;
+                   ;  DESC: Modify STK_PP in the large or small memory Models.
+                   ;
+                   ; INPUT: Constant (e.g., SYSTEM_STACK_PAGE) that specifies the RAM page on
+                   ;        which stack operations like PUSH and POP store and retrieve their
+                   ;        data
+                   ;
+                   ;  COST: 8 instruction cycles (in LMM only)
+                
+ 0000              macro RAM_SETPAGE_STK( PG_NUMBER )
+ 0000              IF ( SYSTEM_LARGE_MEMORY_MODEL )
+ 0000                 mov reg[STK_PP], @PG_NUMBER
+ 0000              ENDIF
+ 0000              macro RAM_SETPAGE_CUR( PG_NUMBER )
+ 0000              IF ( SYSTEM_LARGE_MEMORY_MODEL )
+ 0000                 mov reg[CUR_PP], @PG_NUMBER
+ 0000              ENDIF
+ 0000              macro RAM_SETPAGE_IDX( PG_NUMBER )
+ 0000              IF ( SYSTEM_LARGE_MEMORY_MODEL )
+ 0000                 mov reg[IDX_PP], @PG_NUMBER
+ 0000              ENDIF
+ 0000              macro RAM_SETPAGE_MVR( PG_NUMBER )
+ 0000              IF ( SYSTEM_LARGE_MEMORY_MODEL )
+ 0000                 mov reg[MVR_PP], @PG_NUMBER
+ 0000              ENDIF
+ 0000              macro RAM_SETPAGE_MVW( PG_NUMBER )
+ 0000              IF ( SYSTEM_LARGE_MEMORY_MODEL )
+ 0000                 mov reg[MVW_PP], @PG_NUMBER
+ 0000              ENDIF
+ 0000              macro RAM_SETPAGE_IDX2STK
+ 0000              IF ( SYSTEM_LARGE_MEMORY_MODEL )
+ 0000                 IF ( SYSTEM_MULTIPAGE_STACK )
+ 0000                    mov   A, reg[STK_PP]
+ 0000                    mov   reg[IDX_PP], A
+ 0000                 ELSE
+ 0000                    RAM_SETPAGE_IDX SYSTEM_STACK_PAGE
+ 0000                 ENDIF
+ 0000              ENDIF
+ 0000              macro RAM_CHANGE_PAGE_MODE( MODE )
+ 0000              IF ( SYSTEM_LARGE_MEMORY_MODEL )
+ 0000                 and   F, ~FLAG_PGMODE_MASK        ; NOTE: transition thru 00b state
+ 0000                 or    F,  FLAG_PGMODE_MASK & @MODE
+ 0000              ENDIF
+ 0000              macro RAM_SET_NATIVE_PAGING
+ 0000              IF ( SYSTEM_LARGE_MEMORY_MODEL )
+ 0000              IF ( SYSTEM_IDXPG_TRACKS_STK_PP )
+ 0000                 or    F,  FLAG_PGMODE_11b            ; LMM w/ IndexPage<==>StackPage
+ 0000              ENDIF ;  PGMODE LOCKED
+ 0000              IF ( SYSTEM_IDXPG_TRACKS_IDX_PP )
+ 0000                 or    F,  FLAG_PGMODE_10b            ; LMM with independent IndexPage
+ 0000              ENDIF ; PGMODE FREE
+ 0000              ENDIF ; SYSTEM_LARGE_MEMORY_MODEL
+ 0000              macro RAM_RESTORE_NATIVE_PAGING
+ 0000              IF ( SYSTEM_LARGE_MEMORY_MODEL )
+ 0000              IF ( SYSTEM_IDXPG_TRACKS_STK_PP )
+ 0000                 RAM_CHANGE_PAGE_MODE FLAG_PGMODE_11b ; LMM w/ IndexPage<==>StackPage
+ 0000              ENDIF ;  PGMODE LOCKED
+ 0000              IF ( SYSTEM_IDXPG_TRACKS_IDX_PP )
+ 0000                 RAM_CHANGE_PAGE_MODE FLAG_PGMODE_10b ; LMM with independent IndexPage
+ 0000              ENDIF ; PGMODE FREE
+ 0000              ENDIF ; SYSTEM_LARGE_MEMORY_MODEL
+ 0000              macro RAM_X_POINTS_TO_STACKPAGE
+ 0000              IF ( SYSTEM_LARGE_MEMORY_MODEL )
+ 0000                 or   F, FLAG_PGMODE_01b
+ 0000              ENDIF ;  SYSTEM_LARGE_MEMORY_MODEL
+ 0000              macro RAM_X_POINTS_TO_INDEXPAGE
+ 0000              IF ( SYSTEM_LARGE_MEMORY_MODEL )
+ 0000                 and  F, ~FLAG_PGMODE_01b
+ 0000              ENDIF ;  SYSTEM_LARGE_MEMORY_MODEL
+ 0000              macro RAM_PROLOGUE( ACTUAL_CLASS )
+ 0000           
+ 0000              IF ( @ACTUAL_CLASS & RAM_USE_CLASS_1 )
+ 0000              ; Nothing to do
+ 0000              ENDIF ; RAM_USE_CLASS_1
+ 0000           
+ 0000              IF ( @ACTUAL_CLASS & RAM_USE_CLASS_2 )
+ 0000                 IF ( SYSTEM_IDXPG_TRACKS_IDX_PP )
+ 0000                    RAM_X_POINTS_TO_STACKPAGE         ; exit native paging mode!
+ 0000                 ENDIF
+ 0000              ENDIF ; RAM_USE_CLASS_2
+ 0000           
+ 0000              IF ( @ACTUAL_CLASS & RAM_USE_CLASS_3 )
+ 0000                 IF ( SYSTEM_IDXPG_TRACKS_STK_PP )
+ 0000                    RAM_X_POINTS_TO_INDEXPAGE         ; exit native paging mode!
+ 0000                 ENDIF
+ 0000              ENDIF ; RAM_USE_CLASS_3
+ 0000           
+ 0000              IF ( @ACTUAL_CLASS & RAM_USE_CLASS_4 )
+ 0000              ; Nothing to do
+ 0000              ENDIF ; RAM_USE_CLASS_4
+ 0000           
+ 0000              macro RAM_EPILOGUE( ACTUAL_CLASS )
+ 0000           
+ 0000              IF ( @ACTUAL_CLASS & RAM_USE_CLASS_1 )
+ 0000              ; Nothing to do
+ 0000              ENDIF ; RAM_USE_CLASS_1
+ 0000           
+ 0000              IF ( @ACTUAL_CLASS & RAM_USE_CLASS_2 )
+ 0000                 RAM_RESTORE_NATIVE_PAGING
+ 0000              ENDIF ; RAM_USE_CLASS_2
+ 0000           
+ 0000              IF ( @ACTUAL_CLASS & RAM_USE_CLASS_3 )
+ 0000                 RAM_RESTORE_NATIVE_PAGING
+ 0000              ENDIF ; RAM_USE_CLASS_3
+ 0000           
+ 0000              IF ( @ACTUAL_CLASS & RAM_USE_CLASS_4 )
+ 0000              ; Nothing to do
+ 0000              ENDIF ; RAM_USE_CLASS_4
+ 0000           
+ 0000              macro REG_PRESERVE( IOReg )
+ 0000              mov   A, reg[ @IOReg ]
+ 0000              push  A
+ 0000              macro REG_RESTORE( IOReg )
+ 0000              pop   A
+ 0000              mov   reg[ @IOReg ], A
+ 0000              macro ISR_PRESERVE_PAGE_POINTERS
+ 0000              IF ( SYSTEM_LARGE_MEMORY_MODEL )
+ 0000                 REG_PRESERVE CUR_PP
+ 0000                 REG_PRESERVE IDX_PP
+ 0000                 REG_PRESERVE MVR_PP
+ 0000                 REG_PRESERVE MVW_PP
+ 0000              ENDIF
+ 0000              macro ISR_RESTORE_PAGE_POINTERS
+ 0000              IF ( SYSTEM_LARGE_MEMORY_MODEL )
+ 0000                 REG_RESTORE MVW_PP
+ 0000                 REG_RESTORE MVR_PP
+ 0000                 REG_RESTORE IDX_PP
+ 0000                 REG_RESTORE CUR_PP
+ 0000              ENDIF
+ 0000           macro PRESERVE_CPU_CONTEXT
+ 0000           IF ( TOOLCHAIN & IMAGECRAFT )
+ 0000             PUSH A
+ 0000             IF ( SYSTEM_LARGE_MEMORY_MODEL )
+ 0000               ISR_PRESERVE_PAGE_POINTERS
+ 0000               RAM_RESTORE_NATIVE_PAGING
+ 0000               MOV reg[CUR_PP], >__r0 ;Set CUR_PP to same page as virtual registers
+ 0000             ENDIF
+ 0000             MOV A, [__r0]
+ 0000             PUSH A
+ 0000             MOV A, [__r1]
+ 0000             PUSH A
+ 0000             MOV A, [__r2]
+ 0000             PUSH A
+ 0000             MOV A, [__r3]
+ 0000             PUSH A
+ 0000             MOV A, [__r4]
+ 0000             PUSH A
+ 0000             MOV A, [__r5]
+ 0000             PUSH A
+ 0000             MOV A, [__r6]
+ 0000             PUSH A
+ 0000             MOV A, [__r7]
+ 0000             PUSH A
+ 0000             MOV A, [__r8]
+ 0000             PUSH A
+ 0000             MOV A, [__r9]
+ 0000             PUSH A
+ 0000             MOV A, [__r10]
+ 0000             PUSH A
+ 0000             MOV A, [__r11]
+ 0000             PUSH A
+ 0000             MOV A, [__rX]
+ 0000             PUSH A
+ 0000             MOV A, [__rY]
+ 0000             PUSH A
+ 0000             MOV A, [__rZ]
+ 0000             PUSH A
+ 0000             IF ( SYSTEM_LARGE_MEMORY_MODEL )
+ 0000               MOV REG[CUR_PP], 0
+ 0000             ENDIF
+ 0000           ENDIF
+ 0000           macro RESTORE_CPU_CONTEXT
+ 0000           IF ( TOOLCHAIN & IMAGECRAFT )
+ 0000             IF ( SYSTEM_LARGE_MEMORY_MODEL )
+ 0000               RAM_RESTORE_NATIVE_PAGING
+ 0000               MOV reg[CUR_PP], >__r0 ;Set CUR_PP to same page as virtual registers
+ 0000             ENDIF
+ 0000             POP A
+ 0000             MOV [__rZ], A
+ 0000             POP A
+ 0000             MOV [__rY], A
+ 0000             POP A
+ 0000             MOV [__rX], A
+ 0000             POP A
+ 0000             MOV [__r11], A
+ 0000             POP A
+ 0000             MOV [__r10], A
+ 0000             POP A
+ 0000             MOV [__r9], A
+ 0000             POP A
+ 0000             MOV [__r8], A
+ 0000             POP A
+ 0000             MOV [__r7], A
+ 0000             POP A
+ 0000             MOV [__r6], A
+ 0000             POP A
+ 0000             MOV [__r5], A
+ 0000             POP A
+ 0000             MOV [__r4], A
+ 0000             POP A
+ 0000             MOV [__r3], A
+ 0000             POP A
+ 0000             MOV [__r2], A
+ 0000             POP A
+ 0000             MOV [__r1], A
+ 0000             POP A
+ 0000             MOV [__r0], A
+ 0000             IF ( SYSTEM_LARGE_MEMORY_MODEL )
+ 0000               ISR_RESTORE_PAGE_POINTERS
+ 0000               AND F, FLAG_PGMODE_0
+ 0000             ENDIF
+ 0000             POP A
+ 0000           ENDIF
+                export  Delay50uTimes
+                export _Delay50uTimes
+                
+                export  Delay50u
+                export _Delay50u
+                
+                area text(rom)
+                
+                
+ 0000           .SECTION
+ 0000           ;-----------------------------------------------------------------------------
+ 0000           ;  FUNCTION NAME: Delay50uTimes
+ 0000           ;
+ 0000           ;  DESCRIPTION:
+ 0000           ;     Delay increments of 50uSeconds
+ 0000           ;
+ 0000           ;-----------------------------------------------------------------------------
+ 0000           ;
+ 0000           ;  ARGUMENTS:
+ 0000           ;     A contains the delay multiplier
+ 0000           ;
+ 0000           ;  RETURNS:
+ 0000           ;
+ 0000           ;  SIDE EFFECTS:
+ 0000           ;    The A and X registers may be modified by this or future implementations
+ 0000           ;    of this function.  The same is true for all RAM page pointer registers in
+ 0000           ;    the Large Memory Model.  When necessary, it is the calling function's
+ 0000           ;    responsibility to perserve their values across calls to fastcall16 
+ 0000           ;    functions.
+ 0000           ;
+ 0000           ;
+ 0000           
+ 0000            Delay50uTimes:
+ 0000           _Delay50uTimes:
+                   IF ( RAM_USE_CLASS_1 & RAM_USE_CLASS_1 )
+                   ; Nothing to do
+                   ENDIF ; RAM_USE_CLASS_1
+                
+                   IF ( RAM_USE_CLASS_1 & RAM_USE_CLASS_2 )
+                      IF ( SYSTEM_IDXPG_TRACKS_IDX_PP )
+                   IF ( SYSTEM_LARGE_MEMORY_MODEL )
+                      or   F, FLAG_PGMODE_01b
+                   ENDIF ;  SYSTEM_LARGE_MEMORY_MODEL
+                      ENDIF
+                   ENDIF ; RAM_USE_CLASS_2
+                
+                   IF ( RAM_USE_CLASS_1 & RAM_USE_CLASS_3 )
+                      IF ( SYSTEM_IDXPG_TRACKS_STK_PP )
+                   IF ( SYSTEM_LARGE_MEMORY_MODEL )
+                      and  F, ~FLAG_PGMODE_01b
+                   ENDIF ;  SYSTEM_LARGE_MEMORY_MODEL
+                      ENDIF
+                   ENDIF ; RAM_USE_CLASS_3
+                
+                   IF ( RAM_USE_CLASS_1 & RAM_USE_CLASS_4 )
+                   ; Nothing to do
+                   ENDIF ; RAM_USE_CLASS_4
+                
+                
+ 0000 900C          call  Delay50u
+ 0002 78                dec A
+ 0003 BFFC          jnz   Delay50uTimes
+ 0005           
+ 0005                   
+                   IF ( RAM_USE_CLASS_1 & RAM_USE_CLASS_1 )
+                   ; Nothing to do
+                   ENDIF ; RAM_USE_CLASS_1
+                
+                   IF ( RAM_USE_CLASS_1 & RAM_USE_CLASS_2 )
+                   IF ( SYSTEM_LARGE_MEMORY_MODEL )
+                   IF ( SYSTEM_IDXPG_TRACKS_STK_PP )
+                   IF ( SYSTEM_LARGE_MEMORY_MODEL )
+                      and   F, ~FLAG_PGMODE_MASK        ; NOTE: transition thru 00b state
+                      or    F,  FLAG_PGMODE_MASK & FLAG_PGMODE_11b
+                   ENDIF
+                   ENDIF ;  PGMODE LOCKED
+                   IF ( SYSTEM_IDXPG_TRACKS_IDX_PP )
+                   IF ( SYSTEM_LARGE_MEMORY_MODEL )
+                      and   F, ~FLAG_PGMODE_MASK        ; NOTE: transition thru 00b state
+                      or    F,  FLAG_PGMODE_MASK & FLAG_PGMODE_10b
+                   ENDIF
+                   ENDIF ; PGMODE FREE
+                   ENDIF ; SYSTEM_LARGE_MEMORY_MODEL
+                   ENDIF ; RAM_USE_CLASS_2
+                
+                   IF ( RAM_USE_CLASS_1 & RAM_USE_CLASS_3 )
+                   IF ( SYSTEM_LARGE_MEMORY_MODEL )
+                   IF ( SYSTEM_IDXPG_TRACKS_STK_PP )
+                   IF ( SYSTEM_LARGE_MEMORY_MODEL )
+                      and   F, ~FLAG_PGMODE_MASK        ; NOTE: transition thru 00b state
+                      or    F,  FLAG_PGMODE_MASK & FLAG_PGMODE_11b
+                   ENDIF
+                   ENDIF ;  PGMODE LOCKED
+                   IF ( SYSTEM_IDXPG_TRACKS_IDX_PP )
+                   IF ( SYSTEM_LARGE_MEMORY_MODEL )
+                      and   F, ~FLAG_PGMODE_MASK        ; NOTE: transition thru 00b state
+                      or    F,  FLAG_PGMODE_MASK & FLAG_PGMODE_10b
+                   ENDIF
+                   ENDIF ; PGMODE FREE
+                   ENDIF ; SYSTEM_LARGE_MEMORY_MODEL
+                   ENDIF ; RAM_USE_CLASS_3
+                
+                   IF ( RAM_USE_CLASS_1 & RAM_USE_CLASS_4 )
+                   ; Nothing to do
+                   ENDIF ; RAM_USE_CLASS_4
+                
+ 0005 7F            ret
+ 0006           
+ 0006           .ENDSECTION
+ 0006           
+ 0006           ;-----------------------------------------------------------------------------
+ 0006           ;  FUNCTION NAME: Delay50u
+ 0006           ;
+ 0006           ;  DESCRIPTION:
+ 0006           ;     Delay 50uSec for any clock frequency from 1.5MHz to 24MHz
+ 0006           ;     Slower clock frequencies the delay will be;
+ 0006           ;           1.5
+ 0006           ;        -------------- * 50uSec
+ 0006           ;        clock_freq(MHz)
+ 0006           ;
+ 0006           ;
+ 0006           ;-----------------------------------------------------------------------------
+ 0006           ;
+ 0006           ;  ARGUMENTS: none
+ 0006           ;
+ 0006           ;  RETURNS: none
+ 0006           ;
+ 0006           ;  SIDE EFFECTS:
+ 0006           ;    The A and X registers may be modified by this or future implementations
+ 0006           ;    of this function.  The same is true for all RAM page pointer registers in
+ 0006           ;    the Large Memory Model.  When necessary, it is the calling function's
+ 0006           ;    responsibility to perserve their values across calls to fastcall16 
+ 0006           ;    functions.
+ 0006           ;
+ 0006           ;  THEORY of OPERATION or PROCEDURE:
+ 0006           ;
+ 0006           .LITERAL
+ 0006            Delay50u_Table::
+ 0006 08193A7C01010101      DB    08h,  19h,   3Ah,   7Ch,   01h,    01h,    01h,   01h
+ 000E           ;         3MHz, 6MHz, 12MHz, 24MHz, 1.5MHz, 750kHz, 188kHz, 94kHz
+ 000E           .ENDLITERAL
+ 000E           .SECTION
+ 000E           
+ 000E             Delay50u:
+ 000E            _Delay50u:                      ; [11]  Call
+                   IF ( RAM_USE_CLASS_1 & RAM_USE_CLASS_1 )
+                   ; Nothing to do
+                   ENDIF ; RAM_USE_CLASS_1
+                
+                   IF ( RAM_USE_CLASS_1 & RAM_USE_CLASS_2 )
+                      IF ( SYSTEM_IDXPG_TRACKS_IDX_PP )
+                   IF ( SYSTEM_LARGE_MEMORY_MODEL )
+                      or   F, FLAG_PGMODE_01b
+                   ENDIF ;  SYSTEM_LARGE_MEMORY_MODEL
+                      ENDIF
+                   ENDIF ; RAM_USE_CLASS_2
+                
+                   IF ( RAM_USE_CLASS_1 & RAM_USE_CLASS_3 )
+                      IF ( SYSTEM_IDXPG_TRACKS_STK_PP )
+                   IF ( SYSTEM_LARGE_MEMORY_MODEL )
+                      and  F, ~FLAG_PGMODE_01b
+                   ENDIF ;  SYSTEM_LARGE_MEMORY_MODEL
+                      ENDIF
+                   ENDIF ; RAM_USE_CLASS_3
+                
+                   IF ( RAM_USE_CLASS_1 & RAM_USE_CLASS_4 )
+                   ; Nothing to do
+                   ENDIF ; RAM_USE_CLASS_4
+                
+ 000E 08            push  A
+ 000F 7110          or    F, FLAG_XIO_MASK
+ 0011 5DE0          mov   A, reg[OSC_CR0]              ; [6] Get delay value
+ 0013 70EF          and   F, ~FLAG_XIO_MASK
+ 0015 2107          and   A,07h                        ; [4] Mask off only the clock bits
+ 0017 3905          cmp   A,05h
+ 0019 D006          jnc   Delay50u_End
+ 001B FFE9          index Delay50u_Table               ; [13] Get delay value
+ 001D           Delay50u_Loop:                         ;
+ 001D 78            dec   A                            ; [4]
+ 001E BFFE          jnz   Delay50u_Loop                ; [5]
+ 0020           Delay50u_End:
+ 0020 18            pop   A
+                   IF ( RAM_USE_CLASS_1 & RAM_USE_CLASS_1 )
+                   ; Nothing to do
+                   ENDIF ; RAM_USE_CLASS_1
+                
+                   IF ( RAM_USE_CLASS_1 & RAM_USE_CLASS_2 )
+                   IF ( SYSTEM_LARGE_MEMORY_MODEL )
+                   IF ( SYSTEM_IDXPG_TRACKS_STK_PP )
+                   IF ( SYSTEM_LARGE_MEMORY_MODEL )
+                      and   F, ~FLAG_PGMODE_MASK        ; NOTE: transition thru 00b state
+                      or    F,  FLAG_PGMODE_MASK & FLAG_PGMODE_11b
+                   ENDIF
+                   ENDIF ;  PGMODE LOCKED
+                   IF ( SYSTEM_IDXPG_TRACKS_IDX_PP )
+                   IF ( SYSTEM_LARGE_MEMORY_MODEL )
+                      and   F, ~FLAG_PGMODE_MASK        ; NOTE: transition thru 00b state
+                      or    F,  FLAG_PGMODE_MASK & FLAG_PGMODE_10b
+                   ENDIF
+                   ENDIF ; PGMODE FREE
+                   ENDIF ; SYSTEM_LARGE_MEMORY_MODEL
+                   ENDIF ; RAM_USE_CLASS_2
+                
+                   IF ( RAM_USE_CLASS_1 & RAM_USE_CLASS_3 )
+                   IF ( SYSTEM_LARGE_MEMORY_MODEL )
+                   IF ( SYSTEM_IDXPG_TRACKS_STK_PP )
+                   IF ( SYSTEM_LARGE_MEMORY_MODEL )
+                      and   F, ~FLAG_PGMODE_MASK        ; NOTE: transition thru 00b state
+                      or    F,  FLAG_PGMODE_MASK & FLAG_PGMODE_11b
+                   ENDIF
+                   ENDIF ;  PGMODE LOCKED
+                   IF ( SYSTEM_IDXPG_TRACKS_IDX_PP )
+                   IF ( SYSTEM_LARGE_MEMORY_MODEL )
+                      and   F, ~FLAG_PGMODE_MASK        ; NOTE: transition thru 00b state
+                      or    F,  FLAG_PGMODE_MASK & FLAG_PGMODE_10b
+                   ENDIF
+                   ENDIF ; PGMODE FREE
+                   ENDIF ; SYSTEM_LARGE_MEMORY_MODEL
+                   ENDIF ; RAM_USE_CLASS_3
+                
+                   IF ( RAM_USE_CLASS_1 & RAM_USE_CLASS_4 )
+                   ; Nothing to do
+                   ENDIF ; RAM_USE_CLASS_4
+                
+ 0021 7F            ret
+ 0022           .ENDSECTION

@@ -1,0 +1,136 @@
+XH
+H 2 areas 30 global symbols
+M sleeptimer_1.asm
+S SleepTimer_1_bTimerValue Ref0000
+S SleepTimer_1_TickCount Ref0000
+S SleepTimer_1_fTick Ref0000
+S SleepTimer_1_bCountDown Ref0000
+A text size 0 flags 0
+dbfile lib/sleeptimer_1.asm
+dbfunc 0 ? 0 I
+dbfile SleepTimer_1.inc
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/SleepTimer_1.inc
+dbfunc 0 ? 0 I
+dbfile lib/sleeptimer_1.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/sleeptimer_1.asm
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+A UserModules size 59 flags 0
+dbfile lib/sleeptimer_1.asm
+dbfunc 0 ? 0 I
+dbline 2 0
+dbline 87 3
+dbline 2 4
+dbline A4 7
+dbline C6 8
+dbline C7 A
+dbline C8 C
+dbline C9 E
+dbline CA 10
+dbline CC 12
+dbline D7 14
+dbline F3 15
+dbline 10D 16
+dbline 10E 18
+dbline 10F 19
+dbline 2 1A
+dbline 111 1C
+dbline 112 1E
+dbline 113 20
+dbline 114 22
+dbline 2 24
+dbline 116 26
+dbline 118 27
+dbline 13B 28
+dbline 13E 2B
+dbline 13F 2E
+dbline 140 30
+dbline 141 33
+dbline 142 34
+dbline 145 36
+dbline 16E 37
+dbline 16F 38
+dbline 170 3A
+dbline 173 3C
+dbline 174 3F
+dbline 178 41
+dbline 179 42
+dbline 17C 44
+dbline 1A0 45
+dbline 1A2 47
+dbline 1C4 48
+dbline 1C6 4A
+dbline 1E8 4B
+dbline 1EA 4D
+dbline 2 4E
+dbline 211 51
+dbline 212 53
+dbline 2 55
+dbline 215 58
+S SleepTimer_1_TickWait Def0028
+S $sb$SleepTimer_1_Start Def0008
+S SleepTimer_1_SetTimer Def0048
+S $se$SleepTimer_1_Start Def0015
+S SleepTimer_1_SyncWait Def0037
+S $sb$SleepTimer_1_TickWait Def0028
+S _SleepTimer_1_DisableInt Def0004
+S $se$SleepTimer_1_TickWait Def0037
+S $sb$SleepTimer_1_SetTimer Def0048
+S $se$SleepTimer_1_SetTimer Def004B
+S $sb$SleepTimer_1_SyncWait Def0037
+S $se$SleepTimer_1_SyncWait Def0045
+S _SleepTimer_1_Start Def0008
+S SleepTimer_1_SetInterval Def0016
+S SleepTimer_1_EnableInt Def0000
+S _SleepTimer_1_TickWait Def0028
+S SleepTimer_1_bGetTimer Def004B
+S _SleepTimer_1_SetTimer Def0048
+S $sb$SleepTimer_1_SetInterval Def0016
+S $sb$SleepTimer_1_EnableInt Def0000
+S $se$SleepTimer_1_SetInterval Def0028
+S _SleepTimer_1_SyncWait Def0037
+S $se$SleepTimer_1_EnableInt Def0004
+S $sb$SleepTimer_1_bGetTimer Def004B
+S $se$SleepTimer_1_bGetTimer Def004E
+S SleepTimer_1_bGetTickCntr Def0045
+S SleepTimer_1_Stop Def0015
+S SleepTimer_1_iGetTickCntr Def004E
+S $sb$SleepTimer_1_bGetTickCntr Def0045
+S $sb$SleepTimer_1_Stop Def0015
+S $se$SleepTimer_1_bGetTickCntr Def0048
+S $se$SleepTimer_1_Stop Def0016
+S $sb$SleepTimer_1_iGetTickCntr Def004E
+S $se$SleepTimer_1_iGetTickCntr Def0059
+S _SleepTimer_1_SetInterval Def0016
+S _SleepTimer_1_EnableInt Def0000
+S SleepTimer_1_DisableInt Def0004
+S _SleepTimer_1_bGetTimer Def004B
+S $sb$SleepTimer_1_DisableInt Def0004
+S $se$SleepTimer_1_DisableInt Def0008
+S _SleepTimer_1_bGetTickCntr Def0045
+S _SleepTimer_1_Stop Def0015
+S _SleepTimer_1_iGetTickCntr Def004E
+S SleepTimer_1_Start Def0008
+T 00 00 43 E0 40 7F 41 E0 BF 7F 50 00 53 00 00 53
+R 00 00 00 01 03 0D 00 02
+T 00 0D 00 00 53 00 00 53 00 01 53
+R 00 00 00 01 03 02 00 00 03 05 00 03 03 08 00 01
+T 00 13 00 00 7F 7F 21 18 4F 08 71 10 5D E0 21 E7
+R 00 00 00 01 03 02 00 01
+T 00 20 2B 00 60 E0 70 EF 18 7F 55 00 00 00 47
+R 00 00 00 01 03 0B 00 02
+T 00 2C 00 00 FF AF FC 55 00 00 00 78 BF F6 7F 4B
+R 00 00 00 01 03 02 00 02 03 08 00 02
+T 00 38 21 01 B0 06 47 00 00 FF BF FC 4B 53 00 00
+R 00 00 00 01 03 07 00 03 03 0E 00 03
+T 00 44 7F 51 00 01 7F 53 00 00 7F 51 00 00 7F 41
+R 00 00 00 01 03 04 00 01 03 08 00 00 03 0C 00 00
+T 00 4F E0 BF 51 00 01 58 00 00 43 E0 40 7F
+R 00 00 00 01 03 05 00 01 03 08 00 01

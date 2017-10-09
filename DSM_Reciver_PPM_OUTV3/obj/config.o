@@ -1,0 +1,90 @@
+XH
+H 2 areas 8 global symbols
+M config.c
+S __r0 Ref0000
+S __r1 Ref0000
+S __r3 Ref0000
+S _E2PROM_1_bE2Write Ref0000
+S _E2PROM_1_E2Read Ref0000
+A text size AC flags 0
+dbfile ./config.c
+dbfile E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\config.c
+dbfunc e SaveConfig 0 fV
+dbsym l n 0 c
+dbsym l Cnt FFFFFFFA c
+dbsym l Data FFFFFFFB pV
+dbline FFFFFFFF 0
+dbline B 4
+dbline E 4
+dbline 10 1B
+dbline 11 1E
+dbline 12 23
+dbline 11 39
+dbline 11 3B
+dbline 14 41
+dbline FFFFFFFE 5B
+dbline 0 5E
+dbfunc e ReadConfig 5F fc
+dbsym l n 0 c
+dbsym l Cnt FFFFFFFA c
+dbsym l Data FFFFFFFB pV
+dbline FFFFFFFF 5F
+dbline 19 63
+dbline 1C 63
+dbline 1E 7A
+dbline 20 7F
+dbline 20 7F
+dbline 23 83
+dbline 24 83
+dbline 25 88
+dbline 24 9E
+dbline 24 A0
+dbline 26 A6
+dbline 27 A6
+dbline FFFFFFFE A8
+dbline 0 AB
+S _ReadConfig Def005F
+S _SaveConfig Def0000
+A bss size 20 flags 20
+dbfile E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\config.c
+dbstruct 32 .1
+dbfield 0 buf0 A[16:16]c
+dbfield 16 buf1 A[16:16]c
+dbend
+dbunion 32 .2
+dbfield 0 buf A[32:32]c
+dbfield 0 b S[.1]
+dbfield 0 rx_d A[16:16]c
+dbend
+dbsym e mem 0 S[.2]
+S _mem Def0000
+T 00 00 10 4F 38 01 10 50 00 08 50 20 08 50 00 00
+R 00 00 00 00 41 0E 00 01
+T 00 0D 08 50 00 00 08 50 00 08 08 7C 00 00 38 FA
+R 00 00 00 00 01 04 00 01 02 0C 00 04
+T 00 1A 20 55 00 00 21 56 00 00 80 19 52 00 53
+R 00 00 00 00 01 04 00 01
+T 00 26 00 00 52 FC 04 00 00 3E 00 00 53
+R 00 00 00 00 03 02 00 01 03 07 00 01 03 0A 00 01
+T 00 2E 00 00 52 00 01 00 01 53 00 00 51
+R 00 00 00 00 03 02 00 00 01 07 00 01 03 0A 00 02
+T 00 36 00 00 3F 00 00 77 00 52 00 3B FA CF E3 10
+R 00 00 00 00 03 02 00 00 03 05 00 02
+T 00 42 50 19 08 50 00 08 50 40 08 50 00 00 08 50
+R 00 00 00 00 41 0C 00 01
+T 00 4F 00 00 08 50 00 08 08 7C 00 00 38 F9 20 38
+R 00 00 00 00 01 02 00 01 02 0A 00 03
+T 00 5C FF 20 7F 10 4F 38 01 10 50 00 08 50 20 08
+R 00 00 00 00
+T 00 6A 50 00 00 08 50 00 00 08 50 00 08 08 7C
+R 00 00 00 00 41 03 00 01 01 07 00 01
+T 00 75 00 00 38 FA 20 3C 00 00 21 A0 05 50 00 80
+R 00 00 00 00 02 02 00 04 01 08 00 01
+T 00 82 26 56 00 00 80 19 52 00 01 00 01 53 00 00
+R 00 00 00 00 01 0B 00 01 03 0E 00 01
+T 00 8E 3E 00 00 53 00 00 52 00 53 00 00 52 FC 04
+R 00 00 00 00 03 03 00 01 03 06 00 00 03 0B 00 02
+T 00 99 00 00 51 00 00 3F 00 00 77 00 52 00 3B FA
+R 00 00 00 00 03 02 00 02 03 05 00 00 03 08 00 02
+T 00 A4 CF E3 50 01 38 FF 20 7F
+R 00 00 00 00

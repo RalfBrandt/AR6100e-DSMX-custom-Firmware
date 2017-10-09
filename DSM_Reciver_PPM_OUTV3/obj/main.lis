@@ -1,0 +1,501 @@
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000           _LV_Detect::
+ 0000                   .blkb 1
+                        .area idata(rom,lit)
+ 0000 00                .byte 0
+                        .area data(ram, con, rel)
+ 0001                   .dbfile ./main.c
+ 0001                   .dbfile E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\main.c
+ 0001                   .dbsym e LV_Detect _LV_Detect c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\main.c
+ 0000                   .dbfunc e LVD_ISR _LVD_ISR fV
+ 0000           _LVD_ISR::
+ 0000                   .dbline -1
+ 0000 08                push A
+ 0001                   .dbline 26
+ 0001           ; //----------------------------------------------------------------------------
+ 0001           ; // C main line
+ 0001           ; //----------------------------------------------------------------------------
+ 0001           ; 
+ 0001           ; //98000BFE295413FE26A81BFE0154 //DSMX
+ 0001           ; 
+ 0001           ; //900005FF14AA09FF13540DFF00AA   //DSM2
+ 0001           ; 
+ 0001           ; #include <m8c.h>        // part specific constants and macros
+ 0001           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0001           ; #include "timer.h"
+ 0001           ; #include "CYRF6936.h"
+ 0001           ; #include "DSM.h"
+ 0001           ; #include "config.h"
+ 0001           ; #include "ppm.h"
+ 0001           ; 
+ 0001           ; 
+ 0001           ; 
+ 0001           ; //global data
+ 0001           ; BOOL LV_Detect=FALSE;
+ 0001           ; //#define DEBUG
+ 0001           ; 
+ 0001           ; // Declare LVD_ISR as ISR
+ 0001           ; #pragma interrupt_handler LVD_ISR
+ 0001           ; void LVD_ISR(void)
+ 0001           ; {
+ 0001                   .dbline 27
+ 0001           ;       LV_Detect=TRUE;
+ 0001 550001            mov [_LV_Detect],1
+ 0004                   .dbline 28
+ 0004           ;       M8C_ClearIntFlag(INT_MSK0,INT_MSK0_VOLTAGE_MONITOR);
+ 0004 41E0FE            and REG[0xe0],-2
+ 0007                   .dbline 29
+ 0007           ;       M8C_DisableIntMask(INT_MSK0,INT_MSK0_VOLTAGE_MONITOR); 
+ 0007 41E0FE            and REG[0xe0],-2
+ 000A                   .dbline -2
+ 000A           L11:
+ 000A 18                pop A
+ 000B                   .dbline 0 ; func end
+ 000B 7E                reti
+ 000C                   .dbend
+ 000C                   .dbfunc e main _main fV
+ 000C           ;              n -> X+5
+ 000C           ;           Bind -> X+0
+ 000C           _main::
+ 000C                   .dbline -1
+ 000C 10                push X
+ 000D 4F                mov X,SP
+ 000E 380C              add SP,12
+ 0010                   .dbline 34
+ 0010           ; }
+ 0010           ; 
+ 0010           ; 
+ 0010           ; void main(void)
+ 0010           ; {
+ 0010                   .dbline 39
+ 0010           ;       BOOL Bind;
+ 0010           ;       //initialize everiting
+ 0010           ; 
+ 0010           ;       //enable glogal interrupts
+ 0010           ;       M8C_EnableGInt;         
+ 0010 7101                      or  F, 01h
+ 0012           
+ 0012                   .dbline 40
+ 0012           ;       M8C_EnableIntMask(INT_MSK0,INT_MSK0_VOLTAGE_MONITOR); 
+ 0012 43E001            or REG[0xe0],1
+ 0015                   .dbline 41
+ 0015           ;       ppm_Init();
+ 0015 7C0000            xcall _ppm_Init
+ 0018                   .dbline 50
+ 0018           ; 
+ 0018           ; #ifdef DEBUG
+ 0018           ;       LED_1_Start();
+ 0018           ;       LED_1_7_Start();
+ 0018           ;       LED_1_5_Start();
+ 0018           ;       LED_1_4_Start();
+ 0018           ;       LED_1_6_Start();
+ 0018           ; #endif
+ 0018           ;       Timer_init();
+ 0018 7C0000            xcall _Timer_init
+ 001B                   .dbline 51
+ 001B           ;       LED_1_Start();
+ 001B 10                push X
+ 001C 7C0000            xcall _LED_1_Start
+ 001F 20                pop X
+ 0020                   .dbline 52
+ 0020           ;       DSM_Init();
+ 0020 7C0000            xcall _DSM_Init
+ 0023                   .dbline 54
+ 0023           ; #ifndef DEBUG
+ 0023           ;       E2PROM_1_Start();
+ 0023 10                push X
+ 0024 7C0000            xcall _E2PROM_1_Start
+ 0027 20                pop X
+ 0028                   .dbline 58
+ 0028           ; #endif
+ 0028           ; 
+ 0028           ; 
+ 0028           ; Bind=(Bind_Port_Data_ADDR&Bind_Port_MASK)?FALSE:TRUE;
+ 0028 5D0C              mov A,REG[0xc]
+ 002A 5300              mov [__r0],A
+ 002C 470004            tst [__r0],4
+ 002F A009              jz L14
+ 0031 560200            mov [X+2],0
+ 0034 560100            mov [X+1],0
+ 0037 8007              xjmp L15
+ 0039           L14:
+ 0039 560201            mov [X+2],1
+ 003C 560100            mov [X+1],0
+ 003F           L15:
+ 003F 5202              mov A,[X+2]
+ 0041 5400              mov [X+0],A
+ 0043                   .dbline 59
+ 0043           ; Bind=Bind||!ReadConfig(&config,sizeof (config_s));    
+ 0043 3D0000            cmp [X+0],0
+ 0046 B013              jnz L19
+ 0048 5018              mov A,24
+ 004A 08                push A
+ 004B 5000              mov A,>_config
+ 004D 08                push A
+ 004E 5000              mov A,<_config
+ 0050 08                push A
+ 0051 7C0000            xcall _ReadConfig
+ 0054 38FD              add SP,-3
+ 0056 3900              cmp A,0
+ 0058 B009              jnz L17
+ 005A           L19:
+ 005A 560401            mov [X+4],1
+ 005D 560300            mov [X+3],0
+ 0060 8007              xjmp L18
+ 0062           L17:
+ 0062 560400            mov [X+4],0
+ 0065 560300            mov [X+3],0
+ 0068           L18:
+ 0068 5204              mov A,[X+4]
+ 006A 5400              mov [X+0],A
+ 006C                   .dbline 62
+ 006C           ;       
+ 006C           ;       
+ 006C           ; if (Bind)
+ 006C 3D0000            cmp [X+0],0
+ 006F A0E1              jz L20
+ 0071                   .dbline 64
+ 0071           ;       {
+ 0071           ;       BYTE n=0;
+ 0071                   .dbline 64
+ 0071 560500            mov [X+5],0
+ 0074                   .dbline 65
+ 0074           ;       DSM_initialize_bind();
+ 0074 7C0000            xcall _DSM_initialize_bind
+ 0077           L22:
+ 0077                   .dbline 67
+ 0077           ;       do
+ 0077           ;               {
+ 0077                   .dbline 68
+ 0077           ;               if (LV_Detect)  
+ 0077 3C0000            cmp [_LV_Detect],0
+ 007A A031              jz L25
+ 007C                   .dbline 69
+ 007C           ;                       LED_1_Switch((SleepTimer_1_iGetTickCntr()&0x340)==0x340?1:0);
+ 007C 10                push X
+ 007D 7C0000            xcall _SleepTimer_1_iGetTickCntr
+ 0080 5A00              mov [__r0],X
+ 0082 5300              mov [__r1],A
+ 0084 20                pop X
+ 0085 260040            and [__r1],64
+ 0088 260003            and [__r0],3
+ 008B 3C0003            cmp [__r0],3
+ 008E B00E              jnz L28
+ 0090 3C0040            cmp [__r1],64
+ 0093 B009              jnz L28
+ 0095           X1:
+ 0095 560701            mov [X+7],1
+ 0098 560600            mov [X+6],0
+ 009B 8007              xjmp L29
+ 009D           L28:
+ 009D 560700            mov [X+7],0
+ 00A0 560600            mov [X+6],0
+ 00A3           L29:
+ 00A3 5207              mov A,[X+7]
+ 00A5 10                push X
+ 00A6 7C0000            xcall _LED_1_Switch
+ 00A9 20                pop X
+ 00AA 8066              xjmp L26
+ 00AC           L25:
+ 00AC                   .dbline 70
+ 00AC           ;               else if (DSM_BIND_WAIT())
+ 00AC 3C0002            cmp [_State],2
+ 00AF D031              jnc L30
+ 00B1           X2:
+ 00B1                   .dbline 71
+ 00B1           ;                       LED_1_Switch((SleepTimer_1_iGetTickCntr()&0x100)==0x100?1:0);
+ 00B1 10                push X
+ 00B2 7C0000            xcall _SleepTimer_1_iGetTickCntr
+ 00B5 5A00              mov [__r0],X
+ 00B7 5300              mov [__r1],A
+ 00B9 20                pop X
+ 00BA 260000            and [__r1],0
+ 00BD 260001            and [__r0],1
+ 00C0 3C0001            cmp [__r0],1
+ 00C3 B00E              jnz L33
+ 00C5 3C0000            cmp [__r1],0
+ 00C8 B009              jnz L33
+ 00CA           X3:
+ 00CA 560901            mov [X+9],1
+ 00CD 560800            mov [X+8],0
+ 00D0 8007              xjmp L34
+ 00D2           L33:
+ 00D2 560900            mov [X+9],0
+ 00D5 560800            mov [X+8],0
+ 00D8           L34:
+ 00D8 5209              mov A,[X+9]
+ 00DA 10                push X
+ 00DB 7C0000            xcall _LED_1_Switch
+ 00DE 20                pop X
+ 00DF 8031              xjmp L31
+ 00E1           L30:
+ 00E1                   .dbline 72
+ 00E1           ;               else if (DSM_BIND_ACK())
+ 00E1 3C0003            cmp [_State],3
+ 00E4 C02C              jc L35
+ 00E6           X4:
+ 00E6                   .dbline 73
+ 00E6           ;                       LED_1_Switch((SleepTimer_1_iGetTickCntr()&0x40)==0x40?1:0);
+ 00E6 10                push X
+ 00E7 7C0000            xcall _SleepTimer_1_iGetTickCntr
+ 00EA 5A00              mov [__r0],X
+ 00EC 5300              mov [__r1],A
+ 00EE 20                pop X
+ 00EF 260040            and [__r1],64
+ 00F2 260000            and [__r0],0
+ 00F5 B00E              jnz L38
+ 00F7 3C0040            cmp [__r1],64
+ 00FA B009              jnz L38
+ 00FC           X5:
+ 00FC 560B01            mov [X+11],1
+ 00FF 560A00            mov [X+10],0
+ 0102 8007              xjmp L39
+ 0104           L38:
+ 0104 560B00            mov [X+11],0
+ 0107 560A00            mov [X+10],0
+ 010A           L39:
+ 010A 520B              mov A,[X+11]
+ 010C 10                push X
+ 010D 7C0000            xcall _LED_1_Switch
+ 0110 20                pop X
+ 0111           L35:
+ 0111           L31:
+ 0111           L26:
+ 0111                   .dbline 74
+ 0111           ;               DSM_Cyclic();
+ 0111 7C0000            xcall _DSM_Cyclic
+ 0114                   .dbline 75
+ 0114           ;               }
+ 0114           L23:
+ 0114                   .dbline 77
+ 0114           ;       //wait till binding is done
+ 0114           ;       while(!DSM_BIND_DONE());
+ 0114 3C000B            cmp [_State],11
+ 0117 CF5F              jc L22
+ 0119           X6:
+ 0119           L40:
+ 0119                   .dbline 80
+ 0119           ;       
+ 0119           ;       do      //wait for stable
+ 0119           ;               {
+ 0119                   .dbline 81
+ 0119           ;                       if (new_data)
+ 0119 3C0000            cmp [_new_data],0
+ 011C A006              jz L43
+ 011E                   .dbline 83
+ 011E           ;                               {
+ 011E           ;                               new_data=0;     
+ 011E                   .dbline 83
+ 011E 550000            mov [_new_data],0
+ 0121                   .dbline 84
+ 0121           ;                               n++;    
+ 0121 7705              inc [X+5]
+ 0123                   .dbline 85
+ 0123           ;                               }
+ 0123           L43:
+ 0123                   .dbline 86
+ 0123           ;               DSM_Cyclic();
+ 0123 7C0000            xcall _DSM_Cyclic
+ 0126                   .dbline 87
+ 0126           ;               }
+ 0126           L41:
+ 0126                   .dbline 88
+ 0126           ;       while (n<5);
+ 0126 3D0505            cmp [X+5],5
+ 0129 CFEF              jc L40
+ 012B           X7:
+ 012B                   .dbline 91
+ 012B           ;               
+ 012B           ;       //save falisave position
+ 012B           ;       if(Bind_Port_Data_ADDR&Bind_Port_MASK)
+ 012B 5D0C              mov A,REG[0xc]
+ 012D 5300              mov [__r0],A
+ 012F 470004            tst [__r0],4
+ 0132 A004              jz L45
+ 0134                   .dbline 93
+ 0134           ;       {
+ 0134           ;                       DSM_Save_Failsafe_Presets();
+ 0134                   .dbline 93
+ 0134 7C0000            xcall _DSM_Save_Failsafe_Presets
+ 0137                   .dbline 94
+ 0137           ;       }
+ 0137           L45:
+ 0137                   .dbline 98
+ 0137           ;       
+ 0137           ; 
+ 0137           ;       //save configuration to FLASH
+ 0137           ;       Timer_Stop();
+ 0137 10                push X
+ 0138 7C0000            xcall _Timer8_1_Stop
+ 013B 20                pop X
+ 013C                   .dbline 99
+ 013C           ;       SaveConfig(&config,sizeof (config_s));
+ 013C 5018              mov A,24
+ 013E 08                push A
+ 013F 5000              mov A,>_config
+ 0141 08                push A
+ 0142 5000              mov A,<_config
+ 0144 08                push A
+ 0145 7C0000            xcall _SaveConfig
+ 0148 38FD              add SP,-3
+ 014A                   .dbline 100
+ 014A           ;       Timer_Start();
+ 014A 10                push X
+ 014B 7C0000            xcall _Timer8_1_Start
+ 014E 20                pop X
+ 014F                   .dbline 101
+ 014F           ;       }
+ 014F 8012              xjmp L21
+ 0151           L20:
+ 0151                   .dbline 103
+ 0151           ;       else 
+ 0151           ;       {
+ 0151                   .dbline 104
+ 0151           ;               DSM_initialize_Recive();        
+ 0151 7C0000            xcall _DSM_initialize_Recive
+ 0154           L47:
+ 0154                   .dbline 106
+ 0154           ;               do 
+ 0154           ;               {
+ 0154                   .dbline 107
+ 0154           ;                       Rcv_Timeout=FALSE;
+ 0154 550000            mov [_Rcv_Timeout],0
+ 0157                   .dbline 108
+ 0157           ;                       new_data=FALSE; 
+ 0157 550000            mov [_new_data],0
+ 015A                   .dbline 109
+ 015A           ;                       DSM_Cyclic();
+ 015A 7C0000            xcall _DSM_Cyclic
+ 015D                   .dbline 110
+ 015D           ;               }while (!DSM_INSYNC());
+ 015D           L48:
+ 015D                   .dbline 110
+ 015D 3C000B            cmp [_State],11
+ 0160 CFF3              jc L47
+ 0162           X8:
+ 0162                   .dbline 111
+ 0162           ;       }
+ 0162           L21:
+ 0162           L50:
+ 0162                   .dbline 113
+ 0162           ;               do
+ 0162           ;                       {
+ 0162                   .dbline 114
+ 0162           ;                       DSM_Cyclic();
+ 0162 7C0000            xcall _DSM_Cyclic
+ 0165                   .dbline 115
+ 0165           ;                       if (LV_Detect)  
+ 0165 3C0000            cmp [_LV_Detect],0
+ 0168 A031              jz L53
+ 016A                   .dbline 116
+ 016A           ;                               LED_1_Switch((SleepTimer_1_iGetTickCntr()&0x340)==0x340?1:0);
+ 016A 10                push X
+ 016B 7C0000            xcall _SleepTimer_1_iGetTickCntr
+ 016E 5A00              mov [__r0],X
+ 0170 5300              mov [__r1],A
+ 0172 20                pop X
+ 0173 260040            and [__r1],64
+ 0176 260003            and [__r0],3
+ 0179 3C0003            cmp [__r0],3
+ 017C B00E              jnz L56
+ 017E 3C0040            cmp [__r1],64
+ 0181 B009              jnz L56
+ 0183           X9:
+ 0183 560601            mov [X+6],1
+ 0186 560500            mov [X+5],0
+ 0189 8007              xjmp L57
+ 018B           L56:
+ 018B 560600            mov [X+6],0
+ 018E 560500            mov [X+5],0
+ 0191           L57:
+ 0191 5206              mov A,[X+6]
+ 0193 10                push X
+ 0194 7C0000            xcall _LED_1_Switch
+ 0197 20                pop X
+ 0198 801B              xjmp L54
+ 019A           L53:
+ 019A                   .dbline 118
+ 019A           ;                       else    
+ 019A           ;                               LED_1_Switch(DSM_INSYNC());
+ 019A 3C000B            cmp [_State],11
+ 019D C009              jc L59
+ 019F           X10:
+ 019F 560801            mov [X+8],1
+ 01A2 560700            mov [X+7],0
+ 01A5 8007              xjmp L60
+ 01A7           L59:
+ 01A7 560800            mov [X+8],0
+ 01AA 560700            mov [X+7],0
+ 01AD           L60:
+ 01AD 5208              mov A,[X+8]
+ 01AF 10                push X
+ 01B0 7C0000            xcall _LED_1_Switch
+ 01B3 20                pop X
+ 01B4           L54:
+ 01B4                   .dbline 119
+ 01B4           ;                       if (Rcv_Timeout)
+ 01B4 3C0000            cmp [_Rcv_Timeout],0
+ 01B7 A00A              jz L61
+ 01B9                   .dbline 121
+ 01B9           ;                       {
+ 01B9           ;                               DSM_Load_FS_Data();
+ 01B9                   .dbline 121
+ 01B9 7C0000            xcall _DSM_Load_FS_Data
+ 01BC                   .dbline 122
+ 01BC           ;                               Rcv_Timeout=FALSE;
+ 01BC 550000            mov [_Rcv_Timeout],0
+ 01BF                   .dbline 123
+ 01BF           ;                               new_data=TRUE;
+ 01BF 550001            mov [_new_data],1
+ 01C2                   .dbline 124
+ 01C2           ;                       }
+ 01C2           L61:
+ 01C2                   .dbline 125
+ 01C2           ;                       if (PPM_IS_PPM_DONE())
+ 01C2 3C0000            cmp [_ppm_Run],0
+ 01C5 B00F              jnz L63
+ 01C7                   .dbline 127
+ 01C7           ;                               {
+ 01C7           ;                               if (new_data)
+ 01C7                   .dbline 127
+ 01C7 3C0000            cmp [_new_data],0
+ 01CA A00A              jz L65
+ 01CC                   .dbline 129
+ 01CC           ;                                       {
+ 01CC           ;                                       new_data=FALSE; 
+ 01CC                   .dbline 129
+ 01CC 550000            mov [_new_data],0
+ 01CF                   .dbline 130
+ 01CF           ;                                       Rcv_Timeout=FALSE;
+ 01CF 550000            mov [_Rcv_Timeout],0
+ 01D2                   .dbline 131
+ 01D2           ;                                       PPM_START_ONE_PPM_TRAIN();
+ 01D2 7C0000            xcall _PPM_Start_One_PPM_Train
+ 01D5                   .dbline 132
+ 01D5           ;                                       }
+ 01D5           L65:
+ 01D5                   .dbline 133
+ 01D5           ;                               }
+ 01D5           L63:
+ 01D5                   .dbline 134
+ 01D5           ;                       }
+ 01D5           L51:
+ 01D5                   .dbline 135
+ 01D5           ;               while (1);      
+ 01D5 8F8C              xjmp L50
+ 01D7           X0:
+ 01D7                   .dbline -2
+ 01D7           L12:
+ 01D7 38F4              add SP,-12
+ 01D9 20                pop X
+ 01DA                   .dbline 0 ; func end
+ 01DA 8FFF              jmp .
+ 01DC                   .dbsym l n 5 c
+ 01DC                   .dbsym l Bind 0 c
+ 01DC                   .dbend

@@ -1,0 +1,124 @@
+XH
+H 3 areas 24 global symbols
+M pwm16_1.asm
+A text size 0 flags 0
+dbfile lib/pwm16_1.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/pwm16_1.asm
+dbfunc 0 ? 0 I
+dbfile PWM16_1.inc
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/PWM16_1.inc
+dbfunc 0 ? 0 I
+dbfile lib/pwm16_1.asm
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+A dsm_reciver_RAM size 0 flags 20
+A UserModules size 58 flags 0
+dbfile lib/pwm16_1.asm
+dbfunc 0 ? 0 I
+dbline 2 0
+dbline 5F 3
+dbline 2 4
+dbline 7B 7
+dbline 2 8
+dbline 98 B
+dbline 2 C
+dbline B4 F
+dbline D0 10
+dbline D1 12
+dbline D2 13
+dbline D4 15
+dbline ED 16
+dbline EE 18
+dbline EF 19
+dbline F1 1B
+dbline 10C 1C
+dbline 10D 1E
+dbline 10E 1F
+dbline 110 21
+dbline 135 22
+dbline 136 23
+dbline 137 25
+dbline 138 26
+dbline 139 28
+dbline 2 29
+dbline 2 2C
+dbline 13C 2E
+dbline 13D 30
+dbline 13F 31
+dbline 2 34
+dbline 141 36
+dbline 142 38
+dbline 143 3A
+dbline 144 3B
+dbline 145 3D
+dbline 146 3F
+dbline 147 40
+dbline 148 42
+dbline 149 44
+dbline 14A 46
+dbline 2 48
+dbline 14C 4A
+dbline 14D 4C
+dbline 2 4E
+dbline 2 50
+dbline 150 53
+dbline 151 54
+dbline 152 55
+dbline 154 57
+S $sb$PWM16_1_Stop Def000C
+S $se$PWM16_1_Stop Def0010
+S _PWM16_1_WritePeriod Def0010
+S _PWM16_1_EnableInt Def0000
+S wPWM16_1_ReadCounter Def0022
+S PWM16_1_wReadCounter Def0022
+S PWM16_1_DisableInt Def0004
+S $sb$PWM16_1_wReadCounter Def0022
+S $se$PWM16_1_wReadCounter Def0058
+S $sb$PWM16_1_DisableInt Def0004
+S wPWM16_1_ReadPulseWidth Def001C
+S PWM16_1_wReadPulseWidth Def001C
+S $se$PWM16_1_DisableInt Def0008
+S _PWM16_1_Stop Def000C
+S PWM16_1_Start Def0008
+S PWM16_1_WritePulseWidth Def0016
+S $sb$PWM16_1_wReadPulseWidth Def001C
+S $se$PWM16_1_wReadPulseWidth Def0022
+S $sb$PWM16_1_Start Def0008
+S $se$PWM16_1_Start Def000C
+S $sb$PWM16_1_WritePulseWidth Def0016
+S _wPWM16_1_ReadCounter Def0022
+S _PWM16_1_wReadCounter Def0022
+S $se$PWM16_1_WritePulseWidth Def001C
+S _PWM16_1_DisableInt Def0004
+S _wPWM16_1_ReadPulseWidth Def001C
+S _PWM16_1_wReadPulseWidth Def001C
+S _PWM16_1_Start Def0008
+S PWM16_1_WritePeriod Def0010
+S PWM16_1_EnableInt Def0000
+S _PWM16_1_WritePulseWidth Def0016
+S $sb$PWM16_1_WritePeriod Def0010
+S $se$PWM16_1_WritePeriod Def0016
+S $sb$PWM16_1_EnableInt Def0000
+S $se$PWM16_1_EnableInt Def0004
+S PWM16_1_Stop Def000C
+T 00 00 43 E1 02 7F 41 E1 FD 7F 43 23 01 7F 41 23
+R 00 00 00 02
+T 00 0E FE 7F 60 21 5B 60 25 7F 60 22 5B 60 26 7F
+R 00 00 00 02
+T 00 1C 5D 26 5C 5D 22 7F 4F 5D 26 08 5D 22 08 41
+R 00 00 00 02
+T 00 2A 23 FE 71 10 5D 21 08 62 21 00 70 EF 5D 24
+R 00 00 00 02
+T 00 38 5D 26 08 5D 20 5D 22 08 52 00 60 26 52 01
+R 00 00 00 02
+T 00 46 60 22 71 10 52 02 60 21 70 EF 43 23 01 18
+R 00 00 00 02
+T 00 54 20 38 FD 7F
+R 00 00 00 02

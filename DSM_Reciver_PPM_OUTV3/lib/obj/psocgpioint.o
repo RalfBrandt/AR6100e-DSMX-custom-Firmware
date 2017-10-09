@@ -1,0 +1,18 @@
+XH
+H 1 areas 2 global symbols
+M psocgpioint.asm
+S _GPIO_ISR Ref0000
+A text size 4 flags 0
+dbfile lib/psocgpioint.asm
+dbfunc 0 ? 0 I
+dbline 3B 0
+dbline 41 3
+dbfile ./lib/PSoCGPIOINT.inc
+dbfunc 0 ? 0 I
+dbfile lib/psocgpioint.asm
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+S PSoC_GPIO_ISR Def0000
+T 00 00 7D 00 00 7E
+R 00 00 00 00 02 03 00 00

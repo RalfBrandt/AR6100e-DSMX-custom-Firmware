@@ -1,0 +1,114 @@
+# DO NOT DELETE
+./obj/boot.o :  E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\lib\GLOBAL~1.INC\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8ssc.inc
+./obj/config.o :  ./lib/E2PROM_1.h\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\config.h\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.h
+./obj/cyrf6936.o :  ./lib/CS_PIN.h ./lib/E2PROM_1.h ./lib/LED_1.h\
+   ./lib/LED_1_0.h ./lib/LED_1_1.h ./lib/LED_1_4.h ./lib/LED_1_5.h\
+   ./lib/LED_1_6.h ./lib/LED_1_7.h ./lib/PSoCAPI.h ./lib/PSOCGP~1.H\
+   ./lib/PWM16_1.h ./lib/RST.h ./lib/SPIM_1.h ./lib/SLEEPT~1.H\
+   ./lib/Timer8_1.h E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\CYRF6936.h\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\CYRF69~1.H\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\delay.h\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\timer.h\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.h
+./obj/delay.o :  E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./obj/dsm.o :  ./lib/CS_PIN.h ./lib/E2PROM_1.h ./lib/LED_1.h\
+   ./lib/LED_1_0.h ./lib/LED_1_1.h ./lib/LED_1_4.h ./lib/LED_1_5.h\
+   ./lib/LED_1_6.h ./lib/LED_1_7.h ./lib/PSoCAPI.h ./lib/PSOCGP~1.H\
+   ./lib/PWM16_1.h ./lib/RST.h ./lib/SPIM_1.h ./lib/SLEEPT~1.H\
+   ./lib/Timer8_1.h E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\CYRF69~1.H\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\config.h\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\cyrf6936.h\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\dsm.h\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\ppm.h\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\timer.h\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.h
+./obj/main.o :  ./lib/CS_PIN.h ./lib/E2PROM_1.h ./lib/LED_1.h\
+   ./lib/LED_1_0.h ./lib/LED_1_1.h ./lib/LED_1_4.h ./lib/LED_1_5.h\
+   ./lib/LED_1_6.h ./lib/LED_1_7.h ./lib/PSoCAPI.h ./lib/PSOCGP~1.H\
+   ./lib/PWM16_1.h ./lib/RST.h ./lib/SPIM_1.h ./lib/SLEEPT~1.H\
+   ./lib/Timer8_1.h E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\CYRF6936.h\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\CYRF69~1.H\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\DSM.h\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\config.h\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\cyrf6936.h\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\ppm.h\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\timer.h\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.h
+./obj/ppm.o :  ./lib/CS_PIN.h ./lib/E2PROM_1.h ./lib/LED_1.h\
+   ./lib/LED_1_0.h ./lib/LED_1_1.h ./lib/LED_1_4.h ./lib/LED_1_5.h\
+   ./lib/LED_1_6.h ./lib/LED_1_7.h ./lib/PSoCAPI.h ./lib/PSOCGP~1.H\
+   ./lib/PWM16_1.h ./lib/RST.h ./lib/SPIM_1.h ./lib/SLEEPT~1.H\
+   ./lib/Timer8_1.h E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\config.h\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\ppm.h\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.h
+./obj/timer.o :  ./lib/CS_PIN.h ./lib/E2PROM_1.h ./lib/LED_1.h\
+   ./lib/LED_1_0.h ./lib/LED_1_1.h ./lib/LED_1_4.h ./lib/LED_1_5.h\
+   ./lib/LED_1_6.h ./lib/LED_1_7.h ./lib/PSoCAPI.h ./lib/PSOCGP~1.H\
+   ./lib/PWM16_1.h ./lib/RST.h ./lib/SPIM_1.h ./lib/SLEEPT~1.H\
+   ./lib/Timer8_1.h E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\timer.h\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.h
+./lib/obj/cs_pin.o :  ./lib/CS_PIN.inc\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/e2prom_1.o :  ./lib/E2PROM_1.inc\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/E2PROM~1.INC\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/led_1.o :  ./lib/LED_1.inc\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/led_1_0.o :  ./lib/LED_1_0.inc\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/led_1_1.o :  ./lib/LED_1_1.inc\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/led_1_4.o :  ./lib/LED_1_4.inc\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/led_1_5.o :  ./lib/LED_1_5.inc\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/led_1_6.o :  ./lib/LED_1_6.inc\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/led_1_7.o :  ./lib/LED_1_7.inc\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/psocconfig.o :  ./lib/GLOBAL~1.INC\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/psocconfigtbl.o : \
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/psocgpioint.o :  ./lib/PSOCGP~1.INC\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/pwm16_1.o :  ./lib/PWM16_1.inc\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/pwm16_1int.o :  ./lib/PWM16_1.inc\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/rst.o :  ./lib/RST.inc\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/sleeptimer_1.o :  ./lib/SLEEPT~1.INC\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/sleeptimer_1int.o :  ./lib/SLEEPT~1.INC\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/spim_1.o :  ./lib/SPIM_1.inc\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/timer8_1.o :  ./lib/Timer8_1.inc\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/timer8_1int.o :  ./lib/Timer8_1.inc\
+   E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc

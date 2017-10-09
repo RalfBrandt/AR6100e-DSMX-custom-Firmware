@@ -1,0 +1,63 @@
+XH
+H 3 areas 14 global symbols
+M e2prom_1.asm
+S bE2Write Ref0000
+S E2Read Ref0000
+A text size 0 flags 0
+dbfile lib/e2prom_1.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/e2prom_1.asm
+dbfunc 0 ? 0 I
+dbfile E2PROM_1.inc
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/e2promlib.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/E2PROM_1.inc
+dbfunc 0 ? 0 I
+dbfile lib/e2prom_1.asm
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+A E2PROM_1_AREA size 2000 flags C
+S E2PROM_1_RESERVED Def1FC0
+S _E2PROM_1_RESERVED Def1FC0
+A UserModules size 19 flags 0
+dbfile lib/e2prom_1.asm
+dbfunc 0 ? 0 I
+dbline 68 0
+dbline 89 1
+dbline D6 2
+dbline D7 4
+dbline D9 5
+dbline DA 7
+dbline DB 8
+dbline DC A
+dbline DD B
+dbline 127 E
+dbline 128 10
+dbline 12C 11
+dbline 12D 13
+dbline 12E 14
+dbline 12F 16
+S _E2PROM_1_Start Def0000
+S E2PROM_1_Stop Def0001
+S $sb$E2PROM_1_Stop Def0001
+S $se$E2PROM_1_Stop Def0002
+S E2PROM_1_bE2Write Def0002
+S E2PROM_1_E2Read Def000E
+S $sb$E2PROM_1_bE2Write Def0002
+S $se$E2PROM_1_bE2Write Def000E
+S _E2PROM_1_Stop Def0001
+S E2PROM_1_Start Def0000
+S $sb$E2PROM_1_E2Read Def000E
+S $se$E2PROM_1_E2Read Def0019
+S $sb$E2PROM_1_Start Def0000
+S $se$E2PROM_1_Start Def0001
+S _E2PROM_1_bE2Write Def0002
+S _E2PROM_1_E2Read Def000E
+T 00 00 7F 7F 5D F7 08 50 00 08 50 7F 08 7D 00 00
+R 00 00 00 02 02 0E 00 00
+T 00 0E 5D F7 08 50 00 5C 50 7F 7D 00 00
+R 00 00 00 02 02 0B 00 01

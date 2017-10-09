@@ -1,0 +1,150 @@
+Starting MAKE...
+creating project.mk 
+
+lib/cs_pin.asm
+
+lib/e2prom_1.asm
+
+lib/led_1.asm
+
+lib/led_1_0.asm
+
+lib/led_1_1.asm
+
+lib/led_1_4.asm
+
+lib/led_1_5.asm
+
+lib/led_1_6.asm
+
+lib/led_1_7.asm
+
+lib/psocconfig.asm
+
+lib/psocconfigtbl.asm
+
+lib/psocgpioint.asm
+
+lib/pwm16_1.asm
+
+lib/pwm16_1int.asm
+
+lib/rst.asm
+
+lib/sleeptimer_1.asm
+
+lib/sleeptimer_1int.asm
+
+lib/spim_1.asm
+
+lib/timer8_1.asm
+
+lib/timer8_1int.asm
+
+./boot.asm
+
+Linking..
+
+symbol Timer8_1_DisableInt is unused
+
+symbol Timer8_1_bReadTimer is unused
+
+symbol _CS_PIN_Invert is unused
+
+symbol PWM16_1_wReadCounter is unused
+
+symbol _LED_1_0_Invert is unused
+
+symbol _LED_1_1_Invert is unused
+
+symbol _LED_1_4_Invert is unused
+
+symbol _LED_1_5_Invert is unused
+
+symbol Timer8_1_bReadTimerSaveCV is unused
+
+symbol _LED_1_6_Invert is unused
+
+symbol _LED_1_7_Invert is unused
+
+symbol _LED_1_GetState is unused
+
+symbol FlashReadBlock is unused
+
+symbol SleepTimer_1_SetInterval is unused
+
+symbol _LED_1_0_On is unused
+
+symbol _LED_1_1_On is unused
+
+symbol _LED_1_4_On is unused
+
+symbol _LED_1_5_On is unused
+
+symbol _LED_1_6_On is unused
+
+symbol _LED_1_7_On is unused
+
+symbol SleepTimer_1_bGetTickCntr is unused
+
+symbol SPIM_1_EnableInt is unused
+
+symbol _CS_PIN_GetState is unused
+
+symbol Timer8_1_bReadCompareValue is unused
+
+symbol SPIM_1_Stop is unused
+
+symbol _LED_1_0_GetState is unused
+
+symbol _LED_1_1_GetState is unused
+
+symbol _LED_1_4_GetState is unused
+
+symbol _LED_1_5_GetState is unused
+
+symbol _LED_1_6_GetState is unused
+
+symbol _LED_1_7_GetState is unused
+
+symbol Timer8_1_WriteCompareValue is unused
+
+symbol SPIM_1_DisableInt is unused
+
+symbol SleepTimer_1_SetTimer is unused
+
+symbol SleepTimer_1_SyncWait is unused
+
+symbol PWM16_1_DisableInt is unused
+
+symbol _RST_Invert is unused
+
+symbol PWM16_1_wReadPulseWidth is unused
+
+symbol E2PROM_1_Stop is unused
+
+symbol SleepTimer_1_bGetTimer is unused
+
+symbol SleepTimer_1_Stop is unused
+
+symbol _LED_1_Invert is unused
+
+symbol SleepTimer_1_DisableInt is unused
+
+symbol _RST_GetState is unused
+
+symbol _LED_1_On is unused
+
+477 bytes unused code deleted
+
+7489 bytes before Code Compression, 6978 after. 0% reduction.
+
+  ROM 95% full. 7757 out of 8192 bytes used (does not include absolute areas).
+
+  RAM 59% full. 149 bytes used (does not include stack usage).
+
+Built with ICCM8C STD V7.05.00
+
+ 
+DSM_Reciver_PPM_OUTV3 - 0 error(s) 0 warning(s) 23:04:53
+

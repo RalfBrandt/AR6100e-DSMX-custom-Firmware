@@ -1,0 +1,69 @@
+XH
+H 2 areas 15 global symbols
+M led_1.asm
+S Port_3_Data_SHADE Ref0000
+A text size 0 flags 0
+dbfile lib/led_1.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/led_1.asm
+dbfunc 0 ? 0 I
+dbfile LED_1.inc
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/LED_1.inc
+dbfunc 0 ? 0 I
+A UserModules size 29 flags 0
+dbfile lib/led_1.asm
+dbfunc 0 ? 0 I
+dbline 50 0
+dbline 51 2
+dbline 59 4
+dbline 61 6
+dbline 62 8
+dbline 68 A
+dbline 6A D
+dbline 70 F
+dbline 74 12
+dbline 75 14
+dbline 79 16
+dbline 95 17
+dbline 96 1A
+dbline 97 1C
+dbline 9B 1E
+dbline B6 1F
+dbline BA 21
+dbline BC 22
+dbline BD 24
+dbline BE 26
+dbline C3 28
+S $se$_LED_1_On Def0017
+S _LED_1_Start Def0004
+S LED_1_Switch Def0006
+S LED_1_Invert Def0017
+S _LED_1_Off Def0004
+S _LED_1_GetState Def001F
+S $sb$_LED_1_GetState Def001F
+S $se$_LED_1_GetState Def0029
+S LED_1_Stop Def0004
+S LED_1_On Def0000
+S _LED_1_Switch Def0006
+S _LED_1_Invert Def0017
+S $sb$_LED_1_Invert Def0017
+S $se$_LED_1_Invert Def001F
+S _LED_1_Stop Def0004
+S LED_1_Start Def0004
+S LED_1_Off Def0004
+S _LED_1_On Def0000
+S LED_1_GetState Def001F
+S $sb$_LED_1_On Def0000
+T 00 00 50 01 80 03 50 00 29 00 A0 06 26 00 00 FE
+R 00 00 00 01 03 0D 00 00
+T 00 0D 80 04 2E 00 00 01 51 00 00 60 0C 7F 36
+R 00 00 00 01 03 05 00 00 03 09 00 00
+T 00 18 00 00 01 51 00 00 60 0C 7F 51 00 00 73 21
+R 00 00 00 01 03 02 00 00 03 06 00 00 03 0C 00 00
+T 00 23 01 A0 03 50 01 7F
+R 00 00 00 01

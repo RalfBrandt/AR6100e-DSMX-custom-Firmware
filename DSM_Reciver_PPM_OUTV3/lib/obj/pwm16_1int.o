@@ -1,0 +1,30 @@
+XH
+H 3 areas 2 global symbols
+M pwm16_1int.asm
+S _PWM16_1_CMP_ISR Ref0000
+A text size 0 flags 0
+dbfile lib/pwm16_1int.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/pwm16_1int.asm
+dbfunc 0 ? 0 I
+dbfile PWM16_1.inc
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/PWM16_1.inc
+dbfunc 0 ? 0 I
+dbfile lib/pwm16_1int.asm
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+A InterruptRAM size 0 flags 20
+A UserModules size 4 flags 0
+dbfile lib/pwm16_1int.asm
+dbfunc 0 ? 0 I
+dbline 51 0
+dbline 5A 3
+S _PWM16_1_ISR Def0000
+T 00 00 7D 00 00 7E
+R 00 00 00 02 02 03 00 00

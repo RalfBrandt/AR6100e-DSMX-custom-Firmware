@@ -1,0 +1,119 @@
+XH
+H 3 areas 2E global symbols
+M timer8_1.asm
+A text size 0 flags 0
+dbfile lib/timer8_1.asm
+dbfunc 0 ? 0 I
+dbfile Timer8_1.inc
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/Timer8_1.inc
+dbfunc 0 ? 0 I
+dbfile lib/timer8_1.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/timer8_1.asm
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+A dsm_reciver_RAM size 0 flags 20
+A UserModules size 45 flags 0
+dbfile lib/timer8_1.asm
+dbfunc 0 ? 0 I
+dbline 2 0
+dbline 66 3
+dbline 2 4
+dbline 82 7
+dbline 2 8
+dbline 9E B
+dbline 2 C
+dbline BA F
+dbline D5 10
+dbline D7 12
+dbline F3 13
+dbline F5 15
+dbline 110 16
+dbline 112 18
+dbline 145 19
+dbline 146 1A
+dbline 147 1C
+dbline 148 1E
+dbline 149 1F
+dbline 14A 21
+dbline 14B 22
+dbline 14D 24
+dbline 14E 26
+dbline 14F 28
+dbline 150 2A
+dbline 151 2D
+dbline 152 2F
+dbline 154 31
+dbline 2 33
+dbline 2 35
+dbline 157 38
+dbline 158 39
+dbline 159 3B
+dbline 15A 3C
+dbline 15B 3E
+dbline 15D 3F
+dbline 186 40
+dbline 188 42
+dbline 18A 44
+S bTimer8_1_ReadTimer Def0040
+S Timer8_1_bReadTimer Def0040
+S Timer8_1_DisableInt Def0004
+S $sb$Timer8_1_WriteCompareValue Def0013
+S $se$Timer8_1_WriteCompareValue Def0016
+S $sb$Timer8_1_bReadTimer Def0040
+S $sb$Timer8_1_DisableInt Def0004
+S $se$Timer8_1_bReadTimer Def0045
+S $se$Timer8_1_DisableInt Def0008
+S _bTimer8_1_ReadCompareValue Def0016
+S _Timer8_1_bReadCompareValue Def0016
+S _Timer8_1_Stop Def000C
+S bTimer8_1_ReadTimerSaveCV Def0019
+S Timer8_1_bReadTimerSaveCV Def0019
+S Timer8_1_Start Def0008
+S bTimer8_1_CaptureCounter Def0040
+S _bTimer8_1_ReadCounter Def0019
+S $sb$Timer8_1_bReadTimerSaveCV Def0019
+S $se$Timer8_1_bReadTimerSaveCV Def0040
+S $sb$Timer8_1_Start Def0008
+S $se$Timer8_1_Start Def000C
+S _Timer8_1_WriteCompareValue Def0013
+S _bTimer8_1_ReadTimer Def0040
+S _Timer8_1_bReadTimer Def0040
+S _Timer8_1_DisableInt Def0004
+S _bTimer8_1_ReadTimerSaveCV Def0019
+S _Timer8_1_bReadTimerSaveCV Def0019
+S _Timer8_1_Start Def0008
+S Timer8_1_WritePeriod Def0010
+S Timer8_1_EnableInt Def0000
+S _bTimer8_1_CaptureCounter Def0040
+S $sb$Timer8_1_WritePeriod Def0010
+S $se$Timer8_1_WritePeriod Def0013
+S $sb$Timer8_1_EnableInt Def0000
+S $se$Timer8_1_EnableInt Def0004
+S bTimer8_1_ReadCompareValue Def0016
+S Timer8_1_bReadCompareValue Def0016
+S Timer8_1_Stop Def000C
+S bTimer8_1_ReadCounter Def0019
+S $sb$Timer8_1_bReadCompareValue Def0016
+S $se$Timer8_1_bReadCompareValue Def0019
+S $sb$Timer8_1_Stop Def000C
+S $se$Timer8_1_Stop Def0010
+S _Timer8_1_WritePeriod Def0010
+S Timer8_1_WriteCompareValue Def0013
+S _Timer8_1_EnableInt Def0000
+T 00 00 43 E1 08 7F 41 E1 F7 7F 43 2F 01 7F 41 2F
+R 00 00 00 02
+T 00 0E FE 7F 60 2D 7F 60 2E 7F 5D 2E 7F 4F 38 02
+R 00 00 00 02
+T 00 1C 5D 2F 08 5D 2E 08 5D 2C 5D 2E 54 01 50 00
+R 00 00 00 02
+T 00 2A 49 F7 01 A0 03 50 01 54 00 70 FE 41 2F FE
+R 00 00 00 02
+T 00 38 18 60 2E 18 60 2F 18 7E 5D 2C 5D 2E 7F
+R 00 00 00 02

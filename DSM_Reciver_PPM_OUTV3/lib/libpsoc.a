@@ -1,0 +1,1509 @@
+.start
+XH
+H 3 areas 2 global symbols
+M timer8_1int.asm
+S _Timer8_1_Interrupt Ref0000
+A text size 0 flags 0
+dbfile lib/timer8_1int.asm
+dbfunc 0 ? 0 I
+dbfile Timer8_1.inc
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/Timer8_1.inc
+dbfunc 0 ? 0 I
+dbfile lib/timer8_1int.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/timer8_1int.asm
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+A InterruptRAM size 0 flags 20
+A UserModules size 4 flags 0
+dbfile lib/timer8_1int.asm
+dbfunc 0 ? 0 I
+dbline 51 0
+dbline 5A 3
+S _Timer8_1_ISR Def0000
+T 00 00 7D 00 00 7E
+R 00 00 00 02 02 03 00 00
+.end
+.start
+XH
+H 3 areas 2E global symbols
+M timer8_1.asm
+A text size 0 flags 0
+dbfile lib/timer8_1.asm
+dbfunc 0 ? 0 I
+dbfile Timer8_1.inc
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/Timer8_1.inc
+dbfunc 0 ? 0 I
+dbfile lib/timer8_1.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/timer8_1.asm
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+A dsm_reciver_RAM size 0 flags 20
+A UserModules size 45 flags 0
+dbfile lib/timer8_1.asm
+dbfunc 0 ? 0 I
+dbline 2 0
+dbline 66 3
+dbline 2 4
+dbline 82 7
+dbline 2 8
+dbline 9E B
+dbline 2 C
+dbline BA F
+dbline D5 10
+dbline D7 12
+dbline F3 13
+dbline F5 15
+dbline 110 16
+dbline 112 18
+dbline 145 19
+dbline 146 1A
+dbline 147 1C
+dbline 148 1E
+dbline 149 1F
+dbline 14A 21
+dbline 14B 22
+dbline 14D 24
+dbline 14E 26
+dbline 14F 28
+dbline 150 2A
+dbline 151 2D
+dbline 152 2F
+dbline 154 31
+dbline 2 33
+dbline 2 35
+dbline 157 38
+dbline 158 39
+dbline 159 3B
+dbline 15A 3C
+dbline 15B 3E
+dbline 15D 3F
+dbline 186 40
+dbline 188 42
+dbline 18A 44
+S bTimer8_1_ReadTimer Def0040
+S Timer8_1_bReadTimer Def0040
+S Timer8_1_DisableInt Def0004
+S $sb$Timer8_1_WriteCompareValue Def0013
+S $se$Timer8_1_WriteCompareValue Def0016
+S $sb$Timer8_1_bReadTimer Def0040
+S $sb$Timer8_1_DisableInt Def0004
+S $se$Timer8_1_bReadTimer Def0045
+S $se$Timer8_1_DisableInt Def0008
+S _bTimer8_1_ReadCompareValue Def0016
+S _Timer8_1_bReadCompareValue Def0016
+S _Timer8_1_Stop Def000C
+S bTimer8_1_ReadTimerSaveCV Def0019
+S Timer8_1_bReadTimerSaveCV Def0019
+S Timer8_1_Start Def0008
+S bTimer8_1_CaptureCounter Def0040
+S _bTimer8_1_ReadCounter Def0019
+S $sb$Timer8_1_bReadTimerSaveCV Def0019
+S $se$Timer8_1_bReadTimerSaveCV Def0040
+S $sb$Timer8_1_Start Def0008
+S $se$Timer8_1_Start Def000C
+S _Timer8_1_WriteCompareValue Def0013
+S _bTimer8_1_ReadTimer Def0040
+S _Timer8_1_bReadTimer Def0040
+S _Timer8_1_DisableInt Def0004
+S _bTimer8_1_ReadTimerSaveCV Def0019
+S _Timer8_1_bReadTimerSaveCV Def0019
+S _Timer8_1_Start Def0008
+S Timer8_1_WritePeriod Def0010
+S Timer8_1_EnableInt Def0000
+S _bTimer8_1_CaptureCounter Def0040
+S $sb$Timer8_1_WritePeriod Def0010
+S $se$Timer8_1_WritePeriod Def0013
+S $sb$Timer8_1_EnableInt Def0000
+S $se$Timer8_1_EnableInt Def0004
+S bTimer8_1_ReadCompareValue Def0016
+S Timer8_1_bReadCompareValue Def0016
+S Timer8_1_Stop Def000C
+S bTimer8_1_ReadCounter Def0019
+S $sb$Timer8_1_bReadCompareValue Def0016
+S $se$Timer8_1_bReadCompareValue Def0019
+S $sb$Timer8_1_Stop Def000C
+S $se$Timer8_1_Stop Def0010
+S _Timer8_1_WritePeriod Def0010
+S Timer8_1_WriteCompareValue Def0013
+S _Timer8_1_EnableInt Def0000
+T 00 00 43 E1 08 7F 41 E1 F7 7F 43 2F 01 7F 41 2F
+R 00 00 00 02
+T 00 0E FE 7F 60 2D 7F 60 2E 7F 5D 2E 7F 4F 38 02
+R 00 00 00 02
+T 00 1C 5D 2F 08 5D 2E 08 5D 2C 5D 2E 54 01 50 00
+R 00 00 00 02
+T 00 2A 49 F7 01 A0 03 50 01 54 00 70 FE 41 2F FE
+R 00 00 00 02
+T 00 38 18 60 2E 18 60 2F 18 7E 5D 2C 5D 2E 7F
+R 00 00 00 02
+.end
+.start
+XH
+H 2 areas 20 global symbols
+M spim_1.asm
+A text size 0 flags 0
+dbfile lib/spim_1.asm
+dbfunc 0 ? 0 I
+dbfile ./lib/SPIM_1.inc
+dbfunc 0 ? 0 I
+dbfile lib/spim_1.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/spim_1.asm
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+A UserModules size 1A flags 0
+dbfile lib/spim_1.asm
+dbfunc 0 ? 0 I
+dbline 2 0
+dbline 5B 3
+dbline 2 4
+dbline 7C 7
+dbline A3 8
+dbline A4 A
+dbline A6 C
+dbline C5 D
+dbline C7 10
+dbline E8 11
+dbline EA 13
+dbline 10B 14
+dbline 10D 16
+dbline 130 17
+dbline 132 19
+S SPIM_1_DisableInt Def0004
+S $sb$SPIM_1_SendTxData Def0011
+S $se$SPIM_1_SendTxData Def0014
+S $sb$SPIM_1_DisableInt Def0004
+S $se$SPIM_1_DisableInt Def0008
+S _SPIM_1_Stop Def000D
+S SPIM_1_Start Def0008
+S bSPIM_1_ReadRxData Def0014
+S SPIM_1_bReadRxData Def0014
+S $sb$SPIM_1_Start Def0008
+S $se$SPIM_1_Start Def000D
+S _SPIM_1_SendTxData Def0011
+S _SPIM_1_DisableInt Def0004
+S $sb$SPIM_1_bReadRxData Def0014
+S $se$SPIM_1_bReadRxData Def0017
+S bSPIM_1_ReadStatus Def0017
+S SPIM_1_bReadStatus Def0017
+S _SPIM_1_Start Def0008
+S SPIM_1_EnableInt Def0000
+S $sb$SPIM_1_bReadStatus Def0017
+S _bSPIM_1_ReadRxData Def0014
+S _SPIM_1_bReadRxData Def0014
+S $se$SPIM_1_bReadStatus Def001A
+S $sb$SPIM_1_EnableInt Def0000
+S $se$SPIM_1_EnableInt Def0004
+S SPIM_1_Stop Def000D
+S _bSPIM_1_ReadStatus Def0017
+S _SPIM_1_bReadStatus Def0017
+S $sb$SPIM_1_Stop Def000D
+S $se$SPIM_1_Stop Def0011
+S SPIM_1_SendTxData Def0011
+S _SPIM_1_EnableInt Def0000
+T 00 00 43 E1 04 7F 41 E1 FB 7F 29 01 60 2B 7F 41
+R 00 00 00 01
+T 00 0E 2B FE 7F 60 29 7F 5D 2A 7F 5D 2B 7F
+R 00 00 00 01
+.end
+.start
+XH
+H 3 areas 9 global symbols
+M sleeptimer_1int.asm
+A text size 0 flags 0
+dbfile lib/sleeptimer_1int.asm
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+dbfile lib/sleeptimer_1int.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/sleeptimer_1int.asm
+dbfunc 0 ? 0 I
+dbfile SleepTimer_1.inc
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/SleepTimer_1.inc
+dbfunc 0 ? 0 I
+A InterruptRAM size 5 flags 20
+S _SleepTimer_1_fTick Def0000
+S SleepTimer_1_bTimerValue Def0001
+S _SleepTimer_1_bCountDown Def0002
+S SleepTimer_1_TickCount Def0003
+S _SleepTimer_1_bTimerValue Def0001
+S SleepTimer_1_fTick Def0000
+S _SleepTimer_1_TickCount Def0003
+S SleepTimer_1_bCountDown Def0002
+A UserModules size 18 flags 0
+dbfile lib/sleeptimer_1int.asm
+dbfunc 0 ? 0 I
+dbline 5B 0
+dbline 5E 3
+dbline 5F 6
+dbline 60 8
+dbline 63 A
+dbline 64 D
+dbline 65 F
+dbline 71 11
+dbline 72 13
+dbline 75 15
+dbline 93 17
+S _SleepTimer_1_ISR Def0000
+T 00 00 2E 00 00 01 47 00 02 FF A0 03 7A 00 02 47
+R 00 00 00 02 01 03 00 01 01 07 00 01 01 0D 00 01
+T 00 0B 00 01 FF A0 03 7A 00 01 76 00 04 D0 03 76
+R 00 00 00 02 01 02 00 01 01 08 00 01 01 0B 00 01
+T 00 16 00 03 7E
+R 00 00 00 02 01 02 00 01
+.end
+.start
+XH
+H 2 areas 30 global symbols
+M sleeptimer_1.asm
+S SleepTimer_1_bTimerValue Ref0000
+S SleepTimer_1_TickCount Ref0000
+S SleepTimer_1_fTick Ref0000
+S SleepTimer_1_bCountDown Ref0000
+A text size 0 flags 0
+dbfile lib/sleeptimer_1.asm
+dbfunc 0 ? 0 I
+dbfile SleepTimer_1.inc
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/SleepTimer_1.inc
+dbfunc 0 ? 0 I
+dbfile lib/sleeptimer_1.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/sleeptimer_1.asm
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+A UserModules size 59 flags 0
+dbfile lib/sleeptimer_1.asm
+dbfunc 0 ? 0 I
+dbline 2 0
+dbline 87 3
+dbline 2 4
+dbline A4 7
+dbline C6 8
+dbline C7 A
+dbline C8 C
+dbline C9 E
+dbline CA 10
+dbline CC 12
+dbline D7 14
+dbline F3 15
+dbline 10D 16
+dbline 10E 18
+dbline 10F 19
+dbline 2 1A
+dbline 111 1C
+dbline 112 1E
+dbline 113 20
+dbline 114 22
+dbline 2 24
+dbline 116 26
+dbline 118 27
+dbline 13B 28
+dbline 13E 2B
+dbline 13F 2E
+dbline 140 30
+dbline 141 33
+dbline 142 34
+dbline 145 36
+dbline 16E 37
+dbline 16F 38
+dbline 170 3A
+dbline 173 3C
+dbline 174 3F
+dbline 178 41
+dbline 179 42
+dbline 17C 44
+dbline 1A0 45
+dbline 1A2 47
+dbline 1C4 48
+dbline 1C6 4A
+dbline 1E8 4B
+dbline 1EA 4D
+dbline 2 4E
+dbline 211 51
+dbline 212 53
+dbline 2 55
+dbline 215 58
+S SleepTimer_1_TickWait Def0028
+S $sb$SleepTimer_1_Start Def0008
+S SleepTimer_1_SetTimer Def0048
+S $se$SleepTimer_1_Start Def0015
+S SleepTimer_1_SyncWait Def0037
+S $sb$SleepTimer_1_TickWait Def0028
+S _SleepTimer_1_DisableInt Def0004
+S $se$SleepTimer_1_TickWait Def0037
+S $sb$SleepTimer_1_SetTimer Def0048
+S $se$SleepTimer_1_SetTimer Def004B
+S $sb$SleepTimer_1_SyncWait Def0037
+S $se$SleepTimer_1_SyncWait Def0045
+S _SleepTimer_1_Start Def0008
+S SleepTimer_1_SetInterval Def0016
+S SleepTimer_1_EnableInt Def0000
+S _SleepTimer_1_TickWait Def0028
+S SleepTimer_1_bGetTimer Def004B
+S _SleepTimer_1_SetTimer Def0048
+S $sb$SleepTimer_1_SetInterval Def0016
+S $sb$SleepTimer_1_EnableInt Def0000
+S $se$SleepTimer_1_SetInterval Def0028
+S _SleepTimer_1_SyncWait Def0037
+S $se$SleepTimer_1_EnableInt Def0004
+S $sb$SleepTimer_1_bGetTimer Def004B
+S $se$SleepTimer_1_bGetTimer Def004E
+S SleepTimer_1_bGetTickCntr Def0045
+S SleepTimer_1_Stop Def0015
+S SleepTimer_1_iGetTickCntr Def004E
+S $sb$SleepTimer_1_bGetTickCntr Def0045
+S $sb$SleepTimer_1_Stop Def0015
+S $se$SleepTimer_1_bGetTickCntr Def0048
+S $se$SleepTimer_1_Stop Def0016
+S $sb$SleepTimer_1_iGetTickCntr Def004E
+S $se$SleepTimer_1_iGetTickCntr Def0059
+S _SleepTimer_1_SetInterval Def0016
+S _SleepTimer_1_EnableInt Def0000
+S SleepTimer_1_DisableInt Def0004
+S _SleepTimer_1_bGetTimer Def004B
+S $sb$SleepTimer_1_DisableInt Def0004
+S $se$SleepTimer_1_DisableInt Def0008
+S _SleepTimer_1_bGetTickCntr Def0045
+S _SleepTimer_1_Stop Def0015
+S _SleepTimer_1_iGetTickCntr Def004E
+S SleepTimer_1_Start Def0008
+T 00 00 43 E0 40 7F 41 E0 BF 7F 50 00 53 00 00 53
+R 00 00 00 01 03 0D 00 02
+T 00 0D 00 00 53 00 00 53 00 01 53
+R 00 00 00 01 03 02 00 00 03 05 00 03 03 08 00 01
+T 00 13 00 00 7F 7F 21 18 4F 08 71 10 5D E0 21 E7
+R 00 00 00 01 03 02 00 01
+T 00 20 2B 00 60 E0 70 EF 18 7F 55 00 00 00 47
+R 00 00 00 01 03 0B 00 02
+T 00 2C 00 00 FF AF FC 55 00 00 00 78 BF F6 7F 4B
+R 00 00 00 01 03 02 00 02 03 08 00 02
+T 00 38 21 01 B0 06 47 00 00 FF BF FC 4B 53 00 00
+R 00 00 00 01 03 07 00 03 03 0E 00 03
+T 00 44 7F 51 00 01 7F 53 00 00 7F 51 00 00 7F 41
+R 00 00 00 01 03 04 00 01 03 08 00 00 03 0C 00 00
+T 00 4F E0 BF 51 00 01 58 00 00 43 E0 40 7F
+R 00 00 00 01 03 05 00 01 03 08 00 01
+.end
+.start
+XH
+H 2 areas 15 global symbols
+M rst.asm
+S Port_0_Data_SHADE Ref0000
+A text size 0 flags 0
+dbfile lib/rst.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/rst.asm
+dbfunc 0 ? 0 I
+dbfile RST.inc
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/RST.inc
+dbfunc 0 ? 0 I
+A UserModules size 28 flags 0
+dbfile lib/rst.asm
+dbfunc 0 ? 0 I
+dbline 50 0
+dbline 51 2
+dbline 59 4
+dbline 61 6
+dbline 62 8
+dbline 66 A
+dbline 6A D
+dbline 6E F
+dbline 74 12
+dbline 75 14
+dbline 79 16
+dbline 95 17
+dbline 96 1A
+dbline 97 1C
+dbline 9B 1E
+dbline B6 1F
+dbline BC 21
+dbline BD 23
+dbline BE 25
+dbline C3 27
+S RST_On Def0000
+S _RST_Switch Def0006
+S _RST_Invert Def0017
+S $sb$_RST_Invert Def0017
+S $se$_RST_Invert Def001F
+S _RST_Stop Def0004
+S RST_Start Def0004
+S RST_Off Def0004
+S _RST_On Def0000
+S RST_GetState Def001F
+S $sb$_RST_On Def0000
+S $se$_RST_On Def0017
+S _RST_Start Def0004
+S RST_Switch Def0006
+S RST_Invert Def0017
+S _RST_Off Def0004
+S _RST_GetState Def001F
+S $sb$_RST_GetState Def001F
+S $se$_RST_GetState Def0028
+S RST_Stop Def0004
+T 00 00 50 01 80 03 50 00 29 00 A0 06 2E 00 00 10
+R 00 00 00 01 03 0D 00 00
+T 00 0D 80 04 26 00 00 EF 51 00 00 60 00 7F 36
+R 00 00 00 01 03 05 00 00 03 09 00 00
+T 00 18 00 00 10 51 00 00 60 00 7F 51 00 00 21 10
+R 00 00 00 01 03 02 00 00 03 06 00 00 03 0C 00 00
+T 00 23 A0 03 50 01 7F
+R 00 00 00 01
+.end
+.start
+XH
+H 3 areas 2 global symbols
+M pwm16_1int.asm
+S _PWM16_1_CMP_ISR Ref0000
+A text size 0 flags 0
+dbfile lib/pwm16_1int.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/pwm16_1int.asm
+dbfunc 0 ? 0 I
+dbfile PWM16_1.inc
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/PWM16_1.inc
+dbfunc 0 ? 0 I
+dbfile lib/pwm16_1int.asm
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+A InterruptRAM size 0 flags 20
+A UserModules size 4 flags 0
+dbfile lib/pwm16_1int.asm
+dbfunc 0 ? 0 I
+dbline 51 0
+dbline 5A 3
+S _PWM16_1_ISR Def0000
+T 00 00 7D 00 00 7E
+R 00 00 00 02 02 03 00 00
+.end
+.start
+XH
+H 3 areas 24 global symbols
+M pwm16_1.asm
+A text size 0 flags 0
+dbfile lib/pwm16_1.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/pwm16_1.asm
+dbfunc 0 ? 0 I
+dbfile PWM16_1.inc
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/PWM16_1.inc
+dbfunc 0 ? 0 I
+dbfile lib/pwm16_1.asm
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+A dsm_reciver_RAM size 0 flags 20
+A UserModules size 58 flags 0
+dbfile lib/pwm16_1.asm
+dbfunc 0 ? 0 I
+dbline 2 0
+dbline 5F 3
+dbline 2 4
+dbline 7B 7
+dbline 2 8
+dbline 98 B
+dbline 2 C
+dbline B4 F
+dbline D0 10
+dbline D1 12
+dbline D2 13
+dbline D4 15
+dbline ED 16
+dbline EE 18
+dbline EF 19
+dbline F1 1B
+dbline 10C 1C
+dbline 10D 1E
+dbline 10E 1F
+dbline 110 21
+dbline 135 22
+dbline 136 23
+dbline 137 25
+dbline 138 26
+dbline 139 28
+dbline 2 29
+dbline 2 2C
+dbline 13C 2E
+dbline 13D 30
+dbline 13F 31
+dbline 2 34
+dbline 141 36
+dbline 142 38
+dbline 143 3A
+dbline 144 3B
+dbline 145 3D
+dbline 146 3F
+dbline 147 40
+dbline 148 42
+dbline 149 44
+dbline 14A 46
+dbline 2 48
+dbline 14C 4A
+dbline 14D 4C
+dbline 2 4E
+dbline 2 50
+dbline 150 53
+dbline 151 54
+dbline 152 55
+dbline 154 57
+S $sb$PWM16_1_Stop Def000C
+S $se$PWM16_1_Stop Def0010
+S _PWM16_1_WritePeriod Def0010
+S _PWM16_1_EnableInt Def0000
+S wPWM16_1_ReadCounter Def0022
+S PWM16_1_wReadCounter Def0022
+S PWM16_1_DisableInt Def0004
+S $sb$PWM16_1_wReadCounter Def0022
+S $se$PWM16_1_wReadCounter Def0058
+S $sb$PWM16_1_DisableInt Def0004
+S wPWM16_1_ReadPulseWidth Def001C
+S PWM16_1_wReadPulseWidth Def001C
+S $se$PWM16_1_DisableInt Def0008
+S _PWM16_1_Stop Def000C
+S PWM16_1_Start Def0008
+S PWM16_1_WritePulseWidth Def0016
+S $sb$PWM16_1_wReadPulseWidth Def001C
+S $se$PWM16_1_wReadPulseWidth Def0022
+S $sb$PWM16_1_Start Def0008
+S $se$PWM16_1_Start Def000C
+S $sb$PWM16_1_WritePulseWidth Def0016
+S _wPWM16_1_ReadCounter Def0022
+S _PWM16_1_wReadCounter Def0022
+S $se$PWM16_1_WritePulseWidth Def001C
+S _PWM16_1_DisableInt Def0004
+S _wPWM16_1_ReadPulseWidth Def001C
+S _PWM16_1_wReadPulseWidth Def001C
+S _PWM16_1_Start Def0008
+S PWM16_1_WritePeriod Def0010
+S PWM16_1_EnableInt Def0000
+S _PWM16_1_WritePulseWidth Def0016
+S $sb$PWM16_1_WritePeriod Def0010
+S $se$PWM16_1_WritePeriod Def0016
+S $sb$PWM16_1_EnableInt Def0000
+S $se$PWM16_1_EnableInt Def0004
+S PWM16_1_Stop Def000C
+T 00 00 43 E1 02 7F 41 E1 FD 7F 43 23 01 7F 41 23
+R 00 00 00 02
+T 00 0E FE 7F 60 21 5B 60 25 7F 60 22 5B 60 26 7F
+R 00 00 00 02
+T 00 1C 5D 26 5C 5D 22 7F 4F 5D 26 08 5D 22 08 41
+R 00 00 00 02
+T 00 2A 23 FE 71 10 5D 21 08 62 21 00 70 EF 5D 24
+R 00 00 00 02
+T 00 38 5D 26 08 5D 20 5D 22 08 52 00 60 26 52 01
+R 00 00 00 02
+T 00 46 60 22 71 10 52 02 60 21 70 EF 43 23 01 18
+R 00 00 00 02
+T 00 54 20 38 FD 7F
+R 00 00 00 02
+.end
+.start
+XH
+H 1 areas 2 global symbols
+M psocgpioint.asm
+S _GPIO_ISR Ref0000
+A text size 4 flags 0
+dbfile lib/psocgpioint.asm
+dbfunc 0 ? 0 I
+dbline 3B 0
+dbline 41 3
+dbfile ./lib/PSoCGPIOINT.inc
+dbfunc 0 ? 0 I
+dbfile lib/psocgpioint.asm
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+S PSoC_GPIO_ISR Def0000
+T 00 00 7D 00 00 7E
+R 00 00 00 00 02 03 00 00
+.end
+.start
+XH
+H 2 areas 1 global symbols
+M psocconfigtbl.asm
+A text size 0 flags 0
+dbfile lib/psocconfigtbl.asm
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+A psoc_config size 13C flags 0
+dbfile lib/psocconfigtbl.asm
+dbfunc 0 ? 0 I
+dbline 2 0
+dbline 17 2
+dbline 18 5
+dbline 19 8
+dbline 1A B
+dbline 1B E
+dbline 1C 11
+dbline 1D 14
+dbline 1E 17
+dbline 1F 1A
+dbline 20 1D
+dbline 21 20
+dbline 22 23
+dbline 23 26
+dbline 24 29
+dbline 25 2C
+dbline 31 2F
+dbline 32 32
+dbline 33 35
+dbline 35 38
+dbline 36 3B
+dbline 37 3E
+dbline 3B 41
+dbline 3C 44
+dbline 3D 47
+dbline 41 4A
+dbline 42 4D
+dbline 43 50
+dbline 2 53
+dbline 46 55
+dbline 47 58
+dbline 48 5B
+dbline 49 5E
+dbline 4A 61
+dbline 4B 64
+dbline 4C 67
+dbline 4D 6A
+dbline 4E 6D
+dbline 4F 70
+dbline 50 73
+dbline 51 76
+dbline 52 79
+dbline 53 7C
+dbline 54 7F
+dbline 55 82
+dbline 56 85
+dbline 57 88
+dbline 58 8B
+dbline 59 8E
+dbline 65 91
+dbline 66 94
+dbline 67 97
+dbline 69 9A
+dbline 6A 9D
+dbline 6B A0
+dbline 6F A3
+dbline 70 A6
+dbline 71 A9
+dbline 75 AC
+dbline 76 AF
+dbline 77 B2
+dbline 2 B5
+dbline 2 B7
+dbline 7B B9
+dbline 2 BC
+dbline 7D BE
+dbline 7E C1
+dbline 2 C4
+dbline 80 C6
+dbline 81 C9
+dbline 2 CC
+dbline 83 CE
+dbline 84 D1
+dbline 2 D4
+dbline 86 D6
+dbline 87 D9
+dbline 2 DC
+dbline 89 DE
+dbline 8A E1
+dbline 2 E4
+dbline 8C E6
+dbline 8D E9
+dbline 2 EC
+dbline 8F EE
+dbline 90 F1
+dbline 2 F4
+dbline 92 F6
+dbline 93 F9
+dbline 2 FC
+dbline 95 FE
+dbline 96 101
+dbline 2 104
+dbline 98 106
+dbline 99 109
+dbline 2 10C
+dbline 9B 10E
+dbline 9C 111
+dbline 2 114
+dbline 9E 116
+dbline 9F 119
+dbline 2 11C
+dbline A1 11E
+dbline A2 121
+dbline 2 124
+dbline A4 126
+dbline A5 129
+dbline 2 12C
+dbline A7 12E
+dbline A8 131
+dbline 2 134
+dbline AA 136
+dbline 2 139
+dbline AC 13B
+S LoadConfigTBL_dsm_reciver Def0000
+T 00 00 70 EF 62 60 04 62 64 00 62 66 00 62 61 00
+R 00 00 00 01
+T 00 0E 62 E6 00 62 E7 00 62 D6 00 62 62 00 62 B0
+R 00 00 00 01
+T 00 1C 30 62 B1 01 62 B2 00 62 B3 3C 62 B4 3F 62
+R 00 00 00 01
+T 00 2A B5 20 62 B6 14 62 23 00 62 21 C8 62 22 C8
+R 00 00 00 01
+T 00 38 62 27 00 62 25 08 62 26 00 62 2B 00 62 29
+R 00 00 00 01
+T 00 46 00 62 2A 00 62 2F 04 62 2D FF 62 2E 00 71
+R 00 00 00 01
+T 00 54 10 62 61 00 62 6B 04 62 60 00 62 62 80 62
+R 00 00 00 01
+T 00 62 67 00 62 64 00 62 FD 00 62 D1 00 62 D3 00
+R 00 00 00 01
+T 00 70 62 D0 00 62 D2 00 62 E1 B1 62 E2 01 62 DF
+R 00 00 00 01
+T 00 7E FF 62 DE 02 62 DD 00 62 D8 00 62 D9 00 62
+R 00 00 00 01
+T 00 8C DA 00 62 DB 00 62 20 11 62 21 15 62 22 40
+R 00 00 00 01
+T 00 9A 62 24 39 62 25 35 62 26 46 62 28 06 62 29
+R 00 00 00 01
+T 00 A8 C5 62 2A 7D 62 2C 20 62 2D 11 62 2E 40 70
+R 00 00 00 01
+T 00 B6 EF 70 EF 62 00 00 71 10 62 00 BC 62 01 43
+R 00 00 00 01
+T 00 C4 70 EF 62 03 02 62 02 29 71 10 62 02 00 62
+R 00 00 00 01
+T 00 D2 03 40 70 EF 62 01 40 62 04 00 71 10 62 04
+R 00 00 00 01
+T 00 E0 FB 62 05 04 70 EF 62 07 04 62 06 00 71 10
+R 00 00 00 01
+T 00 EE 62 06 00 62 07 00 70 EF 62 05 00 62 08 00
+R 00 00 00 01
+T 00 FC 71 10 62 08 EF 62 09 10 70 EF 62 0B 10 62
+R 00 00 00 01
+T 01 0A 0A 00 71 10 62 0A 00 62 0B 00 70 EF 62 09
+R 00 00 00 01
+T 01 18 00 62 0C 04 71 10 62 0C 0F 62 0D 04 70 EF
+R 00 00 00 01
+T 01 26 62 0F 00 62 0E 04 71 10 62 0E 00 62 0F 00
+R 00 00 00 01
+T 01 34 70 EF 62 0D 00 70 EF 7F
+R 00 00 00 01
+.end
+.start
+XH
+H 3 areas D global symbols
+M psocconfig.asm
+S LoadConfigTBL_dsm_reciver Ref0000
+A text size 0 flags 0
+dbfile lib/psocconfig.asm
+dbfunc 0 ? 0 I
+dbfile ./lib/GlobalParams.inc
+dbfunc 0 ? 0 I
+dbfile lib/psocconfig.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/psocconfig.asm
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+A psoc_config size 13 flags 0
+dbfile lib/psocconfig.asm
+dbfunc 0 ? 0 I
+dbline 42 0
+dbline 43 3
+dbline 44 6
+dbline 46 9
+dbline 4A C
+dbline 62 D
+dbline 2 10
+dbline 67 12
+S _LoadConfig_dsm_reciver Def000D
+S LoadConfigInit Def0000
+S LoadConfig_dsm_reciver Def000D
+S _LoadConfigInit Def0000
+A InterruptRAM size 3 flags 20
+S _NO_SHADOW Def0000
+S _Port_0_Data_SHADE Def0000
+S _Port_1_Data_SHADE Def0001
+S _Port_3_Data_SHADE Def0002
+S NO_SHADOW Def0000
+S Port_0_Data_SHADE Def0000
+S Port_1_Data_SHADE Def0001
+S Port_3_Data_SHADE Def0002
+T 00 00 55 00 00 00 55 00 01 00 55 00 02 04 7C
+R 00 00 00 01 01 03 00 02 01 07 00 02 01 0B 00 02
+T 00 0A 00 0D 7F 7C 00 00 70 EF 7F
+R 00 00 00 01 00 02 00 01 02 06 00 00
+.end
+.start
+XH
+H 2 areas 15 global symbols
+M led_1_7.asm
+S Port_1_Data_SHADE Ref0000
+A text size 0 flags 0
+dbfile lib/led_1_7.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/led_1_7.asm
+dbfunc 0 ? 0 I
+dbfile LED_1_7.inc
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/LED_1_7.inc
+dbfunc 0 ? 0 I
+A UserModules size 28 flags 0
+dbfile lib/led_1_7.asm
+dbfunc 0 ? 0 I
+dbline 50 0
+dbline 51 2
+dbline 59 4
+dbline 61 6
+dbline 62 8
+dbline 66 A
+dbline 6A D
+dbline 6E F
+dbline 74 12
+dbline 75 14
+dbline 79 16
+dbline 95 17
+dbline 96 1A
+dbline 97 1C
+dbline 9B 1E
+dbline B6 1F
+dbline BC 21
+dbline BD 23
+dbline BE 25
+dbline C3 27
+S LED_1_7_Stop Def0004
+S LED_1_7_On Def0000
+S _LED_1_7_Switch Def0006
+S _LED_1_7_Invert Def0017
+S $sb$_LED_1_7_Invert Def0017
+S $se$_LED_1_7_Invert Def001F
+S _LED_1_7_Stop Def0004
+S LED_1_7_Start Def0004
+S LED_1_7_Off Def0004
+S _LED_1_7_On Def0000
+S LED_1_7_GetState Def001F
+S $sb$_LED_1_7_On Def0000
+S $se$_LED_1_7_On Def0017
+S _LED_1_7_Start Def0004
+S LED_1_7_Switch Def0006
+S LED_1_7_Invert Def0017
+S _LED_1_7_Off Def0004
+S _LED_1_7_GetState Def001F
+S $sb$_LED_1_7_GetState Def001F
+S $se$_LED_1_7_GetState Def0028
+T 00 00 50 01 80 03 50 00 29 00 A0 06 2E 00 00 80
+R 00 00 00 01 03 0D 00 00
+T 00 0D 80 04 26 00 00 7F 51 00 00 60 04 7F 36
+R 00 00 00 01 03 05 00 00 03 09 00 00
+T 00 18 00 00 80 51 00 00 60 04 7F 51 00 00 21 80
+R 00 00 00 01 03 02 00 00 03 06 00 00 03 0C 00 00
+T 00 23 A0 03 50 01 7F
+R 00 00 00 01
+.end
+.start
+XH
+H 2 areas 15 global symbols
+M led_1_6.asm
+S Port_1_Data_SHADE Ref0000
+A text size 0 flags 0
+dbfile lib/led_1_6.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/led_1_6.asm
+dbfunc 0 ? 0 I
+dbfile LED_1_6.inc
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/LED_1_6.inc
+dbfunc 0 ? 0 I
+A UserModules size 28 flags 0
+dbfile lib/led_1_6.asm
+dbfunc 0 ? 0 I
+dbline 50 0
+dbline 51 2
+dbline 59 4
+dbline 61 6
+dbline 62 8
+dbline 66 A
+dbline 6A D
+dbline 6E F
+dbline 74 12
+dbline 75 14
+dbline 79 16
+dbline 95 17
+dbline 96 1A
+dbline 97 1C
+dbline 9B 1E
+dbline B6 1F
+dbline BC 21
+dbline BD 23
+dbline BE 25
+dbline C3 27
+S LED_1_6_On Def0000
+S _LED_1_6_Switch Def0006
+S _LED_1_6_Invert Def0017
+S $sb$_LED_1_6_Invert Def0017
+S $se$_LED_1_6_Invert Def001F
+S _LED_1_6_Stop Def0004
+S LED_1_6_Start Def0004
+S LED_1_6_Off Def0004
+S _LED_1_6_On Def0000
+S LED_1_6_GetState Def001F
+S $sb$_LED_1_6_On Def0000
+S $se$_LED_1_6_On Def0017
+S _LED_1_6_Start Def0004
+S LED_1_6_Switch Def0006
+S LED_1_6_Invert Def0017
+S _LED_1_6_Off Def0004
+S _LED_1_6_GetState Def001F
+S $sb$_LED_1_6_GetState Def001F
+S $se$_LED_1_6_GetState Def0028
+S LED_1_6_Stop Def0004
+T 00 00 50 01 80 03 50 00 29 00 A0 06 2E 00 00 40
+R 00 00 00 01 03 0D 00 00
+T 00 0D 80 04 26 00 00 BF 51 00 00 60 04 7F 36
+R 00 00 00 01 03 05 00 00 03 09 00 00
+T 00 18 00 00 40 51 00 00 60 04 7F 51 00 00 21 40
+R 00 00 00 01 03 02 00 00 03 06 00 00 03 0C 00 00
+T 00 23 A0 03 50 01 7F
+R 00 00 00 01
+.end
+.start
+XH
+H 2 areas 15 global symbols
+M led_1_5.asm
+S Port_1_Data_SHADE Ref0000
+A text size 0 flags 0
+dbfile lib/led_1_5.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/led_1_5.asm
+dbfunc 0 ? 0 I
+dbfile LED_1_5.inc
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/LED_1_5.inc
+dbfunc 0 ? 0 I
+A UserModules size 28 flags 0
+dbfile lib/led_1_5.asm
+dbfunc 0 ? 0 I
+dbline 50 0
+dbline 51 2
+dbline 59 4
+dbline 61 6
+dbline 62 8
+dbline 66 A
+dbline 6A D
+dbline 6E F
+dbline 74 12
+dbline 75 14
+dbline 79 16
+dbline 95 17
+dbline 96 1A
+dbline 97 1C
+dbline 9B 1E
+dbline B6 1F
+dbline BC 21
+dbline BD 23
+dbline BE 25
+dbline C3 27
+S LED_1_5_On Def0000
+S _LED_1_5_Switch Def0006
+S _LED_1_5_Invert Def0017
+S $sb$_LED_1_5_Invert Def0017
+S $se$_LED_1_5_Invert Def001F
+S _LED_1_5_Stop Def0004
+S LED_1_5_Start Def0004
+S LED_1_5_Off Def0004
+S _LED_1_5_On Def0000
+S LED_1_5_GetState Def001F
+S $sb$_LED_1_5_On Def0000
+S $se$_LED_1_5_On Def0017
+S _LED_1_5_Start Def0004
+S LED_1_5_Switch Def0006
+S LED_1_5_Invert Def0017
+S _LED_1_5_Off Def0004
+S _LED_1_5_GetState Def001F
+S $sb$_LED_1_5_GetState Def001F
+S $se$_LED_1_5_GetState Def0028
+S LED_1_5_Stop Def0004
+T 00 00 50 01 80 03 50 00 29 00 A0 06 2E 00 00 20
+R 00 00 00 01 03 0D 00 00
+T 00 0D 80 04 26 00 00 DF 51 00 00 60 04 7F 36
+R 00 00 00 01 03 05 00 00 03 09 00 00
+T 00 18 00 00 20 51 00 00 60 04 7F 51 00 00 21 20
+R 00 00 00 01 03 02 00 00 03 06 00 00 03 0C 00 00
+T 00 23 A0 03 50 01 7F
+R 00 00 00 01
+.end
+.start
+XH
+H 2 areas 15 global symbols
+M led_1_4.asm
+S Port_1_Data_SHADE Ref0000
+A text size 0 flags 0
+dbfile lib/led_1_4.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/led_1_4.asm
+dbfunc 0 ? 0 I
+dbfile LED_1_4.inc
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/LED_1_4.inc
+dbfunc 0 ? 0 I
+A UserModules size 28 flags 0
+dbfile lib/led_1_4.asm
+dbfunc 0 ? 0 I
+dbline 50 0
+dbline 51 2
+dbline 59 4
+dbline 61 6
+dbline 62 8
+dbline 66 A
+dbline 6A D
+dbline 6E F
+dbline 74 12
+dbline 75 14
+dbline 79 16
+dbline 95 17
+dbline 96 1A
+dbline 97 1C
+dbline 9B 1E
+dbline B6 1F
+dbline BC 21
+dbline BD 23
+dbline BE 25
+dbline C3 27
+S LED_1_4_On Def0000
+S _LED_1_4_Switch Def0006
+S _LED_1_4_Invert Def0017
+S $sb$_LED_1_4_Invert Def0017
+S $se$_LED_1_4_Invert Def001F
+S _LED_1_4_Stop Def0004
+S LED_1_4_Start Def0004
+S LED_1_4_Off Def0004
+S _LED_1_4_On Def0000
+S LED_1_4_GetState Def001F
+S $sb$_LED_1_4_On Def0000
+S $se$_LED_1_4_On Def0017
+S _LED_1_4_Start Def0004
+S LED_1_4_Switch Def0006
+S LED_1_4_Invert Def0017
+S _LED_1_4_Off Def0004
+S _LED_1_4_GetState Def001F
+S $sb$_LED_1_4_GetState Def001F
+S $se$_LED_1_4_GetState Def0028
+S LED_1_4_Stop Def0004
+T 00 00 50 01 80 03 50 00 29 00 A0 06 2E 00 00 10
+R 00 00 00 01 03 0D 00 00
+T 00 0D 80 04 26 00 00 EF 51 00 00 60 04 7F 36
+R 00 00 00 01 03 05 00 00 03 09 00 00
+T 00 18 00 00 10 51 00 00 60 04 7F 51 00 00 21 10
+R 00 00 00 01 03 02 00 00 03 06 00 00 03 0C 00 00
+T 00 23 A0 03 50 01 7F
+R 00 00 00 01
+.end
+.start
+XH
+H 2 areas 15 global symbols
+M led_1_1.asm
+S Port_1_Data_SHADE Ref0000
+A text size 0 flags 0
+dbfile lib/led_1_1.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/led_1_1.asm
+dbfunc 0 ? 0 I
+dbfile LED_1_1.inc
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/LED_1_1.inc
+dbfunc 0 ? 0 I
+A UserModules size 28 flags 0
+dbfile lib/led_1_1.asm
+dbfunc 0 ? 0 I
+dbline 50 0
+dbline 51 2
+dbline 59 4
+dbline 61 6
+dbline 62 8
+dbline 66 A
+dbline 6A D
+dbline 6E F
+dbline 74 12
+dbline 75 14
+dbline 79 16
+dbline 95 17
+dbline 96 1A
+dbline 97 1C
+dbline 9B 1E
+dbline B6 1F
+dbline BC 21
+dbline BD 23
+dbline BE 25
+dbline C3 27
+S LED_1_1_On Def0000
+S _LED_1_1_Switch Def0006
+S _LED_1_1_Invert Def0017
+S $sb$_LED_1_1_Invert Def0017
+S $se$_LED_1_1_Invert Def001F
+S _LED_1_1_Stop Def0004
+S LED_1_1_Start Def0004
+S LED_1_1_Off Def0004
+S _LED_1_1_On Def0000
+S LED_1_1_GetState Def001F
+S $sb$_LED_1_1_On Def0000
+S $se$_LED_1_1_On Def0017
+S _LED_1_1_Start Def0004
+S LED_1_1_Switch Def0006
+S LED_1_1_Invert Def0017
+S _LED_1_1_Off Def0004
+S _LED_1_1_GetState Def001F
+S $sb$_LED_1_1_GetState Def001F
+S $se$_LED_1_1_GetState Def0028
+S LED_1_1_Stop Def0004
+T 00 00 50 01 80 03 50 00 29 00 A0 06 2E 00 00 02
+R 00 00 00 01 03 0D 00 00
+T 00 0D 80 04 26 00 00 FD 51 00 00 60 04 7F 36
+R 00 00 00 01 03 05 00 00 03 09 00 00
+T 00 18 00 00 02 51 00 00 60 04 7F 51 00 00 21 02
+R 00 00 00 01 03 02 00 00 03 06 00 00 03 0C 00 00
+T 00 23 A0 03 50 01 7F
+R 00 00 00 01
+.end
+.start
+XH
+H 2 areas 15 global symbols
+M led_1_0.asm
+S Port_1_Data_SHADE Ref0000
+A text size 0 flags 0
+dbfile lib/led_1_0.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/led_1_0.asm
+dbfunc 0 ? 0 I
+dbfile LED_1_0.inc
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/LED_1_0.inc
+dbfunc 0 ? 0 I
+A UserModules size 28 flags 0
+dbfile lib/led_1_0.asm
+dbfunc 0 ? 0 I
+dbline 50 0
+dbline 51 2
+dbline 59 4
+dbline 61 6
+dbline 62 8
+dbline 66 A
+dbline 6A D
+dbline 6E F
+dbline 74 12
+dbline 75 14
+dbline 79 16
+dbline 95 17
+dbline 96 1A
+dbline 97 1C
+dbline 9B 1E
+dbline B6 1F
+dbline BC 21
+dbline BD 23
+dbline BE 25
+dbline C3 27
+S LED_1_0_On Def0000
+S _LED_1_0_Switch Def0006
+S _LED_1_0_Invert Def0017
+S $sb$_LED_1_0_Invert Def0017
+S $se$_LED_1_0_Invert Def001F
+S _LED_1_0_Stop Def0004
+S LED_1_0_Start Def0004
+S LED_1_0_Off Def0004
+S _LED_1_0_On Def0000
+S LED_1_0_GetState Def001F
+S $sb$_LED_1_0_On Def0000
+S $se$_LED_1_0_On Def0017
+S _LED_1_0_Start Def0004
+S LED_1_0_Switch Def0006
+S LED_1_0_Invert Def0017
+S _LED_1_0_Off Def0004
+S _LED_1_0_GetState Def001F
+S $sb$_LED_1_0_GetState Def001F
+S $se$_LED_1_0_GetState Def0028
+S LED_1_0_Stop Def0004
+T 00 00 50 01 80 03 50 00 29 00 A0 06 2E 00 00 01
+R 00 00 00 01 03 0D 00 00
+T 00 0D 80 04 26 00 00 FE 51 00 00 60 04 7F 36
+R 00 00 00 01 03 05 00 00 03 09 00 00
+T 00 18 00 00 01 51 00 00 60 04 7F 51 00 00 21 01
+R 00 00 00 01 03 02 00 00 03 06 00 00 03 0C 00 00
+T 00 23 A0 03 50 01 7F
+R 00 00 00 01
+.end
+.start
+XH
+H 2 areas 15 global symbols
+M led_1.asm
+S Port_3_Data_SHADE Ref0000
+A text size 0 flags 0
+dbfile lib/led_1.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/led_1.asm
+dbfunc 0 ? 0 I
+dbfile LED_1.inc
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/LED_1.inc
+dbfunc 0 ? 0 I
+A UserModules size 29 flags 0
+dbfile lib/led_1.asm
+dbfunc 0 ? 0 I
+dbline 50 0
+dbline 51 2
+dbline 59 4
+dbline 61 6
+dbline 62 8
+dbline 68 A
+dbline 6A D
+dbline 70 F
+dbline 74 12
+dbline 75 14
+dbline 79 16
+dbline 95 17
+dbline 96 1A
+dbline 97 1C
+dbline 9B 1E
+dbline B6 1F
+dbline BA 21
+dbline BC 22
+dbline BD 24
+dbline BE 26
+dbline C3 28
+S $se$_LED_1_On Def0017
+S _LED_1_Start Def0004
+S LED_1_Switch Def0006
+S LED_1_Invert Def0017
+S _LED_1_Off Def0004
+S _LED_1_GetState Def001F
+S $sb$_LED_1_GetState Def001F
+S $se$_LED_1_GetState Def0029
+S LED_1_Stop Def0004
+S LED_1_On Def0000
+S _LED_1_Switch Def0006
+S _LED_1_Invert Def0017
+S $sb$_LED_1_Invert Def0017
+S $se$_LED_1_Invert Def001F
+S _LED_1_Stop Def0004
+S LED_1_Start Def0004
+S LED_1_Off Def0004
+S _LED_1_On Def0000
+S LED_1_GetState Def001F
+S $sb$_LED_1_On Def0000
+T 00 00 50 01 80 03 50 00 29 00 A0 06 26 00 00 FE
+R 00 00 00 01 03 0D 00 00
+T 00 0D 80 04 2E 00 00 01 51 00 00 60 0C 7F 36
+R 00 00 00 01 03 05 00 00 03 09 00 00
+T 00 18 00 00 01 51 00 00 60 0C 7F 51 00 00 73 21
+R 00 00 00 01 03 02 00 00 03 06 00 00 03 0C 00 00
+T 00 23 01 A0 03 50 01 7F
+R 00 00 00 01
+.end
+.start
+XH
+H 3 areas 14 global symbols
+M e2prom_1.asm
+S bE2Write Ref0000
+S E2Read Ref0000
+A text size 0 flags 0
+dbfile lib/e2prom_1.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/e2prom_1.asm
+dbfunc 0 ? 0 I
+dbfile E2PROM_1.inc
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/e2promlib.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/E2PROM_1.inc
+dbfunc 0 ? 0 I
+dbfile lib/e2prom_1.asm
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+A E2PROM_1_AREA size 2000 flags C
+S E2PROM_1_RESERVED Def1FC0
+S _E2PROM_1_RESERVED Def1FC0
+A UserModules size 19 flags 0
+dbfile lib/e2prom_1.asm
+dbfunc 0 ? 0 I
+dbline 68 0
+dbline 89 1
+dbline D6 2
+dbline D7 4
+dbline D9 5
+dbline DA 7
+dbline DB 8
+dbline DC A
+dbline DD B
+dbline 127 E
+dbline 128 10
+dbline 12C 11
+dbline 12D 13
+dbline 12E 14
+dbline 12F 16
+S _E2PROM_1_Start Def0000
+S E2PROM_1_Stop Def0001
+S $sb$E2PROM_1_Stop Def0001
+S $se$E2PROM_1_Stop Def0002
+S E2PROM_1_bE2Write Def0002
+S E2PROM_1_E2Read Def000E
+S $sb$E2PROM_1_bE2Write Def0002
+S $se$E2PROM_1_bE2Write Def000E
+S _E2PROM_1_Stop Def0001
+S E2PROM_1_Start Def0000
+S $sb$E2PROM_1_E2Read Def000E
+S $se$E2PROM_1_E2Read Def0019
+S $sb$E2PROM_1_Start Def0000
+S $se$E2PROM_1_Start Def0001
+S _E2PROM_1_bE2Write Def0002
+S _E2PROM_1_E2Read Def000E
+T 00 00 7F 7F 5D F7 08 50 00 08 50 7F 08 7D 00 00
+R 00 00 00 02 02 0E 00 00
+T 00 0E 5D F7 08 50 00 5C 50 7F 7D 00 00
+R 00 00 00 02 02 0B 00 01
+.end
+.start
+XH
+H 2 areas 15 global symbols
+M cs_pin.asm
+S Port_0_Data_SHADE Ref0000
+A text size 0 flags 0
+dbfile lib/cs_pin.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/cs_pin.asm
+dbfunc 0 ? 0 I
+dbfile CS_PIN.inc
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/CS_PIN.inc
+dbfunc 0 ? 0 I
+A UserModules size 28 flags 0
+dbfile lib/cs_pin.asm
+dbfunc 0 ? 0 I
+dbline 50 0
+dbline 51 2
+dbline 59 4
+dbline 61 6
+dbline 62 8
+dbline 66 A
+dbline 6A D
+dbline 6E F
+dbline 74 12
+dbline 75 14
+dbline 79 16
+dbline 95 17
+dbline 96 1A
+dbline 97 1C
+dbline 9B 1E
+dbline B6 1F
+dbline BC 21
+dbline BD 23
+dbline BE 25
+dbline C3 27
+S _CS_PIN_Switch Def0006
+S _CS_PIN_Invert Def0017
+S $sb$_CS_PIN_Invert Def0017
+S $se$_CS_PIN_Invert Def001F
+S _CS_PIN_Stop Def0004
+S CS_PIN_Start Def0004
+S CS_PIN_Off Def0004
+S _CS_PIN_On Def0000
+S CS_PIN_GetState Def001F
+S $sb$_CS_PIN_On Def0000
+S $se$_CS_PIN_On Def0017
+S _CS_PIN_Start Def0004
+S CS_PIN_Switch Def0006
+S CS_PIN_Invert Def0017
+S _CS_PIN_Off Def0004
+S _CS_PIN_GetState Def001F
+S $sb$_CS_PIN_GetState Def001F
+S $se$_CS_PIN_GetState Def0028
+S CS_PIN_Stop Def0004
+S CS_PIN_On Def0000
+T 00 00 50 01 80 03 50 00 29 00 A0 06 2E 00 00 80
+R 00 00 00 01 03 0D 00 00
+T 00 0D 80 04 26 00 00 7F 51 00 00 60 00 7F 36
+R 00 00 00 01 03 05 00 00 03 09 00 00
+T 00 18 00 00 80 51 00 00 60 00 7F 51 00 00 21 80
+R 00 00 00 01 03 02 00 00 03 06 00 00 03 0C 00 00
+T 00 23 A0 03 50 01 7F
+R 00 00 00 01
+.end

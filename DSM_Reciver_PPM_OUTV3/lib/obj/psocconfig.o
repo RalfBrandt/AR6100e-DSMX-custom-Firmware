@@ -1,0 +1,45 @@
+XH
+H 3 areas D global symbols
+M psocconfig.asm
+S LoadConfigTBL_dsm_reciver Ref0000
+A text size 0 flags 0
+dbfile lib/psocconfig.asm
+dbfunc 0 ? 0 I
+dbfile ./lib/GlobalParams.inc
+dbfunc 0 ? 0 I
+dbfile lib/psocconfig.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/psocconfig.asm
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+A psoc_config size 13 flags 0
+dbfile lib/psocconfig.asm
+dbfunc 0 ? 0 I
+dbline 42 0
+dbline 43 3
+dbline 44 6
+dbline 46 9
+dbline 4A C
+dbline 62 D
+dbline 2 10
+dbline 67 12
+S _LoadConfig_dsm_reciver Def000D
+S LoadConfigInit Def0000
+S LoadConfig_dsm_reciver Def000D
+S _LoadConfigInit Def0000
+A InterruptRAM size 3 flags 20
+S _NO_SHADOW Def0000
+S _Port_0_Data_SHADE Def0000
+S _Port_1_Data_SHADE Def0001
+S _Port_3_Data_SHADE Def0002
+S NO_SHADOW Def0000
+S Port_0_Data_SHADE Def0000
+S Port_1_Data_SHADE Def0001
+S Port_3_Data_SHADE Def0002
+T 00 00 55 00 00 00 55 00 01 00 55 00 02 04 7C
+R 00 00 00 01 01 03 00 02 01 07 00 02 01 0B 00 02
+T 00 0A 00 0D 7F 7C 00 00 70 EF 7F
+R 00 00 00 01 00 02 00 01 02 06 00 00

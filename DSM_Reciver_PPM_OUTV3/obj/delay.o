@@ -1,0 +1,45 @@
+XH
+H 1 areas B global symbols
+M delay.asm
+A text size 22 flags 0
+dbfile ./delay.asm
+dbfunc 0 ? 0 I
+dbline 39 0
+dbline 3A 2
+dbline 3B 3
+dbline 3F 5
+dbline 67 E
+dbline 2 F
+dbline 69 11
+dbline 2 13
+dbline 6B 15
+dbline 6C 17
+dbline 6D 19
+dbline 6E 1B
+dbline 70 1D
+dbline 71 1E
+dbline 73 20
+dbline 75 21
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile ./delay.asm
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+S Delay50u_Table Def0006
+S $lb$Delay50u_Table Def0006
+S _Delay50u Def000E
+S $le$Delay50u_Table Def000E
+S _Delay50uTimes Def0000
+S Delay50u Def000E
+S Delay50uTimes Def0000
+S $sb$Delay50u Def000E
+S $sb$Delay50uTimes Def0000
+S $se$Delay50u Def0022
+S $se$Delay50uTimes Def0006
+T 00 00 90 0C 78 BF FC 7F 08 19 3A 7C 01 01 01 01
+R 00 00 00 00
+T 00 0E 08 71 10 5D E0 70 EF 21 07 39 05 D0 06 FF
+R 00 00 00 00
+T 00 1C E9 78 BF FE 18 7F
+R 00 00 00 00
