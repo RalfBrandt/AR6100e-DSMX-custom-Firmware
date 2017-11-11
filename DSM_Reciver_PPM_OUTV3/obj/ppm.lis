@@ -81,7 +81,7 @@
  001B 0F0000            adc [X+0],0
  001E                   .dbline 29
  001E 5201              mov A,[X+1]
- 0020 1108              sub A,8
+ 0020 1107              sub A,7
  0022 5200              mov A,[X+0]
  0024 3180              xor A,-128
  0026 1980              sbb A,(0 ^ 0x80)
@@ -376,25 +376,25 @@
  0127           ;               //Sync is send out we are done 
  0127           ;               if (ppm_Nr==PPM_PULSE_COUNT+2) 
  0127                   .dbline 107
- 0127 3C000A            cmp [_ppm_Nr],10
+ 0127 3C0009            cmp [_ppm_Nr],9
  012A B00B              jnz L22
  012C                   .dbline 109
  012C           ;                       { //we are done 
- 012C           ;                               ppm_Run=0;              //signal that we are done
+ 012C           ;                               PWM16_1_Stop();
  012C                   .dbline 109
- 012C 550100            mov [_ppm_Run],0
- 012F                   .dbline 110
- 012F           ;                               PWM16_1_Stop();
- 012F 10                push X
- 0130 7C0000            xcall _PWM16_1_Stop
- 0133 20                pop X
+ 012C 10                push X
+ 012D 7C0000            xcall _PWM16_1_Stop
+ 0130 20                pop X
+ 0131                   .dbline 110
+ 0131           ;                               ppm_Run=0;              //signal that we are done
+ 0131 550100            mov [_ppm_Run],0
  0134                   .dbline 111
  0134           ;                       }
  0134 8037              xjmp L23
  0136           L22:
  0136                   .dbline 112
  0136           ;               else if (ppm_Nr==PPM_PULSE_COUNT+1) 
- 0136 3C0009            cmp [_ppm_Nr],9
+ 0136 3C0008            cmp [_ppm_Nr],8
  0139 B006              jnz L24
  013B                   .dbline 114
  013B           ;                       { //we are done 
@@ -411,7 +411,7 @@
  0140           ;               {       //check if that is the last chanel is done
  0140                   .dbline 119
  0140           ;                       if(ppm_Nr==PPM_PULSE_COUNT)
- 0140 3C0008            cmp [_ppm_Nr],8
+ 0140 3C0007            cmp [_ppm_Nr],7
  0143 B00C              jnz L26
  0145                   .dbline 121
  0145           ;                       {

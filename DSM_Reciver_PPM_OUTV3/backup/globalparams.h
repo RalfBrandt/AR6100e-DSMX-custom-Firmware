@@ -29,7 +29,7 @@
 #define SWITCH_MODE_PUMP       0x1     //Switch Mode Pump value
 #define SWITCH_MODE_PUMP_MASK  0x80    //Switch Mode Pump mask
 #define SWITCH_MODE_PUMP_JUST  0x80    //Switch Mode Pump value justified
-#define TRIP_VOLTAGE           0x3     //Trip Voltage
+#define TRIP_VOLTAGE           0x1     //Trip Voltage
 #define POWER_SETTING          0x8     //Power Setting 
 #define WATCHDOG_ENABLE        0x0     //Watchdog Enable 1 = Enable
 #define CLOCK_DIV_VC1          0xb     // VC1 clock divider 

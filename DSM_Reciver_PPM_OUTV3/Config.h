@@ -21,7 +21,7 @@ BYTE rx_d[16];
 #define OPTION_11MS 	(1<<1)
 #define OPTION_11BIT	(1<<2)
 
-#define DSM_OUT_CH_CNT 8
+#define DSM_OUT_CH_CNT 7
 
 void SaveConfig(void *Data,BYTE Cnt);
 BOOL ReadConfig(void *Data,BYTE Cnt);

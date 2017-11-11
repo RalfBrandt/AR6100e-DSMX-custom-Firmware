@@ -134,7 +134,7 @@
  0043           ; Bind=Bind||!ReadConfig(&config,sizeof (config_s));    
  0043 3D0000            cmp [X+0],0
  0046 B013              jnz L19
- 0048 5018              mov A,24
+ 0048 5016              mov A,22
  004A 08                push A
  004B 5000              mov A,>_config
  004D 08                push A
@@ -336,7 +336,7 @@
  013B 20                pop X
  013C                   .dbline 99
  013C           ;       SaveConfig(&config,sizeof (config_s));
- 013C 5018              mov A,24
+ 013C 5016              mov A,22
  013E 08                push A
  013F 5000              mov A,>_config
  0141 08                push A

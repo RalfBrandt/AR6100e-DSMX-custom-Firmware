@@ -106,8 +106,8 @@ void PWM16_1_CMP_ISR(void )
 		//Sync is send out we are done 
 		if (ppm_Nr==PPM_PULSE_COUNT+2) 
 			{ //we are done 
-				ppm_Run=0;		//signal that we are done
 				PWM16_1_Stop();
+				ppm_Run=0;		//signal that we are done
 			}
 		else if (ppm_Nr==PPM_PULSE_COUNT+1) 
 			{ //we are done 

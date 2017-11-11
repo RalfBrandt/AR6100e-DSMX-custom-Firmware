@@ -682,7 +682,7 @@ void Process_BindRcvIrq(void)
 	if (num_channels>PPM_PULSE_COUNT)
 		num_channels=PPM_PULSE_COUNT;
 	DSM_Is_DSMX=PROTOC_IS_DSMX(rx_buf[12]);
-	DSM_Is_11ms=PROTOC_IS_DSM_11MS(rx_buf[12]);
+	DSM_Is_11ms=FALSE; //PROTOC_IS_DSM_11MS(rx_buf[12]);
 	DSM_Is_11Bit=PROTOC_IS_DSM_11BIT(rx_buf[12]);
 	State=DSM_STATE_BIND_RCV_WAIT; 	
 

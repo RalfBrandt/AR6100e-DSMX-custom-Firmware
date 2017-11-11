@@ -389,7 +389,7 @@
  000C 5400              mov [X+0],A
  000E                   .dbline 143
  000E           ;       BYTE pn_row = DSM_Is_DSMX ? (channel - 2)%5 : channel%5;
- 000E 3C3800            cmp [_config+4],0
+ 000E 3C3600            cmp [_config+4],0
  0011 A027              jz L14
  0013 5200              mov A,[X+0]
  0015 5300              mov [__r1],A
@@ -435,9 +435,9 @@
  0058           ;       WORD CRCSeed=Ch_A?~((WORD)(cyrfmfg_id[0] << 8) + (WORD)cyrfmfg_id[1]):((WORD)(cyrfmfg_id[0] << 8) + (WORD)cyrfmfg_id[1]);
  0058 3C0B00            cmp [_Ch_A],0
  005B A022              jz L19
- 005D 5F0035            mov [__r1],[_config+1]
+ 005D 5F0033            mov [__r1],[_config+1]
  0060 550000            mov [__r0],0
- 0063 5F0034            mov [__r2],[_config]
+ 0063 5F0032            mov [__r2],[_config]
  0066 5000              mov A,0
  0068 0200              add A,[__r1]
  006A 5300              mov [__r1],A
@@ -452,9 +452,9 @@
  007A 5406              mov [X+6],A
  007C 8016              xjmp L20
  007E           L19:
- 007E 5F0035            mov [__r1],[_config+1]
+ 007E 5F0033            mov [__r1],[_config+1]
  0081 550000            mov [__r0],0
- 0084 5F0034            mov [__r2],[_config]
+ 0084 5F0032            mov [__r2],[_config]
  0087 5000              mov A,0
  0089 0200              add A,[__r1]
  008B 5407              mov [X+7],A
@@ -601,7 +601,7 @@
  0166           ;       LED_1_6_Switch(Ch_A?1:0);
  0166           ; #endif
  0166           ;     if(DSM_Is_DSMX)
- 0166 3C3800            cmp [_config+4],0
+ 0166 3C3600            cmp [_config+4],0
  0169 A017              jz L25
  016B                   .dbline 159
  016B           ;         chidx = (chidx + 1) % 23;
@@ -896,7 +896,7 @@
  0274           L46:
  0274                   .dbline 216
  0274           ;       Rcv_Timeout=TRUE;
- 0274 554C01            mov [_Rcv_Timeout],1
+ 0274 554801            mov [_Rcv_Timeout],1
  0277                   .dbline 217
  0277           ;       cnt=(cnt+1)%4;
  0277 5103              mov A,[_cnt+1]
@@ -937,7 +937,7 @@
  029B           ; {
  029B                   .dbline 225
  029B           ;               State=DSM_STATE_SYNC_X;
- 029B 554E0A            mov [_State],10
+ 029B 554A0A            mov [_State],10
  029E                   .dbline 229
  029E           ; #ifdef DEBUG
  029E           ;               LED_1_7_Off();
@@ -946,10 +946,10 @@
  029E 550700            mov [_lost_cnt],0
  02A1                   .dbline 230
  02A1           ;               Rcv_Timeout=FALSE;
- 02A1 554C00            mov [_Rcv_Timeout],0
+ 02A1 554800            mov [_Rcv_Timeout],0
  02A4                   .dbline 231
  02A4           ;               if (DSM_Is_DSMX)
- 02A4 3C3800            cmp [_config+4],0
+ 02A4 3C3600            cmp [_config+4],0
  02A7 A00A              jz L49
  02A9                   .dbline 232
  02A9           ;                       Timer_SetPeriod(DSM_FULL_SEQUENCE_TIME);
@@ -1014,7 +1014,7 @@
  02D8           ;               {
  02D8                   .dbline 247
  02D8           ;               Timer_SetPeriod(DSM_Perriode);
- 02D8 5F0050            mov [__r0],[_DSM_Perriode+1]
+ 02D8 5F004C            mov [__r0],[_DSM_Perriode+1]
  02DB 10                push X
  02DC 5100              mov A,[__r0]
  02DE 7C0000            xcall _Timer8_1_WritePeriod
@@ -1093,7 +1093,7 @@
  031B 550B01            mov [_Ch_A],1
  031E                   .dbline 268
  031E           ;       Rcv_Timeout=FALSE;
- 031E 554C00            mov [_Rcv_Timeout],0
+ 031E 554800            mov [_Rcv_Timeout],0
  0321                   .dbline 269
  0321           ;       New_RCV_Data=FALSE;
  0321 550600            mov [_New_RCV_Data],0
@@ -1102,10 +1102,10 @@
  0324 550700            mov [_lost_cnt],0
  0327                   .dbline 271
  0327           ;       sop_col = (cyrfmfg_id[0] + cyrfmfg_id[1] + cyrfmfg_id[2] + 2) & 0x07;
- 0327 5134              mov A,[_config]
- 0329 0235              add A,[_config+1]
+ 0327 5132              mov A,[_config]
+ 0329 0233              add A,[_config+1]
  032B 5300              mov [__r0],A
- 032D 5136              mov A,[_config+2]
+ 032D 5134              mov A,[_config+2]
  032F 0400              add [__r0],A
  0331 060002            add [__r0],2
  0334 5100              mov A,[__r0]
@@ -1128,7 +1128,7 @@
  034B 38FD              add SP,-3
  034D                   .dbline 274
  034D           ;       if(DSM_Is_DSMX)
- 034D 3C3800            cmp [_config+4],0
+ 034D 3C3600            cmp [_config+4],0
  0350 A008              jz L60
  0352                   .dbline 276
  0352           ;               {
@@ -1137,7 +1137,7 @@
  0352 9274              xcall _calc_dsmx_channel
  0354                   .dbline 277
  0354           ;               State=DSM_STATE_SYNC_X;
- 0354 554E0A            mov [_State],10
+ 0354 554A0A            mov [_State],10
  0357                   .dbline 278
  0357           ;               }
  0357 800A              xjmp L61
@@ -1151,14 +1151,14 @@
  035C 550D01            mov [_channels],1
  035F                   .dbline 282
  035F           ;               State=DSM_STATE_SYNC_AB;
- 035F 554E06            mov [_State],6
+ 035F 554A06            mov [_State],6
  0362                   .dbline 283
  0362           ;               }       
  0362           L61:
  0362                   .dbline 285
  0362           ;       //set periode to be 11ms or 22ms        
  0362           ;       DSM_Perriode=DSM_Is_11ms?DSM_TIME11MS:DSM_TIME22MS;
- 0362 3C3900            cmp [_config+5],0
+ 0362 3C3700            cmp [_config+5],0
  0365 A009              jz L66
  0367 56011B            mov [X+1],27
  036A 560000            mov [X+0],0
@@ -1168,9 +1168,9 @@
  0372 560000            mov [X+0],0
  0375           L67:
  0375 5201              mov A,[X+1]
- 0377 5350              mov [_DSM_Perriode+1],A
+ 0377 534C              mov [_DSM_Perriode+1],A
  0379 5200              mov A,[X+0]
- 037B 534F              mov [_DSM_Perriode],A
+ 037B 534B              mov [_DSM_Perriode],A
  037D                   .dbline 288
  037D           ; 
  037D           ;       //calculate channel CRC SOP and data code for first channel to transmitt
@@ -1180,7 +1180,7 @@
  0381 20                pop X
  0382                   .dbline 289
  0382           ;       if(DSM_Is_DSMX)
- 0382 3C3800            cmp [_config+4],0
+ 0382 3C3600            cmp [_config+4],0
  0385 A015              jz L68
  0387                   .dbline 291
  0387           ;               {       
@@ -1255,24 +1255,24 @@
  03BE                   .dbline 307
  03BE           ;       BYTE n;
  03BE           ;       if ((( DSM_Is_DSMX) && (rx_buf[0] !=  cyrfmfg_id[2] || rx_buf[1] !=  cyrfmfg_id[3]))
- 03BE 3C3800            cmp [_config+4],0
+ 03BE 3C3600            cmp [_config+4],0
  03C1 A00D              jz L87
  03C3 5110              mov A,[_mem+16]
- 03C5 3A36              cmp A,[_config+2]
+ 03C5 3A34              cmp A,[_config+2]
  03C7 B022              jnz L88
  03C9 5111              mov A,[_mem+16+1]
- 03CB 3A37              cmp A,[_config+3]
+ 03CB 3A35              cmp A,[_config+3]
  03CD B01C              jnz L88
  03CF           L87:
- 03CF 3C3800            cmp [_config+4],0
+ 03CF 3C3600            cmp [_config+4],0
  03D2 B019              jnz L72
- 03D4 5136              mov A,[_config+2]
+ 03D4 5134              mov A,[_config+2]
  03D6 73                cpl A
  03D7 5300              mov [__r0],A
  03D9 5110              mov A,[_mem+16]
  03DB 3A00              cmp A,[__r0]
  03DD B00C              jnz L88
- 03DF 5137              mov A,[_config+3]
+ 03DF 5135              mov A,[_config+3]
  03E1 73                cpl A
  03E2 5300              mov [__r0],A
  03E4 5111              mov A,[_mem+16+1]
@@ -1316,7 +1316,7 @@
  03FF           ;               {
  03FF                   .dbline 322
  03FF           ;               Timer_SetPeriod(DSM_Perriode+DSM_TIME_EXTRA);
- 03FF 5150              mov A,[_DSM_Perriode+1]
+ 03FF 514C              mov A,[_DSM_Perriode+1]
  0401 0101              add A,1
  0403 10                push X
  0404 7C0000            xcall _Timer8_1_WritePeriod
@@ -1327,7 +1327,7 @@
  0408                   .dbline 325
  0408           ; 
  0408           ;       if (State==DSM_STATE_SYNC_AB)
- 0408 3C4E06            cmp [_State],6
+ 0408 3C4A06            cmp [_State],6
  040B B016              jnz L92
  040D                   .dbline 327
  040D           ;       {
@@ -1342,7 +1342,7 @@
  0418           ;               {
  0418           ;                       State =DSM_STATE_SYNC_X;
  0418                   .dbline 329
- 0418 554E0A            mov [_State],10
+ 0418 554A0A            mov [_State],10
  041B                   .dbline 330
  041B           ;               }
  041B           L94:
@@ -1364,13 +1364,13 @@
  0427                   .dbline 336
  0427           ; 
  0427           ;       if (DSM_STATE_SYNC_X==State)
- 0427 3C4E0A            cmp [_State],10
+ 0427 3C4A0A            cmp [_State],10
  042A B00F              jnz L97
  042C                   .dbline 338
  042C           ;       {
  042C           ;               State=DSM_STATE_LOCKED;
  042C                   .dbline 338
- 042C 554E0B            mov [_State],11
+ 042C 554A0B            mov [_State],11
  042F                   .dbline 342
  042F           ; #ifdef DEBUG
  042F           ;               LED_1_7_On(); 
@@ -1553,8 +1553,8 @@
  04C1           ; {
  04C1                   .dbline 386
  04C1           ;               new_data= DSM_process_Data();
- 04C1 96FA              xcall _DSM_process_Data
- 04C3 534D              mov [_new_data],A
+ 04C1 96DB              xcall _DSM_process_Data
+ 04C3 5349              mov [_new_data],A
  04C5                   .dbline -2
  04C5           L113:
  04C5                   .dbline 0 ; func end
@@ -1575,7 +1575,7 @@
  04CA           ; {
  04CA                   .dbline 392
  04CA           ;       switch(State)
- 04CA 514E              mov A,[_State]
+ 04CA 514A              mov A,[_State]
  04CC 5401              mov [X+1],A
  04CE 560000            mov [X+0],0
  04D1 3D0000            cmp [X+0],0
@@ -1607,7 +1607,7 @@
  04F3 9463              xcall _DSM_StartRcv
  04F5                   .dbline 398
  04F5           ;                       State=DSM_STATE_BIND_RCV;
- 04F5 554E01            mov [_State],1
+ 04F5 554A01            mov [_State],1
  04F8                   .dbline 399
  04F8           ;                       }
  04F8                   .dbline 400
@@ -1655,7 +1655,7 @@
  0507 550000            mov [_CY_irq],0
  050A                   .dbline 418
  050A           ;               switch(State)
- 050A 514E              mov A,[_State]
+ 050A 514A              mov A,[_State]
  050C 5405              mov [X+5],A
  050E 560400            mov [X+4],0
  0511 3D0400            cmp [X+4],0
@@ -1827,7 +1827,7 @@
  05BC 550600            mov [_New_RCV_Data],0
  05BF                   .dbline 463
  05BF           ;                       Rcv_Timeout=FALSE;
- 05BF 554C00            mov [_Rcv_Timeout],0
+ 05BF 554800            mov [_Rcv_Timeout],0
  05C2                   .dbline 464
  05C2           ;                       ProcessNewData();
  05C2 9EFD              xcall _ProcessNewData
@@ -1873,13 +1873,13 @@
  05CC           ;     BYTE idx; 
  05CC           ;       DWORD id_tmp;
  05CC           ;     DWORD id = ~(((DWORD)cyrfmfg_id[0] << 24) | ((DWORD)cyrfmfg_id[1] << 16) | ((DWORD)cyrfmfg_id[2] << 8) | (((DWORD)cyrfmfg_id[3]) << 0));
- 05CC 5F0037            mov [__r3],[_config+3]
+ 05CC 5F0035            mov [__r3],[_config+3]
  05CF 560900            mov [X+9],0
  05D2 560A00            mov [X+10],0
  05D5 560B00            mov [X+11],0
  05D8 5100              mov A,[__r3]
  05DA 540C              mov [X+12],A
- 05DC 5F0036            mov [__r7],[_config+2]
+ 05DC 5F0034            mov [__r7],[_config+2]
  05DF 550000            mov [__r6],0
  05E2 550000            mov [__r5],0
  05E5 550000            mov [__r4],0
@@ -1891,7 +1891,7 @@
  05F0 6B00              rlc [__r4]
  05F2 78                dec A
  05F3 BFF6              jnz X14
- 05F5 5F0035            mov [__r11],[_config+1]
+ 05F5 5F0033            mov [__r11],[_config+1]
  05F8 550000            mov [__r10],0
  05FB 550000            mov [__r9],0
  05FE 550000            mov [__r8],0
@@ -1903,7 +1903,7 @@
  0609 6B00              rlc [__r8]
  060B 78                dec A
  060C BFF6              jnz X15
- 060E 5F0034            mov [__r3],[_config]
+ 060E 5F0032            mov [__r3],[_config]
  0611 550000            mov [__r2],0
  0614 550000            mov [__r1],0
  0617 550000            mov [__r0],0
@@ -2286,7 +2286,7 @@
  0827                   .dbline 515
  0827           ;       BYTE n;
  0827           ;       new_data=FALSE;
- 0827 554D00            mov [_new_data],0
+ 0827 554900            mov [_new_data],0
  082A                   .dbline 517
  082A           ;       //init CYRF6936
  082A           ;       CYRF_Init();
@@ -2294,13 +2294,13 @@
  082D                   .dbline 519
  082D           ;       //set defalut values
  082D           ;       DSM_Is_DSMX=FALSE;
- 082D 553800            mov [_config+4],0
+ 082D 553600            mov [_config+4],0
  0830                   .dbline 520
  0830           ;       DSM_Is_11ms=FALSE;
- 0830 553900            mov [_config+5],0
+ 0830 553700            mov [_config+5],0
  0833                   .dbline 521
  0833           ;       DSM_Is_11Bit=FALSE;
- 0833 553A00            mov [_config+6],0
+ 0833 553800            mov [_config+6],0
  0836                   .dbline 522
  0836           ;       Ch_A=TRUE;
  0836 550B01            mov [_Ch_A],1
@@ -2309,7 +2309,7 @@
  0839 550C00            mov [_chidx],0
  083C                   .dbline 524
  083C           ;       Preste_Failsafe=FALSE;
- 083C 553B00            mov [_config+7],0
+ 083C 553900            mov [_config+7],0
  083F                   .dbline 525
  083F           ;       DSM_Load_Config(init_vals,sizeof(init_vals)/(sizeof(BYTE)*2));
  083F 5010              mov A,16
@@ -2373,7 +2373,7 @@
  085F           ; {     
  085F                   .dbline 545
  085F           ;       State=DSM_STATE_BIND;
- 085F 554E00            mov [_State],0
+ 085F 554A00            mov [_State],0
  0862                   .dbline 546
  0862           ;       DSM_Load_Config(bind_vals,sizeof(bind_vals)/(sizeof(BYTE)*2));
  0862 5005              mov A,5
@@ -2472,9 +2472,9 @@
  08C0 5F0508            mov [_mem+5],[_num_channels]
  08C3                   .dbline 567
  08C3           ;     tx_buf[6]=DSM_Is_DSMX?(DSM_Is_11ms?0xB2:0xA2):DSM_Is_11Bit?(DSM_Is_11ms?0x12:0x11):(DSM_Is_11ms?0x02:0x01); //rx_buf[12]; //protocoll
- 08C3 3C3800            cmp [_config+4],0
+ 08C3 3C3600            cmp [_config+4],0
  08C6 A01E              jz L199
- 08C8 3C3900            cmp [_config+5],0
+ 08C8 3C3700            cmp [_config+5],0
  08CB A009              jz L201
  08CD 5606B2            mov [X+6],-78
  08D0 560500            mov [X+5],0
@@ -2489,9 +2489,9 @@
  08E1 5403              mov [X+3],A
  08E3 8046              xjmp L200
  08E5           L199:
- 08E5 3C3A00            cmp [_config+6],0
+ 08E5 3C3800            cmp [_config+6],0
  08E8 A01E              jz L203
- 08EA 3C3900            cmp [_config+5],0
+ 08EA 3C3700            cmp [_config+5],0
  08ED A009              jz L205
  08EF 560A12            mov [X+10],18
  08F2 560900            mov [X+9],0
@@ -2506,7 +2506,7 @@
  0903 5407              mov [X+7],A
  0905 801C              xjmp L204
  0907           L203:
- 0907 3C3900            cmp [_config+5],0
+ 0907 3C3700            cmp [_config+5],0
  090A A009              jz L207
  090C 560C02            mov [X+12],2
  090F 560B00            mov [X+11],0
@@ -2670,7 +2670,7 @@
  099A           ;       {
  099A                   .dbline 602
  099A           ;               State=DSM_STATE_BIND_DONE;
- 099A 554E05            mov [_State],5
+ 099A 554A05            mov [_State],5
  099D                   .dbline 607
  099D           ; #ifdef DEBUG
  099D           ;               LED_1_7_Off();
@@ -2679,22 +2679,22 @@
  099D           ;               cyrfmfg_id[0]=~tx_buf[0];
  099D 5100              mov A,[_mem]
  099F 73                cpl A
- 09A0 5334              mov [_config],A
+ 09A0 5332              mov [_config],A
  09A2                   .dbline 608
  09A2           ;               cyrfmfg_id[1]=~tx_buf[1];
  09A2 5101              mov A,[_mem+1]
  09A4 73                cpl A
- 09A5 5335              mov [_config+1],A
+ 09A5 5333              mov [_config+1],A
  09A7                   .dbline 609
  09A7           ;               cyrfmfg_id[2]=~tx_buf[2];
  09A7 5102              mov A,[_mem+2]
  09A9 73                cpl A
- 09AA 5336              mov [_config+2],A
+ 09AA 5334              mov [_config+2],A
  09AC                   .dbline 610
  09AC           ;               cyrfmfg_id[3]=~tx_buf[3];
  09AC 5103              mov A,[_mem+3]
  09AE 73                cpl A
- 09AF 5337              mov [_config+3],A
+ 09AF 5335              mov [_config+3],A
  09B1                   .dbline 611
  09B1           ;               Timer_Stop();
  09B1 10                push X
@@ -2732,7 +2732,7 @@
  09C5 9EE0              xcall _DSM_Build_Ack_package
  09C7                   .dbline 619
  09C7           ;       State=DSM_STATE_BIND_ACK;
- 09C7 554E04            mov [_State],4
+ 09C7 554A04            mov [_State],4
  09CA                   .dbline 620
  09CA           ;     CYRF_SetDataCode(pn_bind, 16);
  09CA 5010              mov A,16
@@ -2788,7 +2788,7 @@
  09F9           ;               LED_1_5_Invert();
  09F9           ; #endif
  09F9           ;               if (State==DSM_STATE_BIND_RCV_WAIT) //wait for done
- 09F9 3C4E02            cmp [_State],2
+ 09F9 3C4A02            cmp [_State],2
  09FC B009              jnz L231
  09FE                   .dbline 635
  09FE           ;               { 
@@ -2797,7 +2797,7 @@
  09FE 550564            mov [_Bind_cnt],100
  0A01                   .dbline 636
  0A01           ;                       State=DSM_STATE_BIND_RCV_START_ACK;
- 0A01 554E03            mov [_State],3
+ 0A01 554A03            mov [_State],3
  0A04                   .dbline 637
  0A04           ;               }
  0A04 801A              xjmp L232
@@ -2844,7 +2844,7 @@
  0A20                   .dbline -1
  0A20 10                push X
  0A21 4F                mov X,SP
- 0A22 3809              add SP,9
+ 0A22 3807              add SP,7
  0A24                   .dbline 649
  0A24           ; }
  0A24           ; 
@@ -2890,7 +2890,7 @@
  0A4F           ;       {
  0A4F           ;               goto Bind_rcv_error;
  0A4F                   .dbline 661
- 0A4F 8103              xjmp L256
+ 0A4F 80E4              xjmp L256
  0A51           L236:
  0A51                   .dbline 664
  0A51           ;       }
@@ -2945,7 +2945,7 @@
  0A98           ;       {
  0A98           ;               goto Bind_rcv_error;
  0A98                   .dbline 668
- 0A98 80BA              xjmp L256
+ 0A98 809B              xjmp L256
  0A9A           L262:
  0A9A                   .dbline 671
  0A9A           ;       }
@@ -3000,7 +3000,7 @@
  0AE1           ;       {
  0AE1           ;               goto Bind_rcv_error;
  0AE1                   .dbline 675
- 0AE1 8071              xjmp L256
+ 0AE1 8052              xjmp L256
  0AE3           L274:
  0AE3                   .dbline 677
  0AE3           ;       }
@@ -3011,7 +3011,7 @@
  0AE8           ;       {
  0AE8           ;               goto Bind_rcv_error;
  0AE8                   .dbline 679
- 0AE8 806A              xjmp L256
+ 0AE8 804B              xjmp L256
  0AEA           L281:
  0AEA                   .dbline 681
  0AEA           ;       }
@@ -3019,13 +3019,13 @@
  0AEA 5F081B            mov [_num_channels],[_mem+16+11]
  0AED                   .dbline 682
  0AED           ;       if (num_channels>PPM_PULSE_COUNT)
- 0AED 5008              mov A,8
+ 0AED 5007              mov A,7
  0AEF 3A08              cmp A,[_num_channels]
  0AF1 D004              jnc L287
  0AF3           X39:
  0AF3                   .dbline 683
  0AF3           ;               num_channels=PPM_PULSE_COUNT;
- 0AF3 550808            mov [_num_channels],8
+ 0AF3 550807            mov [_num_channels],7
  0AF6           L287:
  0AF6                   .dbline 684
  0AF6           ;       DSM_Is_DSMX=PROTOC_IS_DSMX(rx_buf[12]);
@@ -3041,594 +3041,577 @@
  0B09 560300            mov [X+3],0
  0B0C           L294:
  0B0C 5204              mov A,[X+4]
- 0B0E 5338              mov [_config+4],A
+ 0B0E 5336              mov [_config+4],A
  0B10                   .dbline 685
- 0B10           ;       DSM_Is_11ms=PROTOC_IS_DSM_11MS(rx_buf[12]);
- 0B10 511C              mov A,[_mem+16+12]
- 0B12 21B2              and A,-78
- 0B14 3902              cmp A,2
- 0B16 A009              jz L303
- 0B18 511C              mov A,[_mem+16+12]
- 0B1A 21B2              and A,-78
- 0B1C 39B2              cmp A,-78
- 0B1E B009              jnz L301
- 0B20           L303:
- 0B20 560601            mov [X+6],1
- 0B23 560500            mov [X+5],0
- 0B26 8007              xjmp L302
- 0B28           L301:
- 0B28 560600            mov [X+6],0
- 0B2B 560500            mov [X+5],0
- 0B2E           L302:
- 0B2E 5206              mov A,[X+6]
- 0B30 5339              mov [_config+5],A
- 0B32                   .dbline 686
- 0B32           ;       DSM_Is_11Bit=PROTOC_IS_DSM_11BIT(rx_buf[12]);
- 0B32 511C              mov A,[_mem+16+12]
- 0B34 2130              and A,48
- 0B36 67                asr A
- 0B37 67                asr A
- 0B38 67                asr A
- 0B39 67                asr A
- 0B3A 210F              and A,15
- 0B3C A009              jz L308
- 0B3E 560801            mov [X+8],1
- 0B41 560700            mov [X+7],0
- 0B44 8007              xjmp L309
- 0B46           L308:
- 0B46 560800            mov [X+8],0
- 0B49 560700            mov [X+7],0
- 0B4C           L309:
- 0B4C 5208              mov A,[X+8]
- 0B4E 533A              mov [_config+6],A
- 0B50                   .dbline 687
- 0B50           ;       State=DSM_STATE_BIND_RCV_WAIT;  
- 0B50 554E02            mov [_State],2
- 0B53           L256:
- 0B53                   .dbline 690
- 0B53           ; 
- 0B53           ;       Bind_rcv_error:
- 0B53           ;       DSM_StartRcv();
- 0B53 9E03              xcall _DSM_StartRcv
- 0B55                   .dbline -2
- 0B55           L235:
- 0B55 38F7              add SP,-9
- 0B57 20                pop X
- 0B58                   .dbline 0 ; func end
- 0B58 7F                ret
- 0B59                   .dbsym l ckSum 1 i
- 0B59                   .dbsym l n 0 c
- 0B59                   .dbend
- 0B59                   .dbfunc e DSM_DeterminBitCount _DSM_DeterminBitCount fc
- 0B59           ;            min -> X+3
- 0B59           ;            max -> X+2
- 0B59           ;              n -> X+1
- 0B59           ;         chanal -> X+0
- 0B59           _DSM_DeterminBitCount::
- 0B59                   .dbline -1
- 0B59 10                push X
- 0B5A 4F                mov X,SP
- 0B5B 3804              add SP,4
- 0B5D                   .dbline 695
- 0B5D           ; }
- 0B5D           ; //determin if we got 10 or 11 Bit data
- 0B5D           ; // tryout
- 0B5D           ; BYTE DSM_DeterminBitCount(void)
- 0B5D           ; {
- 0B5D                   .dbline 697
- 0B5D           ;       //tryout
- 0B5D           ;       BYTE min=0xff;
- 0B5D 5603FF            mov [X+3],-1
- 0B60                   .dbline 698
- 0B60           ;       BYTE max=0;
- 0B60 560200            mov [X+2],0
- 0B63                   .dbline 702
- 0B63           ;       BYTE chanal;
- 0B63           ;       BYTE n;
- 0B63           ;       //try 10 Bits
- 0B63           ;       for (n=0;n<7;n++)
- 0B63 560100            mov [X+1],0
- 0B66 8038              xjmp L314
- 0B68           L311:
- 0B68                   .dbline 703
- 0B68           ;       {
- 0B68                   .dbline 704
- 0B68           ;               chanal=(rx_data[n*2+2]>>2)&0xF;
- 0B68 5201              mov A,[X+1]
- 0B6A 64                asl A
- 0B6B 0102              add A,<_mem+2
- 0B6D 5300              mov [__r1],A
- 0B6F 3E00              mvi A,[__r1]
- 0B71 67                asr A
- 0B72 67                asr A
- 0B73 210F              and A,15
- 0B75 5400              mov [X+0],A
- 0B77                   .dbline 705
- 0B77           ;               if (chanal && chanal<min)
- 0B77 3D0000            cmp [X+0],0
- 0B7A A00B              jz L316
- 0B7C 5200              mov A,[X+0]
- 0B7E 3B03              cmp A,[X+3]
- 0B80 D005              jnc L316
- 0B82           X40:
- 0B82                   .dbline 706
- 0B82           ;                       min=chanal;
- 0B82 5200              mov A,[X+0]
- 0B84 5403              mov [X+3],A
- 0B86           L316:
- 0B86                   .dbline 707
- 0B86           ;               if(rx_data[n*2+2]!=0xFF  && chanal>max)
- 0B86 5201              mov A,[X+1]
- 0B88 64                asl A
- 0B89 0102              add A,<_mem+2
- 0B8B 5300              mov [__r1],A
- 0B8D 3E00              mvi A,[__r1]
- 0B8F 39FF              cmp A,-1
- 0B91 A00B              jz L318
- 0B93 5202              mov A,[X+2]
- 0B95 3B00              cmp A,[X+0]
- 0B97 D005              jnc L318
- 0B99           X41:
- 0B99                   .dbline 708
- 0B99           ;                       max=chanal;
- 0B99 5200              mov A,[X+0]
- 0B9B 5402              mov [X+2],A
- 0B9D           L318:
- 0B9D                   .dbline 709
- 0B9D           ;       }               
- 0B9D           L312:
- 0B9D                   .dbline 702
- 0B9D 7701              inc [X+1]
- 0B9F           L314:
- 0B9F                   .dbline 702
- 0B9F 3D0107            cmp [X+1],7
- 0BA2 CFC5              jc L311
- 0BA4           X42:
- 0BA4                   .dbline 710
- 0BA4           ;       if (min==1 &&  max && max <7)
- 0BA4 3D0301            cmp [X+3],1
- 0BA7 B00F              jnz L321
- 0BA9 3D0200            cmp [X+2],0
- 0BAC A00A              jz L321
- 0BAE 3D0207            cmp [X+2],7
- 0BB1 D005              jnc L321
- 0BB3           X43:
- 0BB3                   .dbline 711
- 0BB3           ;               return 10;
- 0BB3 500A              mov A,10
- 0BB5 8003              xjmp L310
- 0BB7           L321:
- 0BB7                   .dbline 713
- 0BB7           ;       else 
- 0BB7           ;               return 11;
- 0BB7 500B              mov A,11
- 0BB9                   .dbline -2
- 0BB9           L310:
- 0BB9 38FC              add SP,-4
- 0BBB 20                pop X
- 0BBC                   .dbline 0 ; func end
- 0BBC 7F                ret
- 0BBD                   .dbsym l min 3 c
- 0BBD                   .dbsym l max 2 c
- 0BBD                   .dbsym l n 1 c
- 0BBD                   .dbsym l chanal 0 c
- 0BBD                   .dbend
+ 0B10           ;       DSM_Is_11ms=FALSE; //PROTOC_IS_DSM_11MS(rx_buf[12]);
+ 0B10 553700            mov [_config+5],0
+ 0B13                   .dbline 686
+ 0B13           ;       DSM_Is_11Bit=PROTOC_IS_DSM_11BIT(rx_buf[12]);
+ 0B13 511C              mov A,[_mem+16+12]
+ 0B15 2130              and A,48
+ 0B17 67                asr A
+ 0B18 67                asr A
+ 0B19 67                asr A
+ 0B1A 67                asr A
+ 0B1B 210F              and A,15
+ 0B1D A009              jz L300
+ 0B1F 560601            mov [X+6],1
+ 0B22 560500            mov [X+5],0
+ 0B25 8007              xjmp L301
+ 0B27           L300:
+ 0B27 560600            mov [X+6],0
+ 0B2A 560500            mov [X+5],0
+ 0B2D           L301:
+ 0B2D 5206              mov A,[X+6]
+ 0B2F 5338              mov [_config+6],A
+ 0B31                   .dbline 687
+ 0B31           ;       State=DSM_STATE_BIND_RCV_WAIT;  
+ 0B31 554A02            mov [_State],2
+ 0B34           L256:
+ 0B34                   .dbline 690
+ 0B34           ; 
+ 0B34           ;       Bind_rcv_error:
+ 0B34           ;       DSM_StartRcv();
+ 0B34 9E22              xcall _DSM_StartRcv
+ 0B36                   .dbline -2
+ 0B36           L235:
+ 0B36 38F9              add SP,-7
+ 0B38 20                pop X
+ 0B39                   .dbline 0 ; func end
+ 0B39 7F                ret
+ 0B3A                   .dbsym l ckSum 1 i
+ 0B3A                   .dbsym l n 0 c
+ 0B3A                   .dbend
+ 0B3A                   .dbfunc e DSM_DeterminBitCount _DSM_DeterminBitCount fc
+ 0B3A           ;            min -> X+3
+ 0B3A           ;            max -> X+2
+ 0B3A           ;              n -> X+1
+ 0B3A           ;         chanal -> X+0
+ 0B3A           _DSM_DeterminBitCount::
+ 0B3A                   .dbline -1
+ 0B3A 10                push X
+ 0B3B 4F                mov X,SP
+ 0B3C 3804              add SP,4
+ 0B3E                   .dbline 695
+ 0B3E           ; }
+ 0B3E           ; //determin if we got 10 or 11 Bit data
+ 0B3E           ; // tryout
+ 0B3E           ; BYTE DSM_DeterminBitCount(void)
+ 0B3E           ; {
+ 0B3E                   .dbline 697
+ 0B3E           ;       //tryout
+ 0B3E           ;       BYTE min=0xff;
+ 0B3E 5603FF            mov [X+3],-1
+ 0B41                   .dbline 698
+ 0B41           ;       BYTE max=0;
+ 0B41 560200            mov [X+2],0
+ 0B44                   .dbline 702
+ 0B44           ;       BYTE chanal;
+ 0B44           ;       BYTE n;
+ 0B44           ;       //try 10 Bits
+ 0B44           ;       for (n=0;n<7;n++)
+ 0B44 560100            mov [X+1],0
+ 0B47 8038              xjmp L306
+ 0B49           L303:
+ 0B49                   .dbline 703
+ 0B49           ;       {
+ 0B49                   .dbline 704
+ 0B49           ;               chanal=(rx_data[n*2+2]>>2)&0xF;
+ 0B49 5201              mov A,[X+1]
+ 0B4B 64                asl A
+ 0B4C 0102              add A,<_mem+2
+ 0B4E 5300              mov [__r1],A
+ 0B50 3E00              mvi A,[__r1]
+ 0B52 67                asr A
+ 0B53 67                asr A
+ 0B54 210F              and A,15
+ 0B56 5400              mov [X+0],A
+ 0B58                   .dbline 705
+ 0B58           ;               if (chanal && chanal<min)
+ 0B58 3D0000            cmp [X+0],0
+ 0B5B A00B              jz L308
+ 0B5D 5200              mov A,[X+0]
+ 0B5F 3B03              cmp A,[X+3]
+ 0B61 D005              jnc L308
+ 0B63           X40:
+ 0B63                   .dbline 706
+ 0B63           ;                       min=chanal;
+ 0B63 5200              mov A,[X+0]
+ 0B65 5403              mov [X+3],A
+ 0B67           L308:
+ 0B67                   .dbline 707
+ 0B67           ;               if(rx_data[n*2+2]!=0xFF  && chanal>max)
+ 0B67 5201              mov A,[X+1]
+ 0B69 64                asl A
+ 0B6A 0102              add A,<_mem+2
+ 0B6C 5300              mov [__r1],A
+ 0B6E 3E00              mvi A,[__r1]
+ 0B70 39FF              cmp A,-1
+ 0B72 A00B              jz L310
+ 0B74 5202              mov A,[X+2]
+ 0B76 3B00              cmp A,[X+0]
+ 0B78 D005              jnc L310
+ 0B7A           X41:
+ 0B7A                   .dbline 708
+ 0B7A           ;                       max=chanal;
+ 0B7A 5200              mov A,[X+0]
+ 0B7C 5402              mov [X+2],A
+ 0B7E           L310:
+ 0B7E                   .dbline 709
+ 0B7E           ;       }               
+ 0B7E           L304:
+ 0B7E                   .dbline 702
+ 0B7E 7701              inc [X+1]
+ 0B80           L306:
+ 0B80                   .dbline 702
+ 0B80 3D0107            cmp [X+1],7
+ 0B83 CFC5              jc L303
+ 0B85           X42:
+ 0B85                   .dbline 710
+ 0B85           ;       if (min==1 &&  max && max <7)
+ 0B85 3D0301            cmp [X+3],1
+ 0B88 B00F              jnz L313
+ 0B8A 3D0200            cmp [X+2],0
+ 0B8D A00A              jz L313
+ 0B8F 3D0207            cmp [X+2],7
+ 0B92 D005              jnc L313
+ 0B94           X43:
+ 0B94                   .dbline 711
+ 0B94           ;               return 10;
+ 0B94 500A              mov A,10
+ 0B96 8003              xjmp L302
+ 0B98           L313:
+ 0B98                   .dbline 713
+ 0B98           ;       else 
+ 0B98           ;               return 11;
+ 0B98 500B              mov A,11
+ 0B9A                   .dbline -2
+ 0B9A           L302:
+ 0B9A 38FC              add SP,-4
+ 0B9C 20                pop X
+ 0B9D                   .dbline 0 ; func end
+ 0B9D 7F                ret
+ 0B9E                   .dbsym l min 3 c
+ 0B9E                   .dbsym l max 2 c
+ 0B9E                   .dbsym l n 1 c
+ 0B9E                   .dbsym l chanal 0 c
+ 0B9E                   .dbend
                         .area bss(ram, con, rel)
  0000                   .dbfile E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\dsm.c
- 0000           L324:
+ 0000           L316:
  0000                   .blkb 1
- 0001           L329:
+ 0001           L321:
  0001                   .blkb 1
- 0002           L330:
+ 0002           L322:
  0002                   .blkb 2
                         .area text(rom, con, rel)
- 0BBD                   .dbfile E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\dsm.c
- 0BBD                   .dbfunc e DSM_process_Data _DSM_process_Data fc
- 0BBD                   .dbsym s value L330 i
- 0BBD                   .dbsym s chanal L329 c
- 0BBD                   .dbsym s bits L324 c
- 0BBD           ;              n -> X+0
- 0BBD           _DSM_process_Data::
- 0BBD                   .dbline -1
- 0BBD 10                push X
- 0BBE 4F                mov X,SP
- 0BBF 3801              add SP,1
- 0BC1                   .dbline 719
- 0BC1           ; }
- 0BC1           ; 
- 0BC1           ; #define PPM_OFFSET (PPM_OUT_CENTER_LEN-1024)
- 0BC1           ; //Extract chanal data from serial data
- 0BC1           ; BOOL DSM_process_Data(void)
- 0BC1           ; {
- 0BC1                   .dbline 721
- 0BC1           ; static BYTE bits;     
- 0BC1           ;       if (!bits) //check if we have 10 or 11 Bit data
- 0BC1 3C0000            cmp [L324],0
- 0BC4 B005              jnz L325
- 0BC6                   .dbline 722
- 0BC6           ;               bits=DSM_DeterminBitCount();
- 0BC6 9F91              xcall _DSM_DeterminBitCount
- 0BC8 5300              mov [L324],A
- 0BCA           L325:
- 0BCA                   .dbline 723
- 0BCA           ;       if (bits)
- 0BCA 3C0000            cmp [L324],0
- 0BCD A11B              jz L327
- 0BCF                   .dbline 725
- 0BCF           ;       {
- 0BCF           ;       BYTE n;
- 0BCF                   .dbline 730
- 0BCF           ;       //static to safe stack space            
- 0BCF           ;       static BYTE chanal; 
- 0BCF           ;       static WORD value;      
- 0BCF           ;               //loop thru the words 
- 0BCF           ;               for (n=0;n<7;n++)
- 0BCF 560000            mov [X+0],0
- 0BD2 810D              xjmp L334
- 0BD4           L331:
- 0BD4                   .dbline 731
- 0BD4           ;               {       //extract chanal number
- 0BD4                   .dbline 732
- 0BD4           ;                       if (bits==10)
- 0BD4 3C000A            cmp [L324],10
- 0BD7 B012              jnz L335
- 0BD9                   .dbline 733
- 0BD9           ;                               chanal=(rx_data[n*2+2]>>2)&0xF;
- 0BD9 5200              mov A,[X+0]
- 0BDB 64                asl A
- 0BDC 0102              add A,<_mem+2
- 0BDE 5300              mov [__r1],A
- 0BE0 3E00              mvi A,[__r1]
- 0BE2 67                asr A
- 0BE3 67                asr A
- 0BE4 210F              and A,15
- 0BE6 5301              mov [L329],A
- 0BE8 8011              xjmp L336
- 0BEA           L335:
- 0BEA                   .dbline 735
- 0BEA           ;                       else 
- 0BEA           ;                               chanal=(rx_data[n*2+2]>>3)&0xF;
- 0BEA 5200              mov A,[X+0]
- 0BEC 64                asl A
- 0BED 0102              add A,<_mem+2
- 0BEF 5300              mov [__r1],A
- 0BF1 3E00              mvi A,[__r1]
- 0BF3 67                asr A
- 0BF4 67                asr A
- 0BF5 67                asr A
- 0BF6 210F              and A,15
- 0BF8 5301              mov [L329],A
- 0BFA           L336:
- 0BFA                   .dbline 737
- 0BFA           ;                       //check if chanal numer is in range
- 0BFA           ;                       if (chanal<PPM_PULSE_COUNT && rx_data[n*2+2]!=0xFF)
- 0BFA 3C0108            cmp [L329],8
- 0BFD D0E0              jnc L339
- 0BFF           X44:
- 0BFF 5200              mov A,[X+0]
- 0C01 64                asl A
- 0C02 0102              add A,<_mem+2
- 0C04 5300              mov [__r1],A
- 0C06 3E00              mvi A,[__r1]
- 0C08 39FF              cmp A,-1
- 0C0A A0D3              jz L339
- 0C0C                   .dbline 740
- 0C0C           ;                               //extract chanal value
- 0C0C           ;                       {
- 0C0C           ;                               if (bits==10)
- 0C0C                   .dbline 740
- 0C0C 3C000A            cmp [L324],10
- 0C0F B021              jnz L342
- 0C11                   .dbline 742
- 0C11           ;                               {
- 0C11           ;                                       value=(((WORD)rx_data[n*2+2]<<8)+rx_data[n*2+3])&0x3FF;
- 0C11                   .dbline 742
- 0C11 5200              mov A,[X+0]
- 0C13 64                asl A
- 0C14 5300              mov [__r1],A
- 0C16 0103              add A,<_mem+3
- 0C18 5300              mov [__r3],A
- 0C1A 3E00              mvi A,[__r3]
- 0C1C 5300              mov [__r2],A
- 0C1E 060002            add [__r1],<_mem+2
- 0C21 3E00              mvi A,[__r1]
- 0C23 5300              mov [__r0],A
- 0C25 5100              mov A,[__r2]
- 0C27 5303              mov [L330+1],A
- 0C29 5100              mov A,[__r0]
- 0C2B 2103              and A,3
- 0C2D 5302              mov [L330],A
- 0C2F                   .dbline 743
- 0C2F           ;                               }
- 0C2F 801F              xjmp L343
- 0C31           L342:
- 0C31                   .dbline 745
- 0C31           ;                               else
- 0C31           ;                               {
- 0C31                   .dbline 746
- 0C31           ;                                       value=(((WORD)rx_data[n*2+2]<<8)+rx_data[n*2+3])&0x7FF;
- 0C31 5200              mov A,[X+0]
- 0C33 64                asl A
- 0C34 5300              mov [__r1],A
- 0C36 0103              add A,<_mem+3
- 0C38 5300              mov [__r3],A
- 0C3A 3E00              mvi A,[__r3]
- 0C3C 5300              mov [__r2],A
- 0C3E 060002            add [__r1],<_mem+2
- 0C41 3E00              mvi A,[__r1]
- 0C43 5300              mov [__r0],A
- 0C45 5100              mov A,[__r2]
- 0C47 5303              mov [L330+1],A
- 0C49 5100              mov A,[__r0]
- 0C4B 2107              and A,7
- 0C4D 5302              mov [L330],A
- 0C4F                   .dbline 747
- 0C4F           ;                               }
- 0C4F           L343:
- 0C4F                   .dbline 750
- 0C4F           ;                               //PPM has resulution of 2000/1ms so 10 Bit datta (0 to 1024) needs to be multipleid by 2
- 0C4F           ;                               //best would be a linear scale like "Value=PPM_MIN + (value*(PPM_MAX-PPM_MIN))/(1<<Bits)" but that takes to mutch time.
- 0C4F           ;                               if (bits==10) 
- 0C4F 3C000A            cmp [L324],10
- 0C52 B023              jnz L348
- 0C54                   .dbline 751
- 0C54           ;                                       ppm_Data[chanal]=PPM_OFFSET+ value*2;
- 0C54 5F0003            mov [__r1],[L330+1]
- 0C57 5F0002            mov [__r0],[L330]
- 0C5A 6500              asl [__r1]
- 0C5C 6B00              rlc [__r0]
- 0C5E 0600B8            add [__r1],-72
- 0C61 0E0007            adc [__r0],7
- 0C64 5F0001            mov [__r3],[L329]
- 0C67 6500              asl [__r3]
- 0C69 060024            add [__r3],<_ppm_Data
- 0C6C 5100              mov A,[__r0]
- 0C6E 3F00              mvi [__r3],A
- 0C70 5100              mov A,[__r1]
- 0C72 3F00              mvi [__r3],A
- 0C74 8019              xjmp L349
- 0C76           L348:
- 0C76                   .dbline 753
- 0C76           ;                               else 
- 0C76           ;                                       ppm_Data[chanal]=PPM_OFFSET+ value;
- 0C76 5103              mov A,[L330+1]
- 0C78 01B8              add A,-72
- 0C7A 5300              mov [__r1],A
- 0C7C 5102              mov A,[L330]
- 0C7E 0907              adc A,7
- 0C80 5F0001            mov [__r3],[L329]
- 0C83 6500              asl [__r3]
- 0C85 060024            add [__r3],<_ppm_Data
- 0C88 3F00              mvi [__r3],A
- 0C8A 5100              mov A,[__r1]
- 0C8C 3F00              mvi [__r3],A
- 0C8E           L349:
- 0C8E                   .dbline 755
- 0C8E           ;                               //limit to MIN / MAX
- 0C8E           ;                               if (PPM_OUT_MAX_LEN<ppm_Data[chanal])
- 0C8E 5F0001            mov [__r1],[L329]
- 0C91 6500              asl [__r1]
- 0C93 060024            add [__r1],<_ppm_Data
- 0C96 3E00              mvi A,[__r1]
- 0C98 5300              mov [__r0],A
- 0C9A 3E00              mvi A,[__r1]
- 0C9C 5300              mov [__r1],A
- 0C9E 50B8              mov A,-72
- 0CA0 1200              sub A,[__r1]
- 0CA2 500F              mov A,15
- 0CA4 1A00              sbb A,[__r0]
- 0CA6 D011              jnc L350
- 0CA8           X45:
- 0CA8                   .dbline 756
- 0CA8           ;                                       ppm_Data[chanal]=PPM_OUT_MAX_LEN;
- 0CA8 5F0001            mov [__r1],[L329]
- 0CAB 6500              asl [__r1]
- 0CAD 060024            add [__r1],<_ppm_Data
- 0CB0 500F              mov A,15
- 0CB2 3F00              mvi [__r1],A
- 0CB4 50B8              mov A,-72
- 0CB6 3F00              mvi [__r1],A
- 0CB8           L350:
- 0CB8                   .dbline 757
- 0CB8           ;                               if (PPM_OUT_MIN_LEN>ppm_Data[chanal])
- 0CB8 5F0001            mov [__r1],[L329]
- 0CBB 6500              asl [__r1]
- 0CBD 060024            add [__r1],<_ppm_Data
- 0CC0 3E00              mvi A,[__r1]
- 0CC2 5300              mov [__r0],A
- 0CC4 3E00              mvi A,[__r1]
- 0CC6 11B8              sub A,-72
- 0CC8 5100              mov A,[__r0]
- 0CCA 1907              sbb A,7
- 0CCC D011              jnc L352
- 0CCE           X46:
- 0CCE                   .dbline 758
- 0CCE           ;                                       ppm_Data[chanal]=PPM_OUT_MIN_LEN;
- 0CCE 5F0001            mov [__r1],[L329]
- 0CD1 6500              asl [__r1]
- 0CD3 060024            add [__r1],<_ppm_Data
- 0CD6 5007              mov A,7
- 0CD8 3F00              mvi [__r1],A
- 0CDA 50B8              mov A,-72
- 0CDC 3F00              mvi [__r1],A
- 0CDE           L352:
- 0CDE                   .dbline 759
- 0CDE           ;                       }
- 0CDE           L339:
- 0CDE                   .dbline 760
- 0CDE           ;               }
- 0CDE           L332:
- 0CDE                   .dbline 730
- 0CDE 7700              inc [X+0]
- 0CE0           L334:
- 0CE0                   .dbline 730
- 0CE0 3D0007            cmp [X+0],7
- 0CE3 CEF0              jc L331
- 0CE5           X47:
- 0CE5                   .dbline 761
- 0CE5           ;               return 1;
- 0CE5 5001              mov A,1
- 0CE7 8003              xjmp L323
- 0CE9           L327:
- 0CE9                   .dbline 763
- 0CE9           ;       }
- 0CE9           ;       return 0;
- 0CE9 5000              mov A,0
- 0CEB                   .dbline -2
- 0CEB           L323:
- 0CEB 38FF              add SP,-1
- 0CED 20                pop X
- 0CEE                   .dbline 0 ; func end
- 0CEE 7F                ret
- 0CEF                   .dbsym l n 0 c
- 0CEF                   .dbend
- 0CEF                   .dbfunc e DSM_Save_Failsafe_Presets _DSM_Save_Failsafe_Presets fV
- 0CEF           ;              n -> X+0
- 0CEF           _DSM_Save_Failsafe_Presets::
- 0CEF                   .dbline -1
- 0CEF 10                push X
- 0CF0 4F                mov X,SP
- 0CF1 3801              add SP,1
- 0CF3                   .dbline 767
- 0CF3           ; }
- 0CF3           ; 
- 0CF3           ; void DSM_Save_Failsafe_Presets(void)
- 0CF3           ; {
- 0CF3                   .dbline 773
- 0CF3           ; BYTE n;
- 0CF3           ; #ifdef DEBUG
- 0CF3           ;       LED_1_6_Invert();
- 0CF3           ;       LED_1_6_Invert();
- 0CF3           ; #endif
- 0CF3           ;       for(n=0;n<PPM_PULSE_COUNT;n++)
- 0CF3 560000            mov [X+0],0
- 0CF6 802A              xjmp L358
- 0CF8           L355:
- 0CF8                   .dbline 774
- 0CF8           ;       {       
- 0CF8                   .dbline 775
- 0CF8           ;               ppm_fs_Data[n]=ppm_Data[n];
- 0CF8 5200              mov A,[X+0]
- 0CFA 5300              mov [__r1],A
- 0CFC 550000            mov [__r0],0
- 0CFF 6500              asl [__r1]
- 0D01 6B00              rlc [__r0]
- 0D03 5100              mov A,[__r1]
- 0D05 0124              add A,<_ppm_Data
- 0D07 5300              mov [__r3],A
- 0D09 3E00              mvi A,[__r3]
- 0D0B 5300              mov [__r2],A
- 0D0D 3E00              mvi A,[__r3]
- 0D0F 5300              mov [__r3],A
- 0D11 06003C            add [__r1],<_config+8
- 0D14 0E003C            adc [__r0],>_config+8
- 0D17 5100              mov A,[__r2]
- 0D19 3F00              mvi [__r1],A
- 0D1B 5100              mov A,[__r3]
- 0D1D 3F00              mvi [__r1],A
- 0D1F                   .dbline 776
- 0D1F           ;       }
- 0D1F           L356:
- 0D1F                   .dbline 773
- 0D1F 7700              inc [X+0]
- 0D21           L358:
- 0D21                   .dbline 773
- 0D21 3D0008            cmp [X+0],8
- 0D24 CFD3              jc L355
- 0D26           X48:
- 0D26                   .dbline 777
- 0D26           ; Preste_Failsafe=TRUE;
- 0D26 553B01            mov [_config+7],1
- 0D29                   .dbline -2
- 0D29           L354:
- 0D29 38FF              add SP,-1
- 0D2B 20                pop X
- 0D2C                   .dbline 0 ; func end
- 0D2C 7F                ret
- 0D2D                   .dbsym l n 0 c
- 0D2D                   .dbend
- 0D2D                   .dbfunc e DSM_Load_FS_Data _DSM_Load_FS_Data fV
- 0D2D           ;              n -> X+0
- 0D2D           _DSM_Load_FS_Data::
- 0D2D                   .dbline -1
- 0D2D 10                push X
- 0D2E 4F                mov X,SP
- 0D2F 3801              add SP,1
- 0D31                   .dbline 781
- 0D31           ; }
- 0D31           ; 
- 0D31           ; void DSM_Load_FS_Data(void)
- 0D31           ; {
- 0D31                   .dbline 787
- 0D31           ; BYTE n;
- 0D31           ; #ifdef DEBUG
- 0D31           ;       LED_1_6_Invert();
- 0D31           ;       LED_1_6_Invert();
- 0D31           ; #endif
- 0D31           ;       if (Preste_Failsafe)
- 0D31 3C3B00            cmp [_config+7],0
- 0D34 A036              jz L362
- 0D36                   .dbline 789
- 0D36           ;       {
- 0D36           ;               for(n=0;n<PPM_PULSE_COUNT;n++)
- 0D36                   .dbline 789
- 0D36 560000            mov [X+0],0
- 0D39 802A              xjmp L368
- 0D3B           L365:
- 0D3B                   .dbline 790
- 0D3B           ;               {       
- 0D3B                   .dbline 791
- 0D3B           ;                       ppm_Data[n]=ppm_fs_Data[n];
- 0D3B 5200              mov A,[X+0]
- 0D3D 5300              mov [__r1],A
- 0D3F 550000            mov [__r0],0
- 0D42 6500              asl [__r1]
- 0D44 6B00              rlc [__r0]
- 0D46 5100              mov A,[__r1]
- 0D48 013C              add A,<_config+8
- 0D4A 5300              mov [__r3],A
- 0D4C 3E00              mvi A,[__r3]
- 0D4E 5300              mov [__r2],A
- 0D50 3E00              mvi A,[__r3]
- 0D52 5300              mov [__r3],A
- 0D54 060024            add [__r1],<_ppm_Data
- 0D57 0E0024            adc [__r0],>_ppm_Data
- 0D5A 5100              mov A,[__r2]
- 0D5C 3F00              mvi [__r1],A
- 0D5E 5100              mov A,[__r3]
- 0D60 3F00              mvi [__r1],A
- 0D62                   .dbline 792
- 0D62           ;               }
- 0D62           L366:
- 0D62                   .dbline 789
- 0D62 7700              inc [X+0]
- 0D64           L368:
- 0D64                   .dbline 789
- 0D64 3D0008            cmp [X+0],8
- 0D67 CFD3              jc L365
- 0D69           X49:
- 0D69                   .dbline 793
- 0D69           ;       }
- 0D69 8007              xjmp L363
- 0D6B           L362:
- 0D6B                   .dbline 795
- 0D6B           ;       else 
- 0D6B           ;       {
- 0D6B                   .dbline 796
- 0D6B           ;               ppm_Data[0]=PPM_OUT_MIN_LEN;
- 0D6B 5525B8            mov [_ppm_Data+1],-72
- 0D6E 552407            mov [_ppm_Data],7
- 0D71                   .dbline 797
- 0D71           ;       }
- 0D71           L363:
- 0D71                   .dbline -2
- 0D71           L361:
- 0D71 38FF              add SP,-1
- 0D73 20                pop X
- 0D74                   .dbline 0 ; func end
- 0D74 7F                ret
- 0D75                   .dbsym l n 0 c
- 0D75                   .dbend
+ 0B9E                   .dbfile E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\dsm.c
+ 0B9E                   .dbfunc e DSM_process_Data _DSM_process_Data fc
+ 0B9E                   .dbsym s value L322 i
+ 0B9E                   .dbsym s chanal L321 c
+ 0B9E                   .dbsym s bits L316 c
+ 0B9E           ;              n -> X+0
+ 0B9E           _DSM_process_Data::
+ 0B9E                   .dbline -1
+ 0B9E 10                push X
+ 0B9F 4F                mov X,SP
+ 0BA0 3801              add SP,1
+ 0BA2                   .dbline 719
+ 0BA2           ; }
+ 0BA2           ; 
+ 0BA2           ; #define PPM_OFFSET (PPM_OUT_CENTER_LEN-1024)
+ 0BA2           ; //Extract chanal data from serial data
+ 0BA2           ; BOOL DSM_process_Data(void)
+ 0BA2           ; {
+ 0BA2                   .dbline 721
+ 0BA2           ; static BYTE bits;     
+ 0BA2           ;       if (!bits) //check if we have 10 or 11 Bit data
+ 0BA2 3C0000            cmp [L316],0
+ 0BA5 B005              jnz L317
+ 0BA7                   .dbline 722
+ 0BA7           ;               bits=DSM_DeterminBitCount();
+ 0BA7 9F91              xcall _DSM_DeterminBitCount
+ 0BA9 5300              mov [L316],A
+ 0BAB           L317:
+ 0BAB                   .dbline 723
+ 0BAB           ;       if (bits)
+ 0BAB 3C0000            cmp [L316],0
+ 0BAE A11B              jz L319
+ 0BB0                   .dbline 725
+ 0BB0           ;       {
+ 0BB0           ;       BYTE n;
+ 0BB0                   .dbline 730
+ 0BB0           ;       //static to safe stack space            
+ 0BB0           ;       static BYTE chanal; 
+ 0BB0           ;       static WORD value;      
+ 0BB0           ;               //loop thru the words 
+ 0BB0           ;               for (n=0;n<7;n++)
+ 0BB0 560000            mov [X+0],0
+ 0BB3 810D              xjmp L326
+ 0BB5           L323:
+ 0BB5                   .dbline 731
+ 0BB5           ;               {       //extract chanal number
+ 0BB5                   .dbline 732
+ 0BB5           ;                       if (bits==10)
+ 0BB5 3C000A            cmp [L316],10
+ 0BB8 B012              jnz L327
+ 0BBA                   .dbline 733
+ 0BBA           ;                               chanal=(rx_data[n*2+2]>>2)&0xF;
+ 0BBA 5200              mov A,[X+0]
+ 0BBC 64                asl A
+ 0BBD 0102              add A,<_mem+2
+ 0BBF 5300              mov [__r1],A
+ 0BC1 3E00              mvi A,[__r1]
+ 0BC3 67                asr A
+ 0BC4 67                asr A
+ 0BC5 210F              and A,15
+ 0BC7 5301              mov [L321],A
+ 0BC9 8011              xjmp L328
+ 0BCB           L327:
+ 0BCB                   .dbline 735
+ 0BCB           ;                       else 
+ 0BCB           ;                               chanal=(rx_data[n*2+2]>>3)&0xF;
+ 0BCB 5200              mov A,[X+0]
+ 0BCD 64                asl A
+ 0BCE 0102              add A,<_mem+2
+ 0BD0 5300              mov [__r1],A
+ 0BD2 3E00              mvi A,[__r1]
+ 0BD4 67                asr A
+ 0BD5 67                asr A
+ 0BD6 67                asr A
+ 0BD7 210F              and A,15
+ 0BD9 5301              mov [L321],A
+ 0BDB           L328:
+ 0BDB                   .dbline 737
+ 0BDB           ;                       //check if chanal numer is in range
+ 0BDB           ;                       if (chanal<PPM_PULSE_COUNT && rx_data[n*2+2]!=0xFF)
+ 0BDB 3C0107            cmp [L321],7
+ 0BDE D0E0              jnc L331
+ 0BE0           X44:
+ 0BE0 5200              mov A,[X+0]
+ 0BE2 64                asl A
+ 0BE3 0102              add A,<_mem+2
+ 0BE5 5300              mov [__r1],A
+ 0BE7 3E00              mvi A,[__r1]
+ 0BE9 39FF              cmp A,-1
+ 0BEB A0D3              jz L331
+ 0BED                   .dbline 740
+ 0BED           ;                               //extract chanal value
+ 0BED           ;                       {
+ 0BED           ;                               if (bits==10)
+ 0BED                   .dbline 740
+ 0BED 3C000A            cmp [L316],10
+ 0BF0 B021              jnz L334
+ 0BF2                   .dbline 742
+ 0BF2           ;                               {
+ 0BF2           ;                                       value=(((WORD)rx_data[n*2+2]<<8)+rx_data[n*2+3])&0x3FF;
+ 0BF2                   .dbline 742
+ 0BF2 5200              mov A,[X+0]
+ 0BF4 64                asl A
+ 0BF5 5300              mov [__r1],A
+ 0BF7 0103              add A,<_mem+3
+ 0BF9 5300              mov [__r3],A
+ 0BFB 3E00              mvi A,[__r3]
+ 0BFD 5300              mov [__r2],A
+ 0BFF 060002            add [__r1],<_mem+2
+ 0C02 3E00              mvi A,[__r1]
+ 0C04 5300              mov [__r0],A
+ 0C06 5100              mov A,[__r2]
+ 0C08 5303              mov [L322+1],A
+ 0C0A 5100              mov A,[__r0]
+ 0C0C 2103              and A,3
+ 0C0E 5302              mov [L322],A
+ 0C10                   .dbline 743
+ 0C10           ;                               }
+ 0C10 801F              xjmp L335
+ 0C12           L334:
+ 0C12                   .dbline 745
+ 0C12           ;                               else
+ 0C12           ;                               {
+ 0C12                   .dbline 746
+ 0C12           ;                                       value=(((WORD)rx_data[n*2+2]<<8)+rx_data[n*2+3])&0x7FF;
+ 0C12 5200              mov A,[X+0]
+ 0C14 64                asl A
+ 0C15 5300              mov [__r1],A
+ 0C17 0103              add A,<_mem+3
+ 0C19 5300              mov [__r3],A
+ 0C1B 3E00              mvi A,[__r3]
+ 0C1D 5300              mov [__r2],A
+ 0C1F 060002            add [__r1],<_mem+2
+ 0C22 3E00              mvi A,[__r1]
+ 0C24 5300              mov [__r0],A
+ 0C26 5100              mov A,[__r2]
+ 0C28 5303              mov [L322+1],A
+ 0C2A 5100              mov A,[__r0]
+ 0C2C 2107              and A,7
+ 0C2E 5302              mov [L322],A
+ 0C30                   .dbline 747
+ 0C30           ;                               }
+ 0C30           L335:
+ 0C30                   .dbline 750
+ 0C30           ;                               //PPM has resulution of 2000/1ms so 10 Bit datta (0 to 1024) needs to be multipleid by 2
+ 0C30           ;                               //best would be a linear scale like "Value=PPM_MIN + (value*(PPM_MAX-PPM_MIN))/(1<<Bits)" but that takes to mutch time.
+ 0C30           ;                               if (bits==10) 
+ 0C30 3C000A            cmp [L316],10
+ 0C33 B023              jnz L340
+ 0C35                   .dbline 751
+ 0C35           ;                                       ppm_Data[chanal]=PPM_OFFSET+ value*2;
+ 0C35 5F0003            mov [__r1],[L322+1]
+ 0C38 5F0002            mov [__r0],[L322]
+ 0C3B 6500              asl [__r1]
+ 0C3D 6B00              rlc [__r0]
+ 0C3F 0600B8            add [__r1],-72
+ 0C42 0E0007            adc [__r0],7
+ 0C45 5F0001            mov [__r3],[L321]
+ 0C48 6500              asl [__r3]
+ 0C4A 060024            add [__r3],<_ppm_Data
+ 0C4D 5100              mov A,[__r0]
+ 0C4F 3F00              mvi [__r3],A
+ 0C51 5100              mov A,[__r1]
+ 0C53 3F00              mvi [__r3],A
+ 0C55 8019              xjmp L341
+ 0C57           L340:
+ 0C57                   .dbline 753
+ 0C57           ;                               else 
+ 0C57           ;                                       ppm_Data[chanal]=PPM_OFFSET+ value;
+ 0C57 5103              mov A,[L322+1]
+ 0C59 01B8              add A,-72
+ 0C5B 5300              mov [__r1],A
+ 0C5D 5102              mov A,[L322]
+ 0C5F 0907              adc A,7
+ 0C61 5F0001            mov [__r3],[L321]
+ 0C64 6500              asl [__r3]
+ 0C66 060024            add [__r3],<_ppm_Data
+ 0C69 3F00              mvi [__r3],A
+ 0C6B 5100              mov A,[__r1]
+ 0C6D 3F00              mvi [__r3],A
+ 0C6F           L341:
+ 0C6F                   .dbline 755
+ 0C6F           ;                               //limit to MIN / MAX
+ 0C6F           ;                               if (PPM_OUT_MAX_LEN<ppm_Data[chanal])
+ 0C6F 5F0001            mov [__r1],[L321]
+ 0C72 6500              asl [__r1]
+ 0C74 060024            add [__r1],<_ppm_Data
+ 0C77 3E00              mvi A,[__r1]
+ 0C79 5300              mov [__r0],A
+ 0C7B 3E00              mvi A,[__r1]
+ 0C7D 5300              mov [__r1],A
+ 0C7F 50B8              mov A,-72
+ 0C81 1200              sub A,[__r1]
+ 0C83 500F              mov A,15
+ 0C85 1A00              sbb A,[__r0]
+ 0C87 D011              jnc L342
+ 0C89           X45:
+ 0C89                   .dbline 756
+ 0C89           ;                                       ppm_Data[chanal]=PPM_OUT_MAX_LEN;
+ 0C89 5F0001            mov [__r1],[L321]
+ 0C8C 6500              asl [__r1]
+ 0C8E 060024            add [__r1],<_ppm_Data
+ 0C91 500F              mov A,15
+ 0C93 3F00              mvi [__r1],A
+ 0C95 50B8              mov A,-72
+ 0C97 3F00              mvi [__r1],A
+ 0C99           L342:
+ 0C99                   .dbline 757
+ 0C99           ;                               if (PPM_OUT_MIN_LEN>ppm_Data[chanal])
+ 0C99 5F0001            mov [__r1],[L321]
+ 0C9C 6500              asl [__r1]
+ 0C9E 060024            add [__r1],<_ppm_Data
+ 0CA1 3E00              mvi A,[__r1]
+ 0CA3 5300              mov [__r0],A
+ 0CA5 3E00              mvi A,[__r1]
+ 0CA7 11B8              sub A,-72
+ 0CA9 5100              mov A,[__r0]
+ 0CAB 1907              sbb A,7
+ 0CAD D011              jnc L344
+ 0CAF           X46:
+ 0CAF                   .dbline 758
+ 0CAF           ;                                       ppm_Data[chanal]=PPM_OUT_MIN_LEN;
+ 0CAF 5F0001            mov [__r1],[L321]
+ 0CB2 6500              asl [__r1]
+ 0CB4 060024            add [__r1],<_ppm_Data
+ 0CB7 5007              mov A,7
+ 0CB9 3F00              mvi [__r1],A
+ 0CBB 50B8              mov A,-72
+ 0CBD 3F00              mvi [__r1],A
+ 0CBF           L344:
+ 0CBF                   .dbline 759
+ 0CBF           ;                       }
+ 0CBF           L331:
+ 0CBF                   .dbline 760
+ 0CBF           ;               }
+ 0CBF           L324:
+ 0CBF                   .dbline 730
+ 0CBF 7700              inc [X+0]
+ 0CC1           L326:
+ 0CC1                   .dbline 730
+ 0CC1 3D0007            cmp [X+0],7
+ 0CC4 CEF0              jc L323
+ 0CC6           X47:
+ 0CC6                   .dbline 761
+ 0CC6           ;               return 1;
+ 0CC6 5001              mov A,1
+ 0CC8 8003              xjmp L315
+ 0CCA           L319:
+ 0CCA                   .dbline 763
+ 0CCA           ;       }
+ 0CCA           ;       return 0;
+ 0CCA 5000              mov A,0
+ 0CCC                   .dbline -2
+ 0CCC           L315:
+ 0CCC 38FF              add SP,-1
+ 0CCE 20                pop X
+ 0CCF                   .dbline 0 ; func end
+ 0CCF 7F                ret
+ 0CD0                   .dbsym l n 0 c
+ 0CD0                   .dbend
+ 0CD0                   .dbfunc e DSM_Save_Failsafe_Presets _DSM_Save_Failsafe_Presets fV
+ 0CD0           ;              n -> X+0
+ 0CD0           _DSM_Save_Failsafe_Presets::
+ 0CD0                   .dbline -1
+ 0CD0 10                push X
+ 0CD1 4F                mov X,SP
+ 0CD2 3801              add SP,1
+ 0CD4                   .dbline 767
+ 0CD4           ; }
+ 0CD4           ; 
+ 0CD4           ; void DSM_Save_Failsafe_Presets(void)
+ 0CD4           ; {
+ 0CD4                   .dbline 773
+ 0CD4           ; BYTE n;
+ 0CD4           ; #ifdef DEBUG
+ 0CD4           ;       LED_1_6_Invert();
+ 0CD4           ;       LED_1_6_Invert();
+ 0CD4           ; #endif
+ 0CD4           ;       for(n=0;n<PPM_PULSE_COUNT;n++)
+ 0CD4 560000            mov [X+0],0
+ 0CD7 802A              xjmp L350
+ 0CD9           L347:
+ 0CD9                   .dbline 774
+ 0CD9           ;       {       
+ 0CD9                   .dbline 775
+ 0CD9           ;               ppm_fs_Data[n]=ppm_Data[n];
+ 0CD9 5200              mov A,[X+0]
+ 0CDB 5300              mov [__r1],A
+ 0CDD 550000            mov [__r0],0
+ 0CE0 6500              asl [__r1]
+ 0CE2 6B00              rlc [__r0]
+ 0CE4 5100              mov A,[__r1]
+ 0CE6 0124              add A,<_ppm_Data
+ 0CE8 5300              mov [__r3],A
+ 0CEA 3E00              mvi A,[__r3]
+ 0CEC 5300              mov [__r2],A
+ 0CEE 3E00              mvi A,[__r3]
+ 0CF0 5300              mov [__r3],A
+ 0CF2 06003A            add [__r1],<_config+8
+ 0CF5 0E003A            adc [__r0],>_config+8
+ 0CF8 5100              mov A,[__r2]
+ 0CFA 3F00              mvi [__r1],A
+ 0CFC 5100              mov A,[__r3]
+ 0CFE 3F00              mvi [__r1],A
+ 0D00                   .dbline 776
+ 0D00           ;       }
+ 0D00           L348:
+ 0D00                   .dbline 773
+ 0D00 7700              inc [X+0]
+ 0D02           L350:
+ 0D02                   .dbline 773
+ 0D02 3D0007            cmp [X+0],7
+ 0D05 CFD3              jc L347
+ 0D07           X48:
+ 0D07                   .dbline 777
+ 0D07           ; Preste_Failsafe=TRUE;
+ 0D07 553901            mov [_config+7],1
+ 0D0A                   .dbline -2
+ 0D0A           L346:
+ 0D0A 38FF              add SP,-1
+ 0D0C 20                pop X
+ 0D0D                   .dbline 0 ; func end
+ 0D0D 7F                ret
+ 0D0E                   .dbsym l n 0 c
+ 0D0E                   .dbend
+ 0D0E                   .dbfunc e DSM_Load_FS_Data _DSM_Load_FS_Data fV
+ 0D0E           ;              n -> X+0
+ 0D0E           _DSM_Load_FS_Data::
+ 0D0E                   .dbline -1
+ 0D0E 10                push X
+ 0D0F 4F                mov X,SP
+ 0D10 3801              add SP,1
+ 0D12                   .dbline 781
+ 0D12           ; }
+ 0D12           ; 
+ 0D12           ; void DSM_Load_FS_Data(void)
+ 0D12           ; {
+ 0D12                   .dbline 787
+ 0D12           ; BYTE n;
+ 0D12           ; #ifdef DEBUG
+ 0D12           ;       LED_1_6_Invert();
+ 0D12           ;       LED_1_6_Invert();
+ 0D12           ; #endif
+ 0D12           ;       if (Preste_Failsafe)
+ 0D12 3C3900            cmp [_config+7],0
+ 0D15 A036              jz L354
+ 0D17                   .dbline 789
+ 0D17           ;       {
+ 0D17           ;               for(n=0;n<PPM_PULSE_COUNT;n++)
+ 0D17                   .dbline 789
+ 0D17 560000            mov [X+0],0
+ 0D1A 802A              xjmp L360
+ 0D1C           L357:
+ 0D1C                   .dbline 790
+ 0D1C           ;               {       
+ 0D1C                   .dbline 791
+ 0D1C           ;                       ppm_Data[n]=ppm_fs_Data[n];
+ 0D1C 5200              mov A,[X+0]
+ 0D1E 5300              mov [__r1],A
+ 0D20 550000            mov [__r0],0
+ 0D23 6500              asl [__r1]
+ 0D25 6B00              rlc [__r0]
+ 0D27 5100              mov A,[__r1]
+ 0D29 013A              add A,<_config+8
+ 0D2B 5300              mov [__r3],A
+ 0D2D 3E00              mvi A,[__r3]
+ 0D2F 5300              mov [__r2],A
+ 0D31 3E00              mvi A,[__r3]
+ 0D33 5300              mov [__r3],A
+ 0D35 060024            add [__r1],<_ppm_Data
+ 0D38 0E0024            adc [__r0],>_ppm_Data
+ 0D3B 5100              mov A,[__r2]
+ 0D3D 3F00              mvi [__r1],A
+ 0D3F 5100              mov A,[__r3]
+ 0D41 3F00              mvi [__r1],A
+ 0D43                   .dbline 792
+ 0D43           ;               }
+ 0D43           L358:
+ 0D43                   .dbline 789
+ 0D43 7700              inc [X+0]
+ 0D45           L360:
+ 0D45                   .dbline 789
+ 0D45 3D0007            cmp [X+0],7
+ 0D48 CFD3              jc L357
+ 0D4A           X49:
+ 0D4A                   .dbline 793
+ 0D4A           ;       }
+ 0D4A 8007              xjmp L355
+ 0D4C           L354:
+ 0D4C                   .dbline 795
+ 0D4C           ;       else 
+ 0D4C           ;       {
+ 0D4C                   .dbline 796
+ 0D4C           ;               ppm_Data[0]=PPM_OUT_MIN_LEN;
+ 0D4C 5525B8            mov [_ppm_Data+1],-72
+ 0D4F 552407            mov [_ppm_Data],7
+ 0D52                   .dbline 797
+ 0D52           ;       }
+ 0D52           L355:
+ 0D52                   .dbline -2
+ 0D52           L353:
+ 0D52 38FF              add SP,-1
+ 0D54 20                pop X
+ 0D55                   .dbline 0 ; func end
+ 0D55 7F                ret
+ 0D56                   .dbsym l n 0 c
+ 0D56                   .dbend
                         .area bss(ram, con, rel)
  0004                   .dbfile E:\WORKSP~1\cypress\DS400A~1\DSM_RE~1\dsm.c
  0004           _bind_channal::
@@ -3662,31 +3645,31 @@
  000D                   .blkb 23
  0024                   .dbsym e channels _channels A[23:23]c
  0024           _ppm_Data::
- 0024                   .blkb 16
- 0034                   .dbsym e ppm_Data _ppm_Data A[16:8]i
- 0034           _config::
- 0034                   .blkb 24
- 004C                   .dbstruct 0 24 config_s
- 004C                   .dbfield 0 mfg_id A[4:4]c
- 004C                   .dbfield 4 Is_DSMX c
- 004C                   .dbfield 5 Is_11ms c
- 004C                   .dbfield 6 Is_11Bit c
- 004C                   .dbfield 7 Preste_Failsafe c
- 004C                   .dbfield 8 ppm_fs_Data A[16:8]i
- 004C                   .dbend
- 004C                   .dbsym e config _config S[config_s]
- 004C           _Rcv_Timeout::
- 004C                   .blkb 1
- 004D                   .dbsym e Rcv_Timeout _Rcv_Timeout c
- 004D           _new_data::
- 004D                   .blkb 1
- 004E                   .dbsym e new_data _new_data c
- 004E           _State::
- 004E                   .blkb 1
- 004F                   .dbsym e State _State c
- 004F           _DSM_Perriode::
- 004F                   .blkb 2
- 0051                   .dbsym e DSM_Perriode _DSM_Perriode i
+ 0024                   .blkb 14
+ 0032                   .dbsym e ppm_Data _ppm_Data A[14:7]i
+ 0032           _config::
+ 0032                   .blkb 22
+ 0048                   .dbstruct 0 22 config_s
+ 0048                   .dbfield 0 mfg_id A[4:4]c
+ 0048                   .dbfield 4 Is_DSMX c
+ 0048                   .dbfield 5 Is_11ms c
+ 0048                   .dbfield 6 Is_11Bit c
+ 0048                   .dbfield 7 Preste_Failsafe c
+ 0048                   .dbfield 8 ppm_fs_Data A[14:7]i
+ 0048                   .dbend
+ 0048                   .dbsym e config _config S[config_s]
+ 0048           _Rcv_Timeout::
+ 0048                   .blkb 1
+ 0049                   .dbsym e Rcv_Timeout _Rcv_Timeout c
+ 0049           _new_data::
+ 0049                   .blkb 1
+ 004A                   .dbsym e new_data _new_data c
+ 004A           _State::
+ 004A                   .blkb 1
+ 004B                   .dbsym e State _State c
+ 004B           _DSM_Perriode::
+ 004B                   .blkb 2
+ 004D                   .dbsym e DSM_Perriode _DSM_Perriode i
                         .area func_lit(rom, con, rel, proclab)
  0000 098B      PL_Bind_xfer_cb:        .word _Bind_xfer_cb
  0002 0000      PL0:    .word 0

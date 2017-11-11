@@ -1,6 +1,6 @@
 Project:      output/DSM_Reciver_PPM_OUTV3
 Build Number: 0
-Date:         Mon Oct 09 23:04:53 2017
+Date:         Wed Oct 11 22:48:47 2017
 Compiler:     ICCM8C
 Version:      7.05.00
 
@@ -251,7 +251,7 @@ Area                               Addr   Size   Decimal Bytes (Attributes)
 
 Area                               Addr   Size   Decimal Bytes (Attributes)
 --------------------------------   ----   ----   ------- ----- ------------
-                            text   09A7   1616 =   5654. bytes (rel,con,rom,code)
+                            text   09A7   15F7 =   5623. bytes (rel,con,rom,code)
 
        Addr  Global Symbol
       -----  --------------------------------
@@ -297,24 +297,24 @@ Area                               Addr   Size   Decimal Bytes (Attributes)
        164D  _DSM_initialize_bind_ack
        167E  _Bind_TimeOut_cb
        16A8  _Process_BindRcvIrq
-       17E1  _DSM_DeterminBitCount
-       1845  _DSM_process_Data
-       1957  _DSM_Save_Failsafe_Presets
-       198D  _DSM_Load_FS_Data
-       19CD  _LVD_ISR
-       19D9  _main
-       1BA9  _ppm_Init
-       1BFC  _Switch_LED
-       1C7D  _PPM_Start_One_PPM_Train
-       1C9D  _PWM16_1_CMP_ISR
-       1D62  _Timer_Wait_ms
-       1D71  _Timer_init
-       1D83  _Timer_SetCallback
-       1D8F  _Timer8_1_Interrupt
-       1E16  PSoC_GPIO_ISR
-       1F7E  __plcall
-       1F8B  <created procedures>
-       1FBD  __text_end
+       17C2  _DSM_DeterminBitCount
+       1826  _DSM_process_Data
+       1938  _DSM_Save_Failsafe_Presets
+       196E  _DSM_Load_FS_Data
+       19AE  _LVD_ISR
+       19BA  _main
+       1B8A  _ppm_Init
+       1BDD  _Switch_LED
+       1C5E  _PPM_Start_One_PPM_Train
+       1C7E  _PWM16_1_CMP_ISR
+       1D43  _Timer_Wait_ms
+       1D52  _Timer_init
+       1D64  _Timer_SetCallback
+       1D70  _Timer8_1_Interrupt
+       1DF7  PSoC_GPIO_ISR
+       1F5F  __plcall
+       1F6C  <created procedures>
+       1F9E  __text_end
 
 Area                               Addr   Size   Decimal Bytes (Attributes)
 --------------------------------   ----   ----   ------- ----- ------------
@@ -380,7 +380,7 @@ Area                               Addr   Size   Decimal Bytes (Attributes)
 
 Area                               Addr   Size   Decimal Bytes (Attributes)
 --------------------------------   ----   ----   ------- ----- ------------
-                             bss   0020   0075 =    117. bytes (rel,con,ram)
+                             bss   0020   0071 =    113. bytes (rel,con,ram)
 
        Addr  Global Symbol
       -----  --------------------------------
@@ -398,15 +398,15 @@ Area                               Addr   Size   Decimal Bytes (Attributes)
        004D  _chidx
        004E  _channels
        0065  _ppm_Data
-       0075  _config
-       008D  _Rcv_Timeout
-       008E  _new_data
-       008F  _State
-       0090  _DSM_Perriode
-       0092  _TC_IRQ
-       0093  _cnt_last
-       0095  __bss_end
-       0095  __ramareas_end
+       0073  _config
+       0089  _Rcv_Timeout
+       008A  _new_data
+       008B  _State
+       008C  _DSM_Perriode
+       008E  _TC_IRQ
+       008F  _cnt_last
+       0091  __bss_end
+       0091  __ramareas_end
 
 Area                               Start  End    Decimal Bytes (Attributes)
 --------------------------------   ----   ----   ------- ----- ------------

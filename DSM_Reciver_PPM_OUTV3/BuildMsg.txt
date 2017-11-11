@@ -1,47 +1,5 @@
 Starting MAKE...
-creating project.mk 
-
-lib/cs_pin.asm
-
-lib/e2prom_1.asm
-
-lib/led_1.asm
-
-lib/led_1_0.asm
-
-lib/led_1_1.asm
-
-lib/led_1_4.asm
-
-lib/led_1_5.asm
-
-lib/led_1_6.asm
-
-lib/led_1_7.asm
-
-lib/psocconfig.asm
-
-lib/psocconfigtbl.asm
-
-lib/psocgpioint.asm
-
-lib/pwm16_1.asm
-
-lib/pwm16_1int.asm
-
-lib/rst.asm
-
-lib/sleeptimer_1.asm
-
-lib/sleeptimer_1int.asm
-
-lib/spim_1.asm
-
-lib/timer8_1.asm
-
-lib/timer8_1int.asm
-
-./boot.asm
+creating project.mk -- no changes
 
 Linking..
 
@@ -137,14 +95,14 @@ symbol _LED_1_On is unused
 
 477 bytes unused code deleted
 
-7489 bytes before Code Compression, 6978 after. 0% reduction.
+7458 bytes before Code Compression, 6947 after. 0% reduction.
 
-  ROM 95% full. 7757 out of 8192 bytes used (does not include absolute areas).
+  ROM 95% full. 7726 out of 8192 bytes used (does not include absolute areas).
 
-  RAM 59% full. 149 bytes used (does not include stack usage).
+  RAM 57% full. 145 bytes used (does not include stack usage).
 
 Built with ICCM8C STD V7.05.00
 
  
-DSM_Reciver_PPM_OUTV3 - 0 error(s) 0 warning(s) 23:04:53
+DSM_Reciver_PPM_OUTV3 - 0 error(s) 0 warning(s) 22:48:48
 

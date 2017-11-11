@@ -31,9 +31,9 @@ SWITCH_MODE_PUMP_JUST:	equ	80h	;Switch Mode Pump justified
 LVD_TBEN:               equ 0   ; Low Voltage Throttle-back enable value
 LVD_TBEN_MASK:          equ 8  ; Low Voltage Throttle-back enable mask
 LVD_TBEN_JUST:          equ 0  ; Low Voltage Throttle-back enable justified
-TRIP_VOLTAGE:			equ	3h   ;Trip Voltage value
+TRIP_VOLTAGE:			equ	1h   ;Trip Voltage value
 TRIP_VOLTAGE_MASK:      equ 7h  ;Trip Voltage mask
-TRIP_VOLTAGE_JUST:      equ 3h  ;Trip Voltage justified
+TRIP_VOLTAGE_JUST:      equ 1h  ;Trip Voltage justified
                               
 POWER_SETTING:			equ	8h
 POWER_SET_5V0:          equ 10h  ; MASK for 5.0V operation, fast and slow 
