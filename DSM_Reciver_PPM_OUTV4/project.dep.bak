@@ -1,0 +1,114 @@
+# DO NOT DELETE
+./obj/boot.o :  E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\lib\GLOBAL~1.INC\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8ssc.inc
+./obj/config.o :  ./lib/E2PROM_1.h\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\config.h\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.h
+./obj/cyrf6936.o :  ./lib/CH0_OUT.h ./lib/CH1_OUT.h ./lib/CH2_OUT.h\
+   ./lib/CH3_OUT.h ./lib/CH4_OUT.h ./lib/CH5_OUT.h ./lib/CS_PIN.h\
+   ./lib/E2PROM_1.h ./lib/LED_1.h ./lib/PSoCAPI.h ./lib/PSOCGP~1.H\
+   ./lib/PWM16_1.h ./lib/RST.h ./lib/SPIM_1.h ./lib/SLEEPT~1.H\
+   ./lib/Timer8_1.h E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\CYRF6936.h\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\CYRF69~1.H\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\delay.h\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\timer.h\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.h
+./obj/delay.o :  E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./obj/dsm.o :  ./lib/CH0_OUT.h ./lib/CH1_OUT.h ./lib/CH2_OUT.h\
+   ./lib/CH3_OUT.h ./lib/CH4_OUT.h ./lib/CH5_OUT.h ./lib/CS_PIN.h\
+   ./lib/E2PROM_1.h ./lib/LED_1.h ./lib/PSoCAPI.h ./lib/PSOCGP~1.H\
+   ./lib/PWM16_1.h ./lib/RST.h ./lib/SPIM_1.h ./lib/SLEEPT~1.H\
+   ./lib/Timer8_1.h E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\CYRF69~1.H\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\config.h\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\cyrf6936.h\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\dsm.h\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\ppm.h\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\timer.h\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.h
+./obj/main.o :  ./lib/CH0_OUT.h ./lib/CH1_OUT.h ./lib/CH2_OUT.h\
+   ./lib/CH3_OUT.h ./lib/CH4_OUT.h ./lib/CH5_OUT.h ./lib/CS_PIN.h\
+   ./lib/E2PROM_1.h ./lib/LED_1.h ./lib/PSoCAPI.h ./lib/PSOCGP~1.H\
+   ./lib/PWM16_1.h ./lib/RST.h ./lib/SPIM_1.h ./lib/SLEEPT~1.H\
+   ./lib/Timer8_1.h E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\CYRF6936.h\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\CYRF69~1.H\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\DSM.h\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\config.h\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\cyrf6936.h\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\ppm.h\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\timer.h\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.h
+./obj/ppm.o :  ./lib/CH0_OUT.h ./lib/CH1_OUT.h ./lib/CH2_OUT.h\
+   ./lib/CH3_OUT.h ./lib/CH4_OUT.h ./lib/CH5_OUT.h ./lib/CS_PIN.h\
+   ./lib/E2PROM_1.h ./lib/LED_1.h ./lib/PSoCAPI.h ./lib/PSOCGP~1.H\
+   ./lib/PWM16_1.h ./lib/RST.h ./lib/SPIM_1.h ./lib/SLEEPT~1.H\
+   ./lib/Timer8_1.h E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\config.h\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\ppm.h\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.h
+./obj/timer.o :  ./lib/CH0_OUT.h ./lib/CH1_OUT.h ./lib/CH2_OUT.h\
+   ./lib/CH3_OUT.h ./lib/CH4_OUT.h ./lib/CH5_OUT.h ./lib/CS_PIN.h\
+   ./lib/E2PROM_1.h ./lib/LED_1.h ./lib/PSoCAPI.h ./lib/PSOCGP~1.H\
+   ./lib/PWM16_1.h ./lib/RST.h ./lib/SPIM_1.h ./lib/SLEEPT~1.H\
+   ./lib/Timer8_1.h E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\timer.h\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.h
+./lib/obj/ch0_out.o :  ./lib/CH0_OUT.inc\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/ch1_out.o :  ./lib/CH1_OUT.inc\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/ch2_out.o :  ./lib/CH2_OUT.inc\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/ch3_out.o :  ./lib/CH3_OUT.inc\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/ch4_out.o :  ./lib/CH4_OUT.inc\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/ch5_out.o :  ./lib/CH5_OUT.inc\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/cs_pin.o :  ./lib/CS_PIN.inc\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/e2prom_1.o :  ./lib/E2PROM_1.inc\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/E2PROM~1.INC\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/led_1.o :  ./lib/LED_1.inc\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/psocconfig.o :  ./lib/GLOBAL~1.INC\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/psocconfigtbl.o : \
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/psocgpioint.o :  ./lib/PSOCGP~1.INC\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/pwm16_1.o :  ./lib/PWM16_1.inc\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/pwm16_1int.o :  ./lib/PWM16_1.inc\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/rst.o :  ./lib/RST.inc\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/sleeptimer_1.o :  ./lib/SLEEPT~1.INC\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/sleeptimer_1int.o :  ./lib/SLEEPT~1.INC\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/spim_1.o :  ./lib/SPIM_1.inc\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/timer8_1.o :  ./lib/Timer8_1.inc\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+./lib/obj/timer8_1int.o :  ./lib/Timer8_1.inc\
+   E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\memory.inc\
+   e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc

@@ -1,0 +1,537 @@
+                        .module ppm.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./ppm.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile ./ppm.c
+ 0000           _ppm_Nr::
+ 0000                   .blkb 1
+                        .area idata(rom,lit)
+ 0000 00                .byte 0
+                        .area data(ram, con, rel)
+ 0001                   .dbfile ./ppm.c
+ 0001                   .dbfile E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\ppm.c
+ 0001                   .dbsym e ppm_Nr _ppm_Nr c
+ 0001           _ppm_Run::
+ 0001                   .blkb 1
+                        .area idata(rom,lit)
+ 0001 00                .byte 0
+                        .area data(ram, con, rel)
+ 0002                   .dbfile E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\ppm.c
+ 0002                   .dbsym e ppm_Run _ppm_Run c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\ppm.c
+ 0000                   .dbfunc e ppm_Init _ppm_Init fV
+ 0000           ;              n -> X+0
+ 0000           _ppm_Init::
+ 0000                   .dbline -1
+ 0000 10                push X
+ 0001 4F                mov X,SP
+ 0002 3802              add SP,2
+ 0004                   .dbline 25
+ 0004           ; /*
+ 0004           ; *PPM.C
+ 0004           ; *A 16 Bit PWM module  is used to gennerate the PPM train
+ 0004           ; *The PWM actually gennerates an inverted CPPM __|_|_|_|_|_|_|_|_|___|_|_|_|_|_|_|_|_|___|_
+ 0004           ; *this has the advantage that the pulse width can stay constant, only the periode has to be changed
+ 0004           ; *on everey compare match interrupt the periode value for the next chanel is loaded
+ 0004           ; *the last chanal value has an extra large value and is used to gennerate the sync gap
+ 0004           ; */
+ 0004           ; 
+ 0004           ; #include <m8c.h>        // part specific constants and macros
+ 0004           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0004           ; #include "config.h"
+ 0004           ; #include "ppm.h"
+ 0004           ; 
+ 0004           ; //#define DEBUG
+ 0004           ; 
+ 0004           ; volatile BYTE ppm_Nr=0;//the chanal counter
+ 0004           ; volatile BOOL ppm_Run=0;//start one pulse train
+ 0004           ; BOOL TC_IRQ;
+ 0004           ; 
+ 0004           ; #define PWM_TC_IRQ 0x31;
+ 0004           ; #define PWM_CM_IRQ 0x39;
+ 0004           ; //initialize PPM output
+ 0004           ; void ppm_Init(void )
+ 0004           ; {
+ 0004                   .dbline 29
+ 0004           ;       
+ 0004           ; int n;
+ 0004           ;       //Init PPM_DATA array
+ 0004           ;       for (n=0;n<PPM_PULSE_COUNT;n++)
+ 0004 560100            mov [X+1],0
+ 0007 560000            mov [X+0],0
+ 000A           L4:
+ 000A                   .dbline 30
+ 000A           ;       {       //set to center
+ 000A                   .dbline 31
+ 000A           ;               ppm_Data[n]=PPM_OUT_CENTER_LEN;
+ 000A 5201              mov A,[X+1]
+ 000C 64                asl A
+ 000D 0100              add A,<_ppm_Data
+ 000F 5300              mov [__r1],A
+ 0011 500B              mov A,11
+ 0013 3F00              mvi [__r1],A
+ 0015 50B8              mov A,-72
+ 0017 3F00              mvi [__r1],A
+ 0019                   .dbline 32
+ 0019           ;       }
+ 0019           L5:
+ 0019                   .dbline 29
+ 0019 7701              inc [X+1]
+ 001B 0F0000            adc [X+0],0
+ 001E                   .dbline 29
+ 001E 5201              mov A,[X+1]
+ 0020 1107              sub A,7
+ 0022 5200              mov A,[X+0]
+ 0024 3180              xor A,-128
+ 0026 1980              sbb A,(0 ^ 0x80)
+ 0028 CFE1              jc L4
+ 002A           X0:
+ 002A                   .dbline 34
+ 002A           ;       //enable compare match interrupt of the PWM
+ 002A           ;       PWM16_1_EnableInt();
+ 002A 10                push X
+ 002B 7C0000            xcall _PWM16_1_EnableInt
+ 002E                   .dbline 36
+ 002E           ;       //pulse widht is actually the small gap between the PPM pulses
+ 002E           ;       PWM16_1_WritePulseWidth(PPM_OUT_PULSE_GAP_LEN_US);
+ 002E 5701              mov X,1
+ 0030 5090              mov A,-112
+ 0032 7C0000            xcall _PWM16_1_WritePulseWidth
+ 0035 20                pop X
+ 0036                   .dbline 38
+ 0036           ;       //disconnect the PIN from the PWM and  set the pin to High
+ 0036           ;       PPM_DISCON_SET_OUT_PIN_HIGH;
+ 0036 43B40F            or REG[0xb4],15
+ 0039                   .dbline 40
+ 0039           ;       //init pulse counter, will loop thru the cannels
+ 0039           ;       ppm_Nr=0;               
+ 0039 550000            mov [_ppm_Nr],0
+ 003C                   .dbline 41
+ 003C           ;       TC_IRQ=TRUE;
+ 003C 550001            mov [_TC_IRQ],1
+ 003F                   .dbline 42
+ 003F           ;       PWM16_1_FUNC_MSB_REG=PWM_TC_IRQ;
+ 003F 7110              or F,0x10  ; iopage = 1
+ 0041 622431            mov REG[0x24],49
+ 0044                   .dbline 42
+ 0044                   .dbline 44
+ 0044           ;       //set a initial pulse len, just to have somthing in ther will be change in the interrupt service
+ 0044           ;       PWM16_1_WritePeriod(PPM_OUT_SYNC_PULSE_LEN);
+ 0044 10                push X
+ 0045 5717              mov X,23
+ 0047 5070              mov A,112
+ 0049 70CF              and F,0xCF      ; iopage = 0
+ 004B 7C0000            xcall _PWM16_1_WritePeriod
+ 004E 20                pop X
+ 004F                   .dbline -2
+ 004F           L3:
+ 004F 38FE              add SP,-2
+ 0051 20                pop X
+ 0052                   .dbline 0 ; func end
+ 0052 7F                ret
+ 0053                   .dbsym l n 0 I
+ 0053                   .dbend
+ 0053                   .dbfunc e Switch_LED _Switch_LED fV
+ 0053           ;            val -> X-4
+ 0053           _Switch_LED::
+ 0053                   .dbline -1
+ 0053 10                push X
+ 0054 4F                mov X,SP
+ 0055 3802              add SP,2
+ 0057                   .dbline 48
+ 0057           ; }//END OFF ppm_Init
+ 0057           ; 
+ 0057           ; void Switch_LED(BYTE val)
+ 0057           ; {
+ 0057                   .dbline 50
+ 0057           ; #ifndef DEBUG 
+ 0057           ;       switch (ppm_Nr)
+ 0057 5100              mov A,[_ppm_Nr]
+ 0059 5401              mov [X+1],A
+ 005B 560000            mov [X+0],0
+ 005E 3D0000            cmp [X+0],0
+ 0061 B006              jnz X1
+ 0063 3D0102            cmp [X+1],2
+ 0066 A035              jz L12
+ 0068           X1:
+ 0068 3D0000            cmp [X+0],0
+ 006B B006              jnz X2
+ 006D 3D0103            cmp [X+1],3
+ 0070 A034              jz L13
+ 0072           X2:
+ 0072 3D0000            cmp [X+0],0
+ 0075 B006              jnz X3
+ 0077 3D0104            cmp [X+1],4
+ 007A A033              jz L14
+ 007C           X3:
+ 007C 3D0000            cmp [X+0],0
+ 007F B006              jnz X4
+ 0081 3D0105            cmp [X+1],5
+ 0084 A032              jz L15
+ 0086           X4:
+ 0086 3D0000            cmp [X+0],0
+ 0089 B006              jnz X5
+ 008B 3D0106            cmp [X+1],6
+ 008E A031              jz L16
+ 0090           X5:
+ 0090 3D0000            cmp [X+0],0
+ 0093 B006              jnz X6
+ 0095 3D0107            cmp [X+1],7
+ 0098 A030              jz L17
+ 009A           X6:
+ 009A 8035              xjmp L9
+ 009C           L12:
+ 009C                   .dbline 53
+ 009C           ;       {
+ 009C           ;               case 2:
+ 009C           ;               {
+ 009C                   .dbline 54
+ 009C           ;                       CH0_OUT_Switch(val);
+ 009C 10                push X
+ 009D 52FC              mov A,[X-4]
+ 009F 7C0000            xcall _CH0_OUT_Switch
+ 00A2 20                pop X
+ 00A3                   .dbline 55
+ 00A3           ;               }
+ 00A3                   .dbline 56
+ 00A3           ;               break;
+ 00A3 802C              xjmp L10
+ 00A5           L13:
+ 00A5                   .dbline 58
+ 00A5           ;               case 3:
+ 00A5           ;               {
+ 00A5                   .dbline 59
+ 00A5           ;                       CH1_OUT_Switch(val);
+ 00A5 10                push X
+ 00A6 52FC              mov A,[X-4]
+ 00A8 7C0000            xcall _CH1_OUT_Switch
+ 00AB 20                pop X
+ 00AC                   .dbline 60
+ 00AC           ;               }
+ 00AC                   .dbline 61
+ 00AC           ;               break;
+ 00AC 8023              xjmp L10
+ 00AE           L14:
+ 00AE                   .dbline 63
+ 00AE           ;               case 4:
+ 00AE           ;               {
+ 00AE                   .dbline 64
+ 00AE           ;                       CH2_OUT_Switch(val);
+ 00AE 10                push X
+ 00AF 52FC              mov A,[X-4]
+ 00B1 7C0000            xcall _CH2_OUT_Switch
+ 00B4 20                pop X
+ 00B5                   .dbline 65
+ 00B5           ;               }
+ 00B5                   .dbline 66
+ 00B5           ;               break;
+ 00B5 801A              xjmp L10
+ 00B7           L15:
+ 00B7                   .dbline 68
+ 00B7           ;               case 5:
+ 00B7           ;               {
+ 00B7                   .dbline 69
+ 00B7           ;                       CH3_OUT_Switch(val);
+ 00B7 10                push X
+ 00B8 52FC              mov A,[X-4]
+ 00BA 7C0000            xcall _CH3_OUT_Switch
+ 00BD 20                pop X
+ 00BE                   .dbline 70
+ 00BE           ;               }
+ 00BE                   .dbline 71
+ 00BE           ;               break;
+ 00BE 8011              xjmp L10
+ 00C0           L16:
+ 00C0                   .dbline 73
+ 00C0           ;               case 6:
+ 00C0           ;               {
+ 00C0                   .dbline 74
+ 00C0           ;                       CH4_OUT_Switch(val);
+ 00C0 10                push X
+ 00C1 52FC              mov A,[X-4]
+ 00C3 7C0000            xcall _CH4_OUT_Switch
+ 00C6 20                pop X
+ 00C7                   .dbline 75
+ 00C7           ;               }
+ 00C7                   .dbline 76
+ 00C7           ;               break;
+ 00C7 8008              xjmp L10
+ 00C9           L17:
+ 00C9                   .dbline 78
+ 00C9           ;               case 7:
+ 00C9           ;               {
+ 00C9                   .dbline 79
+ 00C9           ;                       CH5_OUT_Switch(val);
+ 00C9 10                push X
+ 00CA 52FC              mov A,[X-4]
+ 00CC 7C0000            xcall _CH5_OUT_Switch
+ 00CF 20                pop X
+ 00D0                   .dbline 80
+ 00D0           ;               }
+ 00D0                   .dbline 81
+ 00D0           ;               break;
+ 00D0           L9:
+ 00D0           L10:
+ 00D0                   .dbline -2
+ 00D0           L8:
+ 00D0 38FE              add SP,-2
+ 00D2 20                pop X
+ 00D3                   .dbline 0 ; func end
+ 00D3 7F                ret
+ 00D4                   .dbsym l val -4 c
+ 00D4                   .dbend
+ 00D4                   .dbfunc e PPM_Start_One_PPM_Train _PPM_Start_One_PPM_Train fV
+ 00D4           _PPM_Start_One_PPM_Train::
+ 00D4                   .dbline -1
+ 00D4                   .dbline 87
+ 00D4           ;       }
+ 00D4           ; #endif
+ 00D4           ; }
+ 00D4           ; 
+ 00D4           ; void PPM_Start_One_PPM_Train(void )
+ 00D4           ; {
+ 00D4                   .dbline 88
+ 00D4           ;       ppm_Run=TRUE;
+ 00D4 550101            mov [_ppm_Run],1
+ 00D7                   .dbline 89
+ 00D7           ;       PPM_RECON_OUT_PIN;      //reconect i/O PIN to PWM
+ 00D7 41B4FC            and REG[0xb4],-4
+ 00DA                   .dbline 90
+ 00DA           ;       ppm_Nr=1;//reset counter
+ 00DA 550001            mov [_ppm_Nr],1
+ 00DD                   .dbline 91
+ 00DD           ;       PWM16_1_WritePeriod(ppm_Data[0]+PPM_OUT_PULSE_GAP_LEN_US);//load pulse len of first channel
+ 00DD 5101              mov A,[_ppm_Data+1]
+ 00DF 0190              add A,-112
+ 00E1 5300              mov [__r1],A
+ 00E3 5100              mov A,[_ppm_Data]
+ 00E5 0901              adc A,1
+ 00E7 10                push X
+ 00E8 08                push A
+ 00E9 5100              mov A,[__r1]
+ 00EB 20                pop X
+ 00EC 7C0000            xcall _PWM16_1_WritePeriod
+ 00EF                   .dbline 93
+ 00EF           ;       //start the PWM Module
+ 00EF           ;       PWM16_1_Start();
+ 00EF 7C0000            xcall _PWM16_1_Start
+ 00F2 20                pop X
+ 00F3                   .dbline -2
+ 00F3           L18:
+ 00F3                   .dbline 0 ; func end
+ 00F3 7F                ret
+ 00F4                   .dbend
+ 00F4                   .dbfunc e PWM16_1_CMP_ISR _PWM16_1_CMP_ISR fV
+ 00F4           _PWM16_1_CMP_ISR::
+ 00F4                   .dbline -1
+ 00F4 08                push A
+ 00F5 5100              mov A,[__r0]
+ 00F7 08                push A
+ 00F8 5100              mov A,[__r1]
+ 00FA 08                push A
+ 00FB 5100              mov A,[__r2]
+ 00FD 08                push A
+ 00FE 5100              mov A,[__r3]
+ 0100 08                push A
+ 0101 5100              mov A,[__r4]
+ 0103 08                push A
+ 0104 5100              mov A,[__r5]
+ 0106 08                push A
+ 0107 5100              mov A,[__r6]
+ 0109 08                push A
+ 010A 5100              mov A,[__r7]
+ 010C 08                push A
+ 010D 5100              mov A,[__r8]
+ 010F 08                push A
+ 0110 5100              mov A,[__r9]
+ 0112 08                push A
+ 0113 5100              mov A,[__r10]
+ 0115 08                push A
+ 0116 5100              mov A,[__r11]
+ 0118 08                push A
+ 0119 5100              mov A,[__rX]
+ 011B 08                push A
+ 011C 5100              mov A,[__rY]
+ 011E 08                push A
+ 011F 5100              mov A,[__rZ]
+ 0121 08                push A
+ 0122                   .dbline 103
+ 0122           ; }
+ 0122           ; 
+ 0122           ; /*inerrupt service routine for the PWM module
+ 0122           ; *will be called on TC
+ 0122           ; *-load pulse len of the next PPM pulse
+ 0122           ; *- increase pulse counter
+ 0122           ; */
+ 0122           ; #pragma interrupt_handler PWM16_1_CMP_ISR
+ 0122           ; void PWM16_1_CMP_ISR(void )
+ 0122           ; {
+ 0122                   .dbline 104
+ 0122           ;       if (TC_IRQ)
+ 0122 3C0000            cmp [_TC_IRQ],0
+ 0125 A05B              jz L20
+ 0127                   .dbline 107
+ 0127           ;       {
+ 0127           ;               //Sync is send out we are done 
+ 0127           ;               if (ppm_Nr==PPM_PULSE_COUNT+2) 
+ 0127                   .dbline 107
+ 0127 3C0009            cmp [_ppm_Nr],9
+ 012A B00B              jnz L22
+ 012C                   .dbline 109
+ 012C           ;                       { //we are done 
+ 012C           ;                               PWM16_1_Stop();
+ 012C                   .dbline 109
+ 012C 10                push X
+ 012D 7C0000            xcall _PWM16_1_Stop
+ 0130 20                pop X
+ 0131                   .dbline 110
+ 0131           ;                               ppm_Run=0;              //signal that we are done
+ 0131 550100            mov [_ppm_Run],0
+ 0134                   .dbline 111
+ 0134           ;                       }
+ 0134 8037              xjmp L23
+ 0136           L22:
+ 0136                   .dbline 112
+ 0136           ;               else if (ppm_Nr==PPM_PULSE_COUNT+1) 
+ 0136 3C0008            cmp [_ppm_Nr],8
+ 0139 B006              jnz L24
+ 013B                   .dbline 114
+ 013B           ;                       { //we are done 
+ 013B           ;                               PPM_DISCON_SET_OUT_PIN_HIGH;    //disconect IO pin from PWM and set to High
+ 013B                   .dbline 114
+ 013B 43B40F            or REG[0xb4],15
+ 013E                   .dbline 115
+ 013E           ;                       }
+ 013E 802D              xjmp L25
+ 0140           L24:
+ 0140                   .dbline 118
+ 0140           ;               //load pulse len of next chanal
+ 0140           ;               else 
+ 0140           ;               {       //check if that is the last chanel is done
+ 0140                   .dbline 119
+ 0140           ;                       if(ppm_Nr==PPM_PULSE_COUNT)
+ 0140 3C0007            cmp [_ppm_Nr],7
+ 0143 B00C              jnz L26
+ 0145                   .dbline 121
+ 0145           ;                       {
+ 0145           ;                               PWM16_1_WritePeriod(PPM_OUT_SYNC_PULSE_LEN); 
+ 0145                   .dbline 121
+ 0145 10                push X
+ 0146 5717              mov X,23
+ 0148 5070              mov A,112
+ 014A 7C0000            xcall _PWM16_1_WritePeriod
+ 014D 20                pop X
+ 014E                   .dbline 122
+ 014E           ;                       }
+ 014E 801D              xjmp L27
+ 0150           L26:
+ 0150                   .dbline 124
+ 0150           ;                       else 
+ 0150           ;                       {
+ 0150                   .dbline 125
+ 0150           ;                               PWM16_1_WritePeriod(ppm_Data[ppm_Nr]+PPM_OUT_PULSE_GAP_LEN_US);//load pulse len of the next pulse
+ 0150 5F0000            mov [__r1],[_ppm_Nr]
+ 0153 6500              asl [__r1]
+ 0155 060000            add [__r1],<_ppm_Data
+ 0158 3E00              mvi A,[__r1]
+ 015A 5300              mov [__r0],A
+ 015C 3E00              mvi A,[__r1]
+ 015E 0190              add A,-112
+ 0160 5300              mov [__r1],A
+ 0162 0E0001            adc [__r0],1
+ 0165 10                push X
+ 0166 5800              mov X,[__r0]
+ 0168 7C0000            xcall _PWM16_1_WritePeriod
+ 016B 20                pop X
+ 016C                   .dbline 126
+ 016C           ;                       }
+ 016C           L27:
+ 016C                   .dbline 127
+ 016C           ;               }
+ 016C           L25:
+ 016C           L23:
+ 016C                   .dbline 128
+ 016C           ;               ppm_Nr++;
+ 016C 7600              inc [_ppm_Nr]
+ 016E                   .dbline 129
+ 016E           ;               Switch_LED(TRUE);
+ 016E 5001              mov A,1
+ 0170 08                push A
+ 0171 9EE0              xcall _Switch_LED
+ 0173 38FF              add SP,-1
+ 0175                   .dbline 130
+ 0175           ;               TC_IRQ=FALSE;
+ 0175 550000            mov [_TC_IRQ],0
+ 0178                   .dbline 131
+ 0178           ;               PWM16_1_FUNC_MSB_REG=PWM_CM_IRQ;
+ 0178 7110              or F,0x10  ; iopage = 1
+ 017A 622439            mov REG[0x24],57
+ 017D                   .dbline 131
+ 017D                   .dbline 132
+ 017D           ;       }
+ 017D 70CF              and F,0xCF      ; iopage = 0
+ 017F 8012              xjmp L21
+ 0181           L20:
+ 0181                   .dbline 134
+ 0181           ;       else 
+ 0181           ;       {
+ 0181                   .dbline 135
+ 0181           ;               Switch_LED(FALSE);
+ 0181 5000              mov A,0
+ 0183 08                push A
+ 0184 9ECD              xcall _Switch_LED
+ 0186 38FF              add SP,-1
+ 0188                   .dbline 136
+ 0188           ;               TC_IRQ=TRUE;
+ 0188 550001            mov [_TC_IRQ],1
+ 018B                   .dbline 137
+ 018B           ;               PWM16_1_FUNC_MSB_REG=PWM_TC_IRQ;
+ 018B 7110              or F,0x10  ; iopage = 1
+ 018D 622431            mov REG[0x24],49
+ 0190                   .dbline 137
+ 0190                   .dbline 138
+ 0190           ;       }
+ 0190 70CF              and F,0xCF      ; iopage = 0
+ 0192           L21:
+ 0192                   .dbline -2
+ 0192           L19:
+ 0192 18                pop A
+ 0193 5300              mov [__rZ],A
+ 0195 18                pop A
+ 0196 5300              mov [__rY],A
+ 0198 18                pop A
+ 0199 5300              mov [__rX],A
+ 019B 18                pop A
+ 019C 5300              mov [__r11],A
+ 019E 18                pop A
+ 019F 5300              mov [__r10],A
+ 01A1 18                pop A
+ 01A2 5300              mov [__r9],A
+ 01A4 18                pop A
+ 01A5 5300              mov [__r8],A
+ 01A7 18                pop A
+ 01A8 5300              mov [__r7],A
+ 01AA 18                pop A
+ 01AB 5300              mov [__r6],A
+ 01AD 18                pop A
+ 01AE 5300              mov [__r5],A
+ 01B0 18                pop A
+ 01B1 5300              mov [__r4],A
+ 01B3 18                pop A
+ 01B4 5300              mov [__r3],A
+ 01B6 18                pop A
+ 01B7 5300              mov [__r2],A
+ 01B9 18                pop A
+ 01BA 5300              mov [__r1],A
+ 01BC 18                pop A
+ 01BD 5300              mov [__r0],A
+ 01BF 18                pop A
+ 01C0                   .dbline 0 ; func end
+ 01C0 7E                reti
+ 01C1                   .dbend
+                        .area bss(ram, con, rel)
+ 0000                   .dbfile E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\ppm.c
+ 0000           _TC_IRQ::
+ 0000                   .blkb 1
+ 0001                   .dbsym e TC_IRQ _TC_IRQ c

@@ -1,0 +1,108 @@
+Starting MAKE...
+creating project.mk -- no changes
+
+Linking..
+
+symbol Timer8_1_DisableInt is unused
+
+symbol Timer8_1_bReadTimer is unused
+
+symbol _CS_PIN_Invert is unused
+
+symbol PWM16_1_wReadCounter is unused
+
+symbol Timer8_1_bReadTimerSaveCV is unused
+
+symbol _LED_1_GetState is unused
+
+symbol _CH0_OUT_Invert is unused
+
+symbol _CH1_OUT_Invert is unused
+
+symbol _CH2_OUT_Invert is unused
+
+symbol _CH3_OUT_Invert is unused
+
+symbol _CH4_OUT_Invert is unused
+
+symbol _CH5_OUT_Invert is unused
+
+symbol FlashReadBlock is unused
+
+symbol SleepTimer_1_SetInterval is unused
+
+symbol _CH0_OUT_On is unused
+
+symbol SleepTimer_1_bGetTickCntr is unused
+
+symbol _CH1_OUT_On is unused
+
+symbol _CH2_OUT_On is unused
+
+symbol _CH3_OUT_On is unused
+
+symbol _CH4_OUT_On is unused
+
+symbol _CH5_OUT_On is unused
+
+symbol SPIM_1_EnableInt is unused
+
+symbol _CS_PIN_GetState is unused
+
+symbol Timer8_1_bReadCompareValue is unused
+
+symbol SPIM_1_Stop is unused
+
+symbol _CH0_OUT_GetState is unused
+
+symbol _CH1_OUT_GetState is unused
+
+symbol _CH2_OUT_GetState is unused
+
+symbol _CH3_OUT_GetState is unused
+
+symbol _CH4_OUT_GetState is unused
+
+symbol _CH5_OUT_GetState is unused
+
+symbol Timer8_1_WriteCompareValue is unused
+
+symbol SPIM_1_DisableInt is unused
+
+symbol SleepTimer_1_SetTimer is unused
+
+symbol SleepTimer_1_SyncWait is unused
+
+symbol PWM16_1_DisableInt is unused
+
+symbol _RST_Invert is unused
+
+symbol PWM16_1_wReadPulseWidth is unused
+
+symbol E2PROM_1_Stop is unused
+
+symbol SleepTimer_1_bGetTimer is unused
+
+symbol SleepTimer_1_Stop is unused
+
+symbol _LED_1_Invert is unused
+
+symbol SleepTimer_1_DisableInt is unused
+
+symbol _RST_GetState is unused
+
+symbol _LED_1_On is unused
+
+465 bytes unused code deleted
+
+7503 bytes before Code Compression, 7004 after. 0% reduction.
+
+  ROM 95% full. 7773 out of 8192 bytes used (does not include absolute areas).
+
+  RAM 57% full. 145 bytes used (does not include stack usage).
+
+Built with ICCM8C STD V7.05.00
+
+ 
+DSM_Reciver_PPM_OUTV4 - 0 error(s) 0 warning(s) 22:26:51
+

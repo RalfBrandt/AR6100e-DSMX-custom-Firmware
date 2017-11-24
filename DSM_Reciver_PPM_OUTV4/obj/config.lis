@@ -1,0 +1,211 @@
+                        .module config.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./config.c
+ 0000                   .dbfile E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\config.c
+ 0000                   .dbfunc e SaveConfig _SaveConfig fV
+ 0000           ;              n -> X+0
+ 0000           ;            Cnt -> X-6
+ 0000           ;           Data -> X-5
+ 0000           _SaveConfig::
+ 0000                   .dbline -1
+ 0000 10                push X
+ 0001 4F                mov X,SP
+ 0002 3801              add SP,1
+ 0004                   .dbline 11
+ 0004           ; #include "config.h"
+ 0004           ; 
+ 0004           ; extern CHAR  E2PROM_1_bE2Write(WORD wAddr, BYTE * pbData, WORD wByteCount, CHAR cTemperature);
+ 0004           ; extern void  E2PROM_1_E2Read(WORD wAddr, BYTE * pbDataDest, WORD wByteCount);
+ 0004           ; 
+ 0004           ; RAM_D mem;
+ 0004           ; #define buf mem.buf
+ 0004           ; 
+ 0004           ; 
+ 0004           ; void SaveConfig(void *Data,BYTE Cnt)
+ 0004           ; {
+ 0004                   .dbline 14
+ 0004           ; BYTE n;       
+ 0004           ; #ifndef DEBUG
+ 0004           ; E2PROM_1_E2Read(0,buf,32);
+ 0004 10                push X
+ 0005 5000              mov A,0
+ 0007 08                push A
+ 0008 5020              mov A,32
+ 000A 08                push A
+ 000B 5000              mov A,>_mem
+ 000D 08                push A
+ 000E 5000              mov A,<_mem
+ 0010 08                push A
+ 0011 5000              mov A,0
+ 0013 08                push A
+ 0014 08                push A
+ 0015 7C0000            xcall _E2PROM_1_E2Read
+ 0018 38FA              add SP,-6
+ 001A 20                pop X
+ 001B                   .dbline 16
+ 001B           ; #endif
+ 001B           ; buf[0]=CONFIG_ID;
+ 001B 550021            mov [_mem],33
+ 001E                   .dbline 17
+ 001E           ; for (n=0;n<Cnt;n++)
+ 001E 560000            mov [X+0],0
+ 0021 8019              xjmp L7
+ 0023           L4:
+ 0023                   .dbline 18
+ 0023           ;       buf[n+1]=((BYTE *)Data)[n];
+ 0023 5200              mov A,[X+0]
+ 0025 5300              mov [__r1],A
+ 0027 52FC              mov A,[X-4]
+ 0029 0400              add [__r1],A
+ 002B 3E00              mvi A,[__r1]
+ 002D 5300              mov [__r0],A
+ 002F 5200              mov A,[X+0]
+ 0031 0101              add A,<_mem+1
+ 0033 5300              mov [__r3],A
+ 0035 5100              mov A,[__r0]
+ 0037 3F00              mvi [__r3],A
+ 0039           L5:
+ 0039                   .dbline 17
+ 0039 7700              inc [X+0]
+ 003B           L7:
+ 003B                   .dbline 17
+ 003B 5200              mov A,[X+0]
+ 003D 3BFA              cmp A,[X-6]
+ 003F CFE3              jc L4
+ 0041           X0:
+ 0041                   .dbline 20
+ 0041           ; #ifndef DEBUG
+ 0041           ; E2PROM_1_bE2Write(0,buf,64,25);
+ 0041 10                push X
+ 0042 5019              mov A,25
+ 0044 08                push A
+ 0045 5000              mov A,0
+ 0047 08                push A
+ 0048 5040              mov A,64
+ 004A 08                push A
+ 004B 5000              mov A,>_mem
+ 004D 08                push A
+ 004E 5000              mov A,<_mem
+ 0050 08                push A
+ 0051 5000              mov A,0
+ 0053 08                push A
+ 0054 08                push A
+ 0055 7C0000            xcall _E2PROM_1_bE2Write
+ 0058 38F9              add SP,-7
+ 005A 20                pop X
+ 005B                   .dbline -2
+ 005B           L3:
+ 005B 38FF              add SP,-1
+ 005D 20                pop X
+ 005E                   .dbline 0 ; func end
+ 005E 7F                ret
+ 005F                   .dbsym l n 0 c
+ 005F                   .dbsym l Cnt -6 c
+ 005F                   .dbsym l Data -5 pV
+ 005F                   .dbend
+ 005F                   .dbfunc e ReadConfig _ReadConfig fc
+ 005F           ;              n -> X+0
+ 005F           ;            Cnt -> X-6
+ 005F           ;           Data -> X-5
+ 005F           _ReadConfig::
+ 005F                   .dbline -1
+ 005F 10                push X
+ 0060 4F                mov X,SP
+ 0061 3801              add SP,1
+ 0063                   .dbline 25
+ 0063           ; #endif
+ 0063           ; }
+ 0063           ; 
+ 0063           ; BOOL ReadConfig(void *Data,BYTE Cnt)
+ 0063           ; {
+ 0063                   .dbline 28
+ 0063           ; BYTE n;       
+ 0063           ; #ifndef DEBUG
+ 0063           ; E2PROM_1_E2Read(0,buf,32);
+ 0063 10                push X
+ 0064 5000              mov A,0
+ 0066 08                push A
+ 0067 5020              mov A,32
+ 0069 08                push A
+ 006A 5000              mov A,>_mem
+ 006C 08                push A
+ 006D 5000              mov A,<_mem
+ 006F 08                push A
+ 0070 5000              mov A,0
+ 0072 08                push A
+ 0073 08                push A
+ 0074 7C0000            xcall _E2PROM_1_E2Read
+ 0077 38FA              add SP,-6
+ 0079 20                pop X
+ 007A                   .dbline 30
+ 007A           ; #endif
+ 007A           ; if(buf[0]!=CONFIG_ID)
+ 007A 3C0021            cmp [_mem],33
+ 007D A005              jz L10
+ 007F                   .dbline 32
+ 007F           ;       {
+ 007F           ;               return FALSE;
+ 007F                   .dbline 32
+ 007F 5000              mov A,0
+ 0081 8026              xjmp L9
+ 0083           L10:
+ 0083                   .dbline 35
+ 0083           ;       }
+ 0083           ; else
+ 0083           ;       {
+ 0083                   .dbline 36
+ 0083           ;       for (n=0;n<Cnt;n++)
+ 0083 560000            mov [X+0],0
+ 0086 8019              xjmp L15
+ 0088           L12:
+ 0088                   .dbline 37
+ 0088           ;               ((BYTE *)Data)[n]=buf[n+1];
+ 0088 5200              mov A,[X+0]
+ 008A 0101              add A,<_mem+1
+ 008C 5300              mov [__r1],A
+ 008E 3E00              mvi A,[__r1]
+ 0090 5300              mov [__r0],A
+ 0092 5200              mov A,[X+0]
+ 0094 5300              mov [__r3],A
+ 0096 52FC              mov A,[X-4]
+ 0098 0400              add [__r3],A
+ 009A 5100              mov A,[__r0]
+ 009C 3F00              mvi [__r3],A
+ 009E           L13:
+ 009E                   .dbline 36
+ 009E 7700              inc [X+0]
+ 00A0           L15:
+ 00A0                   .dbline 36
+ 00A0 5200              mov A,[X+0]
+ 00A2 3BFA              cmp A,[X-6]
+ 00A4 CFE3              jc L12
+ 00A6           X1:
+ 00A6                   .dbline 38
+ 00A6           ;       }
+ 00A6                   .dbline 39
+ 00A6           ; return TRUE;
+ 00A6 5001              mov A,1
+ 00A8                   .dbline -2
+ 00A8           L9:
+ 00A8 38FF              add SP,-1
+ 00AA 20                pop X
+ 00AB                   .dbline 0 ; func end
+ 00AB 7F                ret
+ 00AC                   .dbsym l n 0 c
+ 00AC                   .dbsym l Cnt -6 c
+ 00AC                   .dbsym l Data -5 pV
+ 00AC                   .dbend
+                        .area bss(ram, con, rel)
+ 0000                   .dbfile E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\config.c
+ 0000           _mem::
+ 0000                   .blkb 32
+ 0020                   .dbstruct 0 32 .1
+ 0020                   .dbfield 0 buf0 A[16:16]c
+ 0020                   .dbfield 16 buf1 A[16:16]c
+ 0020                   .dbend
+ 0020                   .dbunion 0 32 .2
+ 0020                   .dbfield 0 buf A[32:32]c
+ 0020                   .dbfield 0 b S[.1]
+ 0020                   .dbfield 0 rx_d A[16:16]c
+ 0020                   .dbend
+ 0020                   .dbsym e mem _mem S[.2]

@@ -1,0 +1,68 @@
+XH
+H 2 areas 15 global symbols
+M ch2_out.asm
+S Port_1_Data_SHADE Ref0000
+A text size 0 flags 0
+dbfile lib/ch2_out.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/ch2_out.asm
+dbfunc 0 ? 0 I
+dbfile CH2_OUT.inc
+dbfunc 0 ? 0 I
+dbfile e:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C21~3/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/CH2_OUT.inc
+dbfunc 0 ? 0 I
+A UserModules size 28 flags 0
+dbfile lib/ch2_out.asm
+dbfunc 0 ? 0 I
+dbline 50 0
+dbline 51 2
+dbline 59 4
+dbline 61 6
+dbline 62 8
+dbline 66 A
+dbline 6A D
+dbline 6E F
+dbline 74 12
+dbline 75 14
+dbline 79 16
+dbline 95 17
+dbline 96 1A
+dbline 97 1C
+dbline 9B 1E
+dbline B6 1F
+dbline BC 21
+dbline BD 23
+dbline BE 25
+dbline C3 27
+S $sb$_CH2_OUT_GetState Def001F
+S $se$_CH2_OUT_GetState Def0028
+S CH2_OUT_Stop Def0004
+S CH2_OUT_On Def0000
+S _CH2_OUT_Switch Def0006
+S _CH2_OUT_Invert Def0017
+S $sb$_CH2_OUT_Invert Def0017
+S $se$_CH2_OUT_Invert Def001F
+S _CH2_OUT_Stop Def0004
+S CH2_OUT_Start Def0004
+S CH2_OUT_Off Def0004
+S _CH2_OUT_On Def0000
+S CH2_OUT_GetState Def001F
+S $sb$_CH2_OUT_On Def0000
+S $se$_CH2_OUT_On Def0017
+S _CH2_OUT_Start Def0004
+S CH2_OUT_Switch Def0006
+S CH2_OUT_Invert Def0017
+S _CH2_OUT_Off Def0004
+S _CH2_OUT_GetState Def001F
+T 00 00 50 01 80 03 50 00 29 00 A0 06 2E 00 00 20
+R 00 00 00 01 03 0D 00 00
+T 00 0D 80 04 26 00 00 DF 51 00 00 60 04 7F 36
+R 00 00 00 01 03 05 00 00 03 09 00 00
+T 00 18 00 00 20 51 00 00 60 04 7F 51 00 00 21 20
+R 00 00 00 01 03 02 00 00 03 06 00 00 03 0C 00 00
+T 00 23 A0 03 50 01 7F
+R 00 00 00 01

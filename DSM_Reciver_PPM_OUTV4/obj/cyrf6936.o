@@ -1,0 +1,289 @@
+XH
+H 2 areas 1B global symbols
+M cyrf6936.c
+S _Delay50uTimes Ref0000
+S _SPIM_1_SendTxData Ref0000
+S _CS_PIN_On Ref0000
+S __r0 Ref0000
+S __r1 Ref0000
+S __r3 Ref0000
+S _SleepTimer_1_TickWait Ref0000
+S _RST_On Ref0000
+S _SPIM_1_Start Ref0000
+S _CS_PIN_Start Ref0000
+S _SPIM_1_bReadRxData Ref0000
+S _CS_PIN_Off Ref0000
+S _RST_Start Ref0000
+S _RST_Off Ref0000
+S _SPIM_1_bReadStatus Ref0000
+A text size 229 flags 0
+dbfile ./cyrf6936.c
+dbfile E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\cyrf6936.c
+dbfunc e GPIO_ISR 0 fV
+dbline FFFFFFFF 0
+dbline B 4
+dbline C 4
+dbline E D
+dbline E D
+dbline F 10
+dbline FFFFFFFE 10
+dbline 0 14
+dbfunc e CYRF_Init 15 fV
+dbline FFFFFFFF 15
+dbline 15 15
+dbline 16 15
+dbline 17 19
+dbline 18 1C
+dbline 1D 21
+dbline 1E 21
+dbline 1F 24
+dbline 20 27
+dbline 21 2C
+dbline 22 2F
+dbline 23 35
+dbline 24 35
+dbline 25 3F
+dbline 26 46
+dbline 27 49
+dbline FFFFFFFE 4C
+dbline 0 4C
+dbfunc e CYRF_WriteRegister 4D fV
+dbsym l val FFFFFFFB c
+dbsym l reg FFFFFFFC c
+dbline FFFFFFFF 4D
+dbline 2D 4F
+dbline 2E 4F
+dbline FFFFFFFE 64
+dbline 0 65
+dbfunc e CYRF_WriteRegisterMulti 66 fV
+dbsym l n 0 c
+dbsym l cnt FFFFFFF9 c
+dbsym l data FFFFFFFA pkc
+dbsym l reg FFFFFFFC c
+dbline FFFFFFFF 66
+dbline 34 6A
+dbline 36 6A
+dbline 38 6F
+dbline 38 6F
+dbline 3A 7B
+dbline 3B 84
+dbline 3E 89
+dbline 3E 89
+dbline 40 95
+dbline 41 AE
+dbline 3B AE
+dbline 3B B0
+dbline 42 B6
+dbline 42 B6
+dbline 43 C2
+dbline FFFFFFFE C7
+dbline 0 CA
+dbfunc e CYRF_WriteRegisterMultiD CB fV
+dbsym l n 0 c
+dbsym l cnt FFFFFFF9 c
+dbsym l data FFFFFFFA pc
+dbsym l reg FFFFFFFC c
+dbline FFFFFFFF CB
+dbline 46 CF
+dbline 48 CF
+dbline 4A D4
+dbline 4A D4
+dbline 4C E0
+dbline 4D E9
+dbline 50 EE
+dbline 50 EE
+dbline 52 FA
+dbline 53 109
+dbline 4D 109
+dbline 4D 10B
+dbline 54 111
+dbline 54 111
+dbline 55 11D
+dbline FFFFFFFE 122
+dbline 0 125
+dbfunc e CYRF_WriteRegisterInc 126 fV
+dbsym l cnt FFFFFFF9 c
+dbsym l data FFFFFFFA pc
+dbsym l reg FFFFFFFC c
+dbline FFFFFFFF 126
+dbline 5A 128
+dbline 5B 128
+dbline FFFFFFFE 13A
+dbline 0 13B
+dbfunc e CYRF_ReadRegister 13C fc
+dbsym l data 0 c
+dbsym l reg FFFFFFFC c
+dbline FFFFFFFF 13C
+dbline 60 140
+dbline 62 140
+dbline 63 14E
+dbline FFFFFFFE 150
+dbline 0 153
+dbfunc e CYRF_ReadRegisterMulti 154 fV
+dbsym l n 1 c
+dbsym l status 0 c
+dbsym l cnt FFFFFFF9 c
+dbsym l data FFFFFFFA pc
+dbsym l reg FFFFFFFC c
+dbline FFFFFFFF 154
+dbline 68 158
+dbline 6B 158
+dbline 6D 15D
+dbline 6D 15D
+dbline 6F 169
+dbline 71 170
+dbline 71 170
+dbline 73 17D
+dbline 75 184
+dbline 75 184
+dbline 76 191
+dbline 79 196
+dbline 7A 19B
+dbline 7C 19B
+dbline 7D 1A2
+dbline 7D 1A7
+dbline 7E 1A7
+dbline 80 1A7
+dbline 81 1AE
+dbline 83 1AE
+dbline 83 1B3
+dbline 84 1B3
+dbline 85 1B3
+dbline 86 1C6
+dbline 87 1C8
+dbline 88 1C8
+dbline 79 1C8
+dbline 79 1C8
+dbline 88 1CE
+dbline 89 1CE
+dbline FFFFFFFE 1D3
+dbline 0 1D6
+dbfunc e CYRF_ReadRegisterInc 1D7 fV
+dbsym l cnt FFFFFFF9 c
+dbsym l data FFFFFFFA pc
+dbsym l reg FFFFFFFC c
+dbline FFFFFFFF 1D7
+dbline 8C 1D9
+dbline 8D 1D9
+dbline FFFFFFFE 1EB
+dbline 0 1EC
+dbfunc e CYRF_GetMfgData 1ED fV
+dbsym l data FFFFFFFB pc
+dbline FFFFFFFF 1ED
+dbline 93 1EF
+dbline 95 1EF
+dbline 97 1F9
+dbline 9A 207
+dbline FFFFFFFE 211
+dbline 0 212
+dbfunc e CYRF_SetCRCSeed 213 fV
+dbsym l crc FFFFFFFB i
+dbline FFFFFFFF 213
+dbline 9E 215
+dbline 9F 215
+dbline A0 21D
+dbline FFFFFFFE 227
+dbline 0 228
+S _CYRF_WriteRegister Def004D
+S _CYRF_WriteRegisterMulti Def0066
+S _CYRF_WriteRegisterInc Def0126
+S _CYRF_SetCRCSeed Def0213
+S _CYRF_Init Def0015
+S _CYRF_WriteRegisterMultiD Def00CB
+S _CYRF_GetMfgData Def01ED
+S _CYRF_ReadRegister Def013C
+S _CYRF_ReadRegisterMulti Def0154
+S _CYRF_ReadRegisterInc Def01D7
+S _GPIO_ISR Def0000
+A bss size 1 flags 20
+dbfile E:\WORKSP~1\cypress\DSM_RE~1\DSM_RE~1\cyrf6936.c
+dbsym e CY_irq 0 c
+S _CY_irq Def0000
+T 00 00 08 51 00 00 08 5D 00 53 00 00 47 00 00 40
+R 00 00 00 00 03 04 00 03 03 0A 00 03 03 0D 00 03
+T 00 0B A0 04 55 00 00 01 18 53 00 00 18 7E 10 7C
+R 00 00 00 00 01 05 00 01 03 0A 00 03
+T 00 17 00 00 7C 00 00 50 00 7C 00 00 7C
+R 00 00 00 00 02 02 00 0C 02 05 00 09 02 0A 00 08
+T 00 22 00 00 7C 00 00 50 02 7C 00 00 7C
+R 00 00 00 00 02 02 00 07 02 05 00 02 02 0A 00 06
+T 00 2D 00 00 50 0A 7C 00 00 20 50 02 08 50 0F 08
+R 00 00 00 00 02 02 00 0D 02 07 00 06
+T 00 3B 90 10 38 FE 10 50 64 7C 00 00 20 43 E0 20
+R 00 00 00 00 02 0A 00 00
+T 00 49 55 00 00 00 7F 10 4F 50 01 08 5A 00 00 16
+R 00 00 00 00 01 03 00 01 03 0D 00 04
+T 00 55 00 00 05 51 00 00 08 51 00 00 08 52 FC 08
+R 00 00 00 00 03 02 00 04 03 06 00 03 03 0A 00 04
+T 00 60 90 69 38 FC 20 7F 10 4F 38 01 10 7C 00 00
+R 00 00 00 00 02 0E 00 0B
+T 00 6E 20 10 7C 00 00 20 53 00 00 47 00 00 10 AF
+R 00 00 00 00 02 05 00 0E 03 09 00 03 03 0C 00 03
+T 00 7A F5 52 FC 29 80 10 7C 00 00 20 56 00 00 80
+R 00 00 00 00 02 09 00 01
+T 00 88 28 10 7C 00 00 20 53 00 00 47 00 00 10 AF
+R 00 00 00 00 02 05 00 0E 03 09 00 03 03 0C 00 03
+T 00 94 F5 52 00 53 00 00 55 00 00 00 52 FB 04
+R 00 00 00 00 03 06 00 04 03 09 00 03
+T 00 9F 00 00 52 FA 0C 00 00 51 00 00 10 58
+R 00 00 00 00 03 02 00 04 03 07 00 03 03 0A 00 03
+T 00 A8 00 00 28 7C 00 00 20 77 00 52 00 3B F9 CF
+R 00 00 00 00 03 02 00 04 02 06 00 01
+T 00 B5 D4 10 7C 00 00 20 53 00 00 47 00 00 20 AF
+R 00 00 00 00 02 05 00 0E 03 09 00 03 03 0C 00 03
+T 00 C1 F5 10 7C 00 00 20 38 FF 20 7F 10 4F 38 01
+R 00 00 00 00 02 05 00 02
+T 00 CF 10 7C 00 00 20 10 7C 00 00 20 53 00 00 47
+R 00 00 00 00 02 04 00 0B 02 09 00 0E 03 0D 00 03
+T 00 DC 00 00 10 AF F5 52 FC 29 80 10 7C 00 00 20
+R 00 00 00 00 03 02 00 03 02 0D 00 01
+T 00 E9 56 00 00 80 1E 10 7C 00 00 20 53 00 00 47
+R 00 00 00 00 02 09 00 0E 03 0D 00 03
+T 00 F6 00 00 10 AF F5 52 00 53 00 00 52 FB 04
+R 00 00 00 00 03 02 00 03 03 0A 00 04
+T 01 01 00 00 3E 00 00 10 7C 00 00 20 77 00 52 00
+R 00 00 00 00 03 02 00 04 03 05 00 04 02 09 00 01
+T 01 0D 3B F9 CF DE 10 7C 00 00 20 53 00 00 47
+R 00 00 00 00 02 08 00 0E 03 0C 00 03
+T 01 19 00 00 20 AF F5 10 7C 00 00 20 38 FF 20 7F
+R 00 00 00 00 03 02 00 03 02 09 00 02
+T 01 26 10 4F 52 F9 08 52 FA 08 52 FB 08 52 FC 29
+R 00 00 00 00
+T 01 34 40 08 9F 93 38 FC 20 7F 10 4F 38 01 50 01
+R 00 00 00 00
+T 01 42 08 51 00 00 08 10 52 FC 08 90 08 38 FC 52
+R 00 00 00 00 03 04 00 03
+T 01 4F 00 38 FF 20 7F 10 4F 38 02 10 7C 00 00 20
+R 00 00 00 00 02 0D 00 0B
+T 01 5D 10 7C 00 00 20 53 00 00 47 00 00 10 AF F5
+R 00 00 00 00 02 04 00 0E 03 08 00 03 03 0B 00 03
+T 01 69 10 52 FC 7C 00 00 20 10 7C 00 00 20 21 10
+R 00 00 00 00 02 06 00 01 02 0B 00 0E
+T 01 77 54 00 39 00 AF F4 10 50 00 7C 00 00 20 10
+R 00 00 00 00 02 0C 00 01
+T 01 85 7C 00 00 20 21 08 54 00 39 00 AF F4 10 7C
+R 00 00 00 00 02 03 00 0E
+T 01 93 00 00 20 56 01 00 80 2E 10 7C 00 00 20 54
+R 00 00 00 00 02 02 00 0A 02 0C 00 0E
+T 01 A1 00 48 00 10 A0 01 10 50 00 7C 00 00 20 48
+R 00 00 00 00 02 0C 00 01
+T 01 AF 00 08 A0 01 10 7C 00 00 20 53 00 00 52 01
+R 00 00 00 00 02 08 00 0A 03 0C 00 03
+T 01 BC 53 00 00 52 FB 04 00 00 51 00 00 3F
+R 00 00 00 00 03 03 00 05 03 08 00 05 03 0B 00 03
+T 01 C5 00 00 77 01 52 01 3B F9 CF CE 10 7C 00 00
+R 00 00 00 00 03 02 00 05 02 0E 00 02
+T 01 D2 20 38 FE 20 7F 10 4F 52 F9 08 52 FA 08 52
+R 00 00 00 00
+T 01 E0 FB 08 52 FC 29 40 08 9F 6B 38 FC 20 7F 10
+R 00 00 00 00
+T 01 EE 4F 50 FF 08 50 25 08 9E 56 38 FE 50 06 08
+R 00 00 00 00
+T 01 FC 52 FB 08 52 FC 08 50 25 08 9F 4D 50 00 08
+R 00 00 00 00
+T 02 0A 50 25 08 9E 3E 38 FA 20 7F 10 4F 52 FC 08
+R 00 00 00 00
+T 02 18 50 15 08 9E 30 52 FB 08 50 16 08 9E 28 38
+R 00 00 00 00
+T 02 26 FC 20 7F
+R 00 00 00 00
